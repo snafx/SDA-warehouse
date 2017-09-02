@@ -1,6 +1,10 @@
 package com.sda.Warehouse.models;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -12,7 +16,9 @@ import javax.validation.constraints.NotNull;
  */
 
 @Getter
-@Entity(name = "product")
+@EqualsAndHashCode
+@NoArgsConstructor
+@Entity(name = "products")
 public class Product {
 
     @Id
@@ -20,20 +26,26 @@ public class Product {
     private Long id;
 
     @Column
-    @Min(value = 3)
-    @Max(value = 100)
+    @Length.List({
+            @Length(min = 1),
+            @Length(max = 100)
+    })
     @NotNull
     private String name;
 
     @Column
-    @Min(value = 3)
-    @Max(value = 2048)
+    @Length.List({
+            @Length(min = 1),
+            @Length(max = 2048)
+    })
     @NotNull
     private String description;
 
     @Column
-    @Min(value = 3)
-    @Max(value = 100)
+    @Length.List({
+            @Length(min = 1),
+            @Length(max = 60)
+    })
     @NotNull
     private String location;
 
@@ -43,13 +55,23 @@ public class Product {
     private Integer quantity;
 
     @Column
-    @Min(value = 3)
-    @Max(value = 1024)
+    @Length.List({
+            @Length(min = 3),
+            @Length(max = 1024)
+    })
     private String photo;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     @NotNull
     private Category category;
 
+    public Product(String name, String description, String location, Integer quantity, String photo, Category category) {
+        this.name = name;
+        this.description = description;
+        this.location = location;
+        this.quantity = quantity;
+        this.photo = photo;
+        this.category = category;
+    }
 }
