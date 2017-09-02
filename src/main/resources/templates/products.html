@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Products page</title>
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-tutaj strona z produktami
+<div th:replace="fragments/header :: header ">
+    <header>
+        <h1>Sda warehouse</h1>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Sales order</a></li>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Stock</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Raport</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+
+<div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">All product's page</div>
+        <div class="panel-body">
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Ammount</th>
+                    <th>Photo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${allProducts}">
+                    <th scope="row">1</th>
+                    <td th:text="${product.name}">Product name</td>
+                    <td th:text="${product.description}">Product description</td>
+                    <td th:text="${product.category.name}">Product category</td>
+                    <td th:text="${product.quantity}">Product amount</td>
+                    <td><img style="max-width: 100px;"
+                             th:src="${product.photo}"
+                             src="http://www.klslinternational.com/storage/merchant_store_product/331/2235/5_1428585373_sample-img.png"
+                             alt="Product photo"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda warehouse management application powered by Sda-javapoz3</p>
+    </footer>
+</div>
+
 </body>
 </html>
