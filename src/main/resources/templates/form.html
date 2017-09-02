@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="#" th:action="@{/}" th:object="${productAddForm}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" th:field="*{description}" /></td>
+            <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</td>
+        </tr>
+        <tr>
+            <td>Location:</td>
+            <td><input type="text" th:field="*{location}" /></td>
+            <td th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Location Error</td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td><input type="text" th:field="*{quantity}" /></td>
+            <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity error</td>
+        </tr>
+        <tr>
+            <td>Photo:</td>
+            <td><input type="photo" th:field="*{photo}" /></td>
+            <td th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}">Photo's Link Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
