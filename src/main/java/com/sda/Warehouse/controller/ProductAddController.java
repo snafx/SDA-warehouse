@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -32,13 +31,13 @@ public class ProductAddController extends WebMvcConfigurerAdapter{
         registry.addViewController("/results").setViewName("results");
     }
 
-    @PostMapping("/")
+    @PostMapping("/show")
     public String showForm(ProductAddForm productAddForm, Model model) {
         model.addAttribute("categories");
         return "form";
     }
 
-    @PostMapping("/")
+    @PostMapping("/check")
     public String checkProductInfo(@Valid ProductAddForm productAddForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
