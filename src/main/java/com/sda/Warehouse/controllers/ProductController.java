@@ -5,6 +5,8 @@ import com.sda.Warehouse.repositories.JpaCategoryRepository;
 import com.sda.Warehouse.repositories.JpaProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,21 +37,24 @@ public class ProductController {
     // strona w wszystkimi produktami; sciezka: "/products"
 
     @GetMapping
-    public String allProducts(Model model) {
+    public String allProducts(Model model,
+                              @RequestParam(value = "page", required=false, defaultValue = "1") String page,
+                              @RequestParam(value = "limit", required=false, defaultValue = "5") String limit) {
 
-        System.out.println("jestem w GET");
+//        Iterable<Product> allProducts = jpaProductRepository.findAll();
 
-        Iterable<Product> allProducts = jpaProductRepository.findAll();
+        PageRequest myPageabble = new PageRequest(Integer.valueOf(page), Integer.valueOf(limit));
+        Page<Product> pageOfProducts = jpaProductRepository.findAll(myPageabble);
+        List<Product> allProducts = pageOfProducts.getContent();
 
         model.addAttribute("allProducts", allProducts);
 
         return "products";
     }
 
+
     @PostMapping(params = {"search-phrase"})
     public String searchAllProducts(Model model, @RequestParam(value = "search-phrase") String searchPhrase) {
-
-        System.out.println("jestem w POST");
 
         List<Product> allProducts = jpaProductRepository.findByNameContainingOrDescriptionContaining(searchPhrase, searchPhrase);
 
