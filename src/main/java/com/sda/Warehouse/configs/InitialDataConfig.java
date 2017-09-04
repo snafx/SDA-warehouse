@@ -67,7 +67,7 @@ public class InitialDataConfig {
         Product product1 = new Product("Java w pigułce",
                 "Java to język programowania wybierany wszędzie tam, gdzie są wymagane najwyższe bezpieczeństwo i wydajność.",
                 "Rząd 1; miejsce 2",
-                15,
+                150,
                 "https://static01.helion.com.pl/global/okladki/326x466/06a3d95a2c11220eb256f2b29d604546,javpi6.jpg",
                 category);
 
@@ -90,7 +90,7 @@ public class InitialDataConfig {
                         "Danuta kobieta kochająca luksus, ciężko pracująca i całkowicie uzależniona od ojca tyrana oraz Michał, " +
                         "bezrobotny historyk z żoną i dwójką dzieci.",
                 "Rząd 2; miejsce 1",
-                15,
+                0,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
                 category3);
 
