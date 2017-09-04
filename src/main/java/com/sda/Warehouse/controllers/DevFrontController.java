@@ -13,4 +13,9 @@ public class DevFrontController {
         ModelAndView modelAndView = new ModelAndView("index");
         return modelAndView;
     }
+
+    @GetMapping(value = "/registration")
+    public String registration() {
+        return "registration";
+    }
 }
