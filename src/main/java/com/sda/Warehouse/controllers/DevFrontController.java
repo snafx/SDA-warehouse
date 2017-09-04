@@ -13,4 +13,11 @@ public class DevFrontController {
         ModelAndView modelAndView = new ModelAndView("index");
         return modelAndView;
     }
+
+    @GetMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
+
 }
