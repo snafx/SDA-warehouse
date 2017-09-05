@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 
 /**
  * Created by mytek on 2017-09-01.
@@ -64,12 +65,28 @@ public class Product {
     @NotNull
     private Category category;
 
-    public Product(String name, String description, String location, Integer quantity, String photo, Category category) {
+    @Column
+    private String bookAuthor;
+
+    @Column(unique = true)
+    @NotNull
+    private String ISBN;
+
+    @Column
+    @Min(value = 0)
+    @NotNull
+    private double price;
+
+
+    public Product(String name, String description, String location, Integer quantity, String photo, Category category, String bookAuthor, String ISBN, double price) {
         this.name = name;
         this.description = description;
         this.location = location;
         this.quantity = quantity;
         this.photo = photo;
         this.category = category;
+        this.bookAuthor = bookAuthor;
+        this.ISBN = ISBN;
+        this.price = price;
     }
 }
