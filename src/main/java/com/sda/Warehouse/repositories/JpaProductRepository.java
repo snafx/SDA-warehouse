@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by RENT on 2017-09-02.
  */
-public interface JpaProductRepository extends CrudRepository<Product, Integer> {
+public interface JpaProductRepository extends CrudRepository<Product, Long> {
 
     //interfejs, który dostarcza zbiór metoed związanych z create, read, update, delete dla klasy Category
     //nie trzeba tworzyć implementacjitego interfejsu - Spring samgo dostarczy
