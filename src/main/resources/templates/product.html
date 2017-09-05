@@ -3,6 +3,15 @@
 <head>
     <title>Product Page</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $('.add').click(function () {
+            $(this).prev().val(+$(this).prev().val() + 1);
+        });
+        $('.sub').click(function () {
+            if ($(this).next().val() > 0) $(this).next().val(+$(this).next().val() - 1);
+        });
+    </script>
 </head>
 <body>
 
@@ -40,13 +49,53 @@
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
+                    <div class="panel-heading">PRODUCT INFO:</div>
                     <div class="panel-body">
-                        <h4 th:text="'Author: ' + ${product.bookAuthor}">Author: <b>John Doe</b></h4>
+                        <h3 th:text="'Author: ' + ${product.bookAuthor}">Author: <b>John Doe</b></h3>
                         <h3 th:text="'ISBN: ' + ${product.ISBN}">ISBN: 666-777-888</h3>
                         <h3 th:text="'Product id: ' + ${product.id}">Product id number: Lorem-ipsum-666</h3>
                         <h3 th:text="'Quantity: ' + ${product.quantity}">Quantity: Lorem ipsum medium stock</h3>
                         <h3 th:text="'Category: ' + ${product.category.name}">Book category: Lorem ipsum</h3>
                         <h3 th:text="'Price: ' + ${product.price}">Price: $66</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">UPDATE DATA:</div>
+                    <div class="panel-body">
+                        <form method="post" action="newProduct">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Add New Product</button>
+                            </div>
+                        </form>
+                        <form method="post" action="editProduct">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Edit Product</button>
+                            </div>
+                        </form>
+                        <hr>
+                        <form method="post" action="changeQuantity">
+                            <div class="form-group">
+                                <label>Change quantity in database:</label>
+                                <div id=field1>
+                                    <button type="button" id="sub" class="sub">-</button>
+                                    <input type="text" id="1" value="1" class="field">
+                                    <button type="button" id="add" class="add">+</button>
+                                </div>
+                                <!--<div id="input_div">-->
+                                <!--<input type="button" value="-" id="minus" onclick="minus()">-->
+                                <!--<input type="text" size="25" value="1" id="count">-->
+                                <!--<input type="button" value="+" id="plus" onclick="plus()">-->
+                                <!--</div>-->
+                                <br>
+                                <form method="post" action="updateQuantity">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-default">Update Quantity</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
