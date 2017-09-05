@@ -11,4 +11,9 @@ public class DevFrontController {
     public String test() {
         return "index";
     }
+
+    @GetMapping(value = "/registration")
+    public String registration() {
+        return "registration";
+    }
 }
