@@ -58,11 +58,15 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Name ascending</a></li>
-                            <li><a href="#">Name descending</a></li>
+                            <li><a th:href="'/products?sort-by=name&sort-type=asc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                    href="#">Name ascending</a></li>
+                            <li><a th:href="'/products?sort-by=name&sort-type=desc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                    href="#">Name descending</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Category ascending</a></li>
-                            <li><a href="#">Category descending</a></li>
+                            <li><a th:href="'/products?sort-by=category&sort-type=asc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                    href="#">Category ascending</a></li>
+                            <li><a th:href="'/products?sort-by=category&sort-type=desc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                    href="#">Category descending</a></li>
                         </ul>
                     </div>
                 </div>
@@ -76,12 +80,12 @@
                 </div>
             </div>
 
-            <div class="row" th:if="${!sortColumn.isEmpty()}">
-                <div class="col-md-6">
-                    <span th:text="'Currently sorted by: ' + ${sortColumn}" class="text-danger text-italic">
-                        searched phrase</span>
-                </div>
-            </div>
+            <!--<div class="row" th:if="${!sortColumn.isEmpty()}">-->
+                <!--<div class="col-md-6">-->
+                    <!--<span th:text="'Currently sorted by: ' + ${sortColumn}" class="text-danger text-italic">-->
+                        <!--searched phrase</span>-->
+                <!--</div>-->
+            <!--</div>-->
 
             <hr/>
 

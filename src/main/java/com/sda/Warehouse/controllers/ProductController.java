@@ -39,7 +39,9 @@ public class ProductController {
     @GetMapping
     public String allProducts(Model model,
                               @RequestParam(value = "page", required=false, defaultValue = "1") String page,
-                              @RequestParam(value = "search-phrase", required=false, defaultValue = "") String searchPhrase) {
+                              @RequestParam(value = "search-phrase", required=false, defaultValue = "") String searchPhrase,
+                              @RequestParam(value = "sort-by", required=false, defaultValue = "") String sortColumn,
+                              @RequestParam(value = "sort-type", required=false, defaultValue = "") String sortType) {
 
 //        Iterable<Product> allProducts = jpaProductRepository.findAll();
 
