@@ -57,7 +57,7 @@ public class InitialDataConfig {
         jpaCategoryRepository.save(category8);
 
         Product product = new Product("Java podstawy",
-                "Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
+                "PIERWSZY PRODUKT Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
                         "doskonalenia swoich umiejętności w zakresie posługiwania się językiem Java.",
                 "Rząd 1; miejsce 1",
                 15,
@@ -325,7 +325,7 @@ public class InitialDataConfig {
                 category3);
 
         Product product35 = new Product("Latarnia umarłych",
-                "Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
+                "OSTATNI PRODUKT Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
                 "Rząd 2; miejsce 1",
                 15,
                 "http://webimage.pl/pics/234/4/d857398.jpg",

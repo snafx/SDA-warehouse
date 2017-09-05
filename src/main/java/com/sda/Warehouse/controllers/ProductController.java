@@ -38,16 +38,26 @@ public class ProductController {
 
     @GetMapping
     public String allProducts(Model model,
-                              @RequestParam(value = "page", required=false, defaultValue = "1") String page,
-                              @RequestParam(value = "limit", required=false, defaultValue = "5") String limit) {
+                              @RequestParam(value = "page", required=false, defaultValue = "1") String page) {
 
 //        Iterable<Product> allProducts = jpaProductRepository.findAll();
 
-        PageRequest myPageabble = new PageRequest(Integer.valueOf(page), Integer.valueOf(limit));
+        Integer productsPerPage = 5;
+        Integer firstPage = 1;
+        Integer currentPage = Integer.valueOf(page);
+
+        PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage);
         Page<Product> pageOfProducts = jpaProductRepository.findAll(myPageabble);
+
+        Long totalElements = pageOfProducts.getTotalElements();
+        Integer totalPages = pageOfProducts.getTotalPages();
         List<Product> allProducts = pageOfProducts.getContent();
 
         model.addAttribute("allProducts", allProducts);
+        model.addAttribute("totalElements", totalElements);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("currentPage", currentPage);
 
         return "products";
     }
