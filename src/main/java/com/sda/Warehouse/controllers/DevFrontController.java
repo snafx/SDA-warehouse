@@ -12,8 +12,14 @@ public class DevFrontController {
         return "index";
     }
 
+    @GetMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping(value = "/registration")
     public String registration() {
         return "registration";
     }
+
 }
