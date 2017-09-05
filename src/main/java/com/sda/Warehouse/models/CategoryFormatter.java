@@ -16,7 +16,7 @@ public class CategoryFormatter implements Formatter<Category> {
 
     @Override
     public Category parse(String s, Locale locale) throws ParseException {
-        Integer id = Integer.valueOf(s);
+        Long id = Long.valueOf(s);
         return this.categoryRepository.findOne(id);//return Type object form DB
     }
 

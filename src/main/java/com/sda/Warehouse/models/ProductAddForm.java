@@ -5,15 +5,15 @@ import javax.validation.constraints.Size;
 
 public class ProductAddForm {
     @NotNull
-    @Size(min = 2, max = 30)
+    @Size(min = 1, max = 100)
     private String name;
 
     @NotNull
-    @Size(min = 2, max = 100)
+    @Size(min = 1, max = 2048)
     private String description;
 
     @NotNull
-    @Size(min = 2, max = 30)
+    @Size(min = 1, max = 60)
     private String location;
 
     @NotNull
