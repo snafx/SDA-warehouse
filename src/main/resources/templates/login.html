@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Website Font style -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-    <!-- Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
     <title>Login</title>
 </head>
 <body>
@@ -22,12 +10,9 @@
 
 <div class="container">
     <div class="row main">
-        <div class="col-sm-3">
-
-        </div>
+        <div class="col-sm-3"></div>
         <div class="main-login main-center; col-sm-6">
             <form class="form-horizontal" method="post" action="#">
-
 
                 <div class="form-group;">
                     <label for="email" class="cols-sm-2 control-label">Email</label>
@@ -40,7 +25,6 @@
                     </div>
                 </div>
 
-
                 <div class="form-group;">
                     <label for="password" class="cols-sm-2 control-label">Password</label>
                     <div class="cols-sm-10">
@@ -49,12 +33,9 @@
                             <input type="password" class="form-control" name="password" id="password"
                                    placeholder="Enter password"/>
                         </div>
-                        <a href="forgot">Forgot your password?</a>
+                        <a href="password-recovery">Forgot your password?</a>
                     </div>
                 </div>
-
-
-
 
                 <div class="form-group; com-md-8">
                     <button type="button" class="btn btn-primary btn-lg btn-block login-button">Login</button>
