@@ -38,7 +38,8 @@ public class ProductController {
 
     @GetMapping
     public String allProducts(Model model,
-                              @RequestParam(value = "page", required=false, defaultValue = "1") String page) {
+                              @RequestParam(value = "page", required=false, defaultValue = "1") String page,
+                              @RequestParam(value = "search-phrase", required=false, defaultValue = "") String searchPhrase) {
 
 //        Iterable<Product> allProducts = jpaProductRepository.findAll();
 
@@ -47,7 +48,14 @@ public class ProductController {
         Integer currentPage = Integer.valueOf(page);
 
         PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage);
-        Page<Product> pageOfProducts = jpaProductRepository.findAll(myPageabble);
+
+        Page<Product> pageOfProducts = null;
+
+        if (searchPhrase != "") {
+            pageOfProducts = jpaProductRepository.findByNameIgnoreCaseContainingOrDescriptionIgnoreCaseContaining(searchPhrase.toUpperCase(), searchPhrase.toUpperCase(), myPageabble);
+        } else {
+            pageOfProducts = jpaProductRepository.findAll(myPageabble);
+        }
 
         Long totalElements = pageOfProducts.getTotalElements();
         Integer totalPages = pageOfProducts.getTotalPages();
@@ -58,6 +66,7 @@ public class ProductController {
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("firstPage", firstPage);
         model.addAttribute("currentPage", currentPage);
+        model.addAttribute("searchPhrase", searchPhrase);
 
         return "products";
     }
@@ -66,9 +75,9 @@ public class ProductController {
     @PostMapping(params = {"search-phrase"})
     public String searchAllProducts(Model model, @RequestParam(value = "search-phrase") String searchPhrase) {
 
-        List<Product> allProducts = jpaProductRepository.findByNameContainingOrDescriptionContaining(searchPhrase, searchPhrase);
+//        List<Product> allProducts = jpaProductRepository.findByNameContainingOrDescriptionContaining(searchPhrase, searchPhrase);
 
-        model.addAttribute("allProducts", allProducts);
+//        model.addAttribute("allProducts", allProducts);
         model.addAttribute("searchPhrase", searchPhrase);
 
         return "products";

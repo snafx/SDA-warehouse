@@ -40,7 +40,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <form class="form-inline" method="post" action="/products">
+                    <form class="form-inline" method="get" action="/products">
                         <div class="form-group">
                             <label for="search-phrase">Search:</label>
                             <input type="text" class="form-control" id="search-phrase" name="search-phrase">
@@ -54,7 +54,7 @@
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                                 data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="true">
-                            Order by...
+                            Sort by...
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -68,11 +68,18 @@
                 </div>
             </div>
 
-            <div class="row" th:if="${searchPhrase}">
+            <div class="row" th:if="${!searchPhrase.isEmpty()}">
                 <div class="col-md-6">
                     <span th:text="'Currently searched phrase: ' + ${searchPhrase}" class="text-danger text-italic">
                         searched phrase</span>
                     <span><a href="/products">show all</a></span>
+                </div>
+            </div>
+
+            <div class="row" th:if="${!sortColumn.isEmpty()}">
+                <div class="col-md-6">
+                    <span th:text="'Currently sorted by: ' + ${sortColumn}" class="text-danger text-italic">
+                        searched phrase</span>
                 </div>
             </div>
 
@@ -118,6 +125,61 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <p th:text="'Current page: ' + ${currentPage}">Current page number</p>
+                    <p th:text="'Total pages: ' + ${totalPages}">Total page number</p>
+
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-centered">
+
+                            <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == firstPage}" aria-hidden="true">First page</span>
+                                <a th:if="${currentPage != firstPage}"
+                                   th:href="'/products?page=' + ${firstPage} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#" aria-label="Last page">
+                                    <span aria-hidden="true">First page</span>
+                                </a>
+                            </li>
+
+                            <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == firstPage}" aria-hidden="true">&laquo;</span>
+                                <a th:if="${currentPage != firstPage}"
+                                   th:href="'/products?page=' + ${currentPage - 1} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+
+
+                            <li th:each="i : ${#numbers.sequence(firstPage, totalPages)}"
+                                th:class="${i == currentPage} ? 'active' : '' ">
+                                <a th:href="'/products?page=' + ${i} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   th:text="${i}" href="#">0</a>
+                            </li>
+
+
+                            <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == totalPages}" aria-hidden="true">&raquo;</span>
+                                <a th:if="${currentPage != totalPages}"
+                                   th:href="'/products?page=' + ${currentPage + 1} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+
+                            <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == totalPages}" aria-hidden="true">Last page</span>
+                                <a th:if="${currentPage != totalPages}"
+                                   th:href="'/products?page=' + ${totalPages} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#" aria-label="Last page">
+                                    <span aria-hidden="true">Last page</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+
                 </div>
             </div>
 
@@ -126,58 +188,6 @@
                     No data found...
                 </div>
             </div>
-
-            <p th:text="'Current page: ' + ${currentPage}">Current page number</p>
-            <p th:text="'Total pages: ' + ${totalPages}">Total page number</p>
-
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-centered">
-
-                    <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
-                        <span th:if="${currentPage == firstPage}" aria-hidden="true">First page</span>
-                        <a th:if="${currentPage != firstPage}" th:href="'/products?page=' + ${firstPage}"
-                           href="#" aria-label="Last page">
-                            <span aria-hidden="true">First page</span>
-                        </a>
-                    </li>
-
-                    <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
-                        <span th:if="${currentPage == firstPage}" aria-hidden="true">&laquo;</span>
-                        <a th:if="${currentPage != firstPage}" th:href="'/products?page=' + ${currentPage - 1}" href="#"
-                           aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-
-                    <!--<li th:each="i : ${#numbers.sequence(0,totalPages - 1)}"-->
-                        <!--th:class="${(i + 1) == currentPage} ? 'active' : '' "><a th:href="'/products?page=' + ${i + 1}"-->
-                                                                                 <!--th:text="${i + 1}" href="#">0</a></li>-->
-
-                    <li th:each="i : ${#numbers.sequence(firstPage, totalPages)}"
-                        th:class="${i == currentPage} ? 'active' : '' ">
-                        <a th:href="'/products?page=' + ${i}" th:text="${i}" href="#">0</a>
-                    </li>
-
-
-                    <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
-                        <span th:if="${currentPage == totalPages}" aria-hidden="true">&raquo;</span>
-                        <a th:if="${currentPage != totalPages}" th:href="'/products?page=' + ${currentPage + 1}"
-                           href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-
-                    <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
-                        <span th:if="${currentPage == totalPages}" aria-hidden="true">Last page</span>
-                        <a th:if="${currentPage != totalPages}" th:href="'/products?page=' + ${totalPages}"
-                           href="#" aria-label="Last page">
-                            <span aria-hidden="true">Last page</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-
 
         </div>
     </div>

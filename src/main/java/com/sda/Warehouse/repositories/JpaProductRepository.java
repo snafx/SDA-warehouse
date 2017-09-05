@@ -16,6 +16,8 @@ public interface JpaProductRepository extends PagingAndSortingRepository<Product
     //interfejs, który dostarcza zbiór metoed związanych z create, read, update, delete dla klasy Category
     //nie trzeba tworzyć implementacjitego interfejsu - Spring samgo dostarczy
 
-    List<Product> findByNameContainingOrDescriptionContaining(String name, String description);
+//    List<Product> findByNameContainingOrDescriptionContaining(String name, String description);
+
+    Page<Product> findByNameIgnoreCaseContainingOrDescriptionIgnoreCaseContaining(String name, String description, Pageable pageable);
 
 }
