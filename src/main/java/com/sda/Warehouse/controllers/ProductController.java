@@ -10,8 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProductController {
 
-    @Autowired
     private JpaProductRepository jpaProductRepository;
+
+    @Autowired
+    public ProductController(JpaProductRepository jpaProductRepository) {
+        this.jpaProductRepository = jpaProductRepository;
+    }
 
     @GetMapping(value = "/product/{productId}")
     public ModelAndView singleProduct(@PathVariable("productId") Long productId) {

@@ -5,6 +5,8 @@
     <object th:include="/fragments/head :: head" th:remove="tag"/>
 </head>
 <body>
+
+<!--header section-->
 <div th:replace="fragments/header :: header ">
     <header>
         <h1>Sda warehouse</h1>
@@ -16,13 +18,13 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="#">Search</a></li>
-
                 </ul>
             </div>
         </nav>
     </header>
 </div>
 
+<!--product details section-->
 <div class="container">
     <div class="col-md-12">
         <br><br>
@@ -71,6 +73,12 @@
     </div>
 </div>
 
+<!--footer section-->
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda </p>
+    </footer>
+</div>
 
 </body>
 </html>
