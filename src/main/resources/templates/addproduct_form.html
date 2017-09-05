@@ -1,47 +1,84 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product</title>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+</head>
 <body>
-<form action="#" th:action="@{/check}" th:object="${product}" method="post">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" th:field="*{name}" /></td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td><input type="text" th:field="*{description}" /></td>
-            <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</td>
-        </tr>
-        <tr>
-            <td>Location:</td>
-            <td><input type="text" th:field="*{location}" /></td>
-            <td th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Location Error</td>
-        </tr>
-        <tr>
-            <td>Quantity:</td>
-            <td><input type="text" th:field="*{quantity}" /></td>
-            <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity Error</td>
-        </tr>
-        <tr>
-            <td>Photo:</td>
-            <td><input type="text" th:field="*{photo}" /></td>
-            <td th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}">Photo Error</td>
-        </tr>
-        <tr>
-            <td>Product's category:</td>
-            <td>
-                <select th:field="*{category}">
-                    <option th:value="NULL" >Select</option>
-                    <option th:each="category : ${categories}" th:value="${{category}}" th:text="${category.name}">Wireframe</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><button type="submit">Submit</button></td>
-        </tr>
-    </table>
-
-</form>
+<div th:replace="fragments/header :: header ">
+    <header>
+        <h1>Sda warehouse</h1>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+<div class="container">
+    <div class="row main">
+        <div class="col-sm-4"></div>
+        <div class="main-login main-center; col-sm-6">
+            <form action="#" th:action="@{/check}" th:object="${product}" method="post">
+                <table>
+                    <div class="form-group;">
+                        <tr>
+                            <td>Name:</td>
+                            <td><input type="text" th:field="*{name}"/></td>
+                            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td><input type="text" th:field="*{description}"/></td>
+                            <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Location:</td>
+                            <td><input type="text" th:field="*{location}"/></td>
+                            <td th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Location Error</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity:</td>
+                            <td><input type="text" th:field="*{quantity}"/></td>
+                            <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity Error</td>
+                        </tr>
+                        <tr>
+                            <td>Photo:</td>
+                            <td><input type="text" th:field="*{photo}"/></td>
+                            <td th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}">Photo Error</td>
+                        </tr>
+                        <tr>
+                            <td>Product's category:</td>
+                            <td>
+                                <select th:field="*{category}">
+                                    <option th:value="NULL">Select</option>
+                                    <option th:each="category : ${categories}" th:value="${{category}}"
+                                            th:text="${category.name}">Wireframe
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit">Submit</button>
+                            </td>
+                        </tr>
+                    </div>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer ">
+        <footer>
+            <p>Sda </p>
+        </footer>
+    </div>
 </body>
 </html>
