@@ -8,22 +8,31 @@
 
 <div th:fragment="header">
     <header>
-        <div class="container-fluid">
+        <div class="container" style = "position: fixed">
         <h1>Sda warehouse</h1>
-        <nav class="navbar navbar-inverse sticky-top" >
+        <nav class="navbar navbar-inverse navbar-fixed-top" >
             <div class="container-fluid">
+
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="#">WebSiteLogo</a>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Sales order</a></li>
-                    <li><a href="#">Delivery</a></li>
-                    <li><a href="#">Stock</a></li>
-                    <li><a href="#">Users</a></li>
-                    <li><a href="#">Raport</a></li>
-                </ul>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Search</a></li>
+                        <li><a href="#">Sales order</a></li>
+                        <li><a href="#">Delivery</a></li>
+                        <li><a href="#">Stock</a></li>
+                        <li><a href="#">Users</a></li>
+                        <li><a href="#">Raport</a></li>
+                    </ul>
+                </div>
+
             </div>
         </nav>
         </div>
