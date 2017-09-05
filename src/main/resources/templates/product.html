@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Page</title>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header ">
+    <header>
+        <h1>Sda warehouse</h1>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div class="container">
+    <div class="col-md-12">
+        <br><br>
+        <h1 th:text="${product.name}">Lorem ipsum dolor sit amet, consectetur adipiscing elit (Book title)</h1>
+        <div>
+            <div class="product col-md-4">
+                <div>
+                    <img align="center" style="width: 250px; height: auto" th:src="${product.photo}"
+                         src="https://static01.helion.com.pl/global/okladki/326x466/4dbd7b921aa2dafbf867c4ac097d6998,javp10.jpg"
+                         alt="no photo"/>
+                </div>
+                <br>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4 th:text="'Author: ' + ${product.bookAuthor}">Author: <b>John Doe</b></h4>
+                        <h3 th:text="'ISBN: ' + ${product.ISBN}">ISBN: 666-777-888</h3>
+                        <h3 th:text="'Product id: ' + ${product.id}">Product id number: Lorem-ipsum-666</h3>
+                        <h3 th:text="'Quantity: ' + ${product.quantity}">Quantity: Lorem ipsum medium stock</h3>
+                        <h3 th:text="'Category: ' + ${product.category.name}">Book category: Lorem ipsum</h3>
+                        <h3 th:text="'Price: ' + ${product.price}">Price: $66</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <h3>Description:</h3>
+                <br><br>
+                <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                    lacinia ipsum at turpis vehicula
+                    euismod.
+                    Nam ut rutrum leo. Praesent purus felis, vestibulum nec quam in, aliquam interdum augue.
+                    Donec tincidunt tellus arcu, non sagittis arcu porttitor sed. Donec tristique magna a ante faucibus
+                    feugiat.
+                    Cras nec libero gravida, accumsan ligula quis, maximus elit. Vestibulum in congue nisl, sed
+                    convallis
+                    nunc.
+                    Fusce neque neque, fermentum in molestie vitae, tincidunt nec nulla. Donec eleifend risus vel urna
+                    facilisis,
+                    sit amet euismod ipsum rutrum.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
