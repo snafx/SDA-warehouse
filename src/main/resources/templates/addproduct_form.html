@@ -1,33 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Product</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>Login</title>
 </head>
 <body>
-<div th:replace="fragments/header :: header ">
-    <header>
-        <h1>Sda warehouse</h1>
-        <nav class="navbar navbar-inverse sticky-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">WebSiteLogo</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Search</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-</div>
+
+<div th:replace="fragments/header :: header "></div>
+
 <div class="container">
     <div class="row main">
-        <div class="col-sm-4"></div>
+        <div class="col-sm-3"></div>
         <div class="main-login main-center; col-sm-6">
-            <form action="#" th:action="@{/check}" th:object="${product}" method="post">
-                <table>
-                    <div class="form-group;">
+            <form class action="#" th:action="@{/check}" th:object="${product}" method="post">
+                <div class="panel panel-default">
+                    <table class="table table-striped table-bordered">
                         <tr>
                             <td>Name:</td>
                             <td><input type="text" th:field="*{name}"/></td>
@@ -57,7 +44,7 @@
                         <tr>
                             <td>Product's category:</td>
                             <td>
-                                <select th:field="*{category}">
+                                <select th:field="*{category}" style="width: 175px;">
                                     <option th:value="NULL">Select</option>
                                     <option th:each="category : ${categories}" th:value="${{category}}"
                                             th:text="${category.name}">Wireframe
@@ -66,19 +53,31 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <button type="submit">Submit</button>
-                            </td>
+                            <td>Book Author:</td>
+                            <td><input type="text" th:field="*{bookAuthor}"/></td>
+                            <td th:if="${#fields.hasErrors('bookAuthor')}" th:errors="*{bookAuthor}">Author Error</td>
                         </tr>
-                    </div>
-                </table>
+                        <tr>
+                            <td>ISBN:</td>
+                            <td><input type="text" th:field="*{ISBN}"/></td>
+                            <td th:if="${#fields.hasErrors('ISBN')}" th:errors="*{ISBN}">ISBN Error</td>
+                        </tr>
+                        <tr>
+                            <td>Price:</td>
+                            <td><input type="text" th:field="*{price}"/></td>
+                            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</td>
+                        </tr>
+                    </table>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block login-button ">Submit
+                </button>
             </form>
         </div>
     </div>
-    <div th:replace="fragments/footer :: footer ">
-        <footer>
-            <p>Sda </p>
-        </footer>
-    </div>
+</div>
+</div>
+
+<div th:replace="fragments/footer :: footer "></div>
+
 </body>
 </html>

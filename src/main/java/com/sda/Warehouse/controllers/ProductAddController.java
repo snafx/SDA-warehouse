@@ -1,4 +1,4 @@
-package com.sda.Warehouse.controller;
+package com.sda.Warehouse.controllers;
 
 import com.sda.Warehouse.models.Category;
 import com.sda.Warehouse.models.Product;
