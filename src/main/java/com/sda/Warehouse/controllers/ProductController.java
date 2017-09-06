@@ -144,6 +144,55 @@ public class ProductController {
         return "products";
     }
 
+    // strona wyszukanymi i posortowanymi produktami; sciezka: "/products?search-phrase=abc&sort-by=kolumna&sort-type=asc/desc" lub "/products?search-phrase=abc&sort-by=kolumna&sort-type=asc/desc&page=3"
+
+    @GetMapping(params = {"search-phrase", "sort-by", "sort-type"})
+    public String searchedAndSortedProducts(Model model,
+                                            @RequestParam(value = "search-phrase", required = false, defaultValue = "") String searchPhrase,
+                                            @RequestParam(value = "sort-by", required = false, defaultValue = "") String sortColumn,
+                                            @RequestParam(value = "sort-type", required = false, defaultValue = "") String sortType,
+                                            @RequestParam(value = "page", required = false, defaultValue = "1") String page) {
+
+        System.out.println("JESTEM W KONTROLERZE OD WYSZUKIWANIA I SORTOWANIA");
+
+        Integer productsPerPage = 5;
+        Integer firstPage = 1;
+        Integer currentPage = Integer.valueOf(page);
+
+        Sort.Direction sortDirection = Sort.Direction.ASC;
+        if (sortType.equals("desc")) {
+            sortDirection = Sort.Direction.DESC;
+        }
+
+        String sortColumnName = "name";
+        if (sortColumn.equals("category")) {
+            sortColumnName = "category.name";
+        }
+
+        Sort.Order mySortOrder = new Sort.Order(sortDirection, sortColumnName);
+        Sort mySort = new Sort(mySortOrder);
+
+        PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage, mySort);
+
+        Page<Product> pageOfProducts = jpaProductRepository.findByNameIgnoreCaseContainingOrDescriptionIgnoreCaseContaining(searchPhrase.toUpperCase(), searchPhrase.toUpperCase(), myPageabble);
+
+
+        Long totalElements = pageOfProducts.getTotalElements();
+        Integer totalPages = pageOfProducts.getTotalPages();
+        List<Product> allProducts = pageOfProducts.getContent();
+
+        model.addAttribute("allProducts", allProducts);
+        model.addAttribute("totalElements", totalElements);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("searchPhrase", searchPhrase);
+        model.addAttribute("sortColumn", sortColumn);
+        model.addAttribute("sortType", sortType);
+
+        return "products";
+    }
+
 
     // strona w wszystkimi produktami; sciezka: "/products"
 /*

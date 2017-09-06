@@ -79,9 +79,10 @@
             <div th:if="${searchPhrase}">
                 <div class="row" th:if="${!searchPhrase.isEmpty()}">
                     <div class="col-md-6">
-                    <span th:text="'Currently searched phrase: ' + ${searchPhrase}" class="text-danger text-italic">
+                    <span th:text="'Currently searched phrase: ' + ${searchPhrase}" class="text-danger text-italic">\srgrawgawregteargf
                         searched phrase</span>
-                        <span><a href="/products">show all</a></span>
+                        <span><a th:href="'/products' + (${sortColumn != null} ? '?sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
+                                href="/products">show all</a></span>
                     </div>
                 </div>
             </div>
@@ -89,11 +90,19 @@
             <div th:if="${sortColumn != null and sortType != null}">
                 <div class="row" th:if="${!sortColumn.isEmpty() and !sortType.isEmpty()}">
                     <div class="col-md-6">
-                    <span th:text="'Currently sorted by: ' + ${sortColumn} + ' ' + ${sortType}" class="text-danger text-italic">
+                    <span th:text="'Currently sorted by: ' + ${sortColumn} + ' ' + ${sortType}"
+                          class="text-danger text-italic">
                         sorted column</span>
-                        <span><a th:href="'/products' + (${searchPhrase != null} ? '?search-phrase=' + ${searchPhrase} : '')"
-                                 href="/products">clear sorting</a></span>
+                        <span><a
+                                th:href="'/products' + (${searchPhrase != null} ? '?search-phrase=' + ${searchPhrase} : '')"
+                                href="/products">clear sorting</a></span>
                     </div>
+                </div>
+            </div>
+
+            <div class="row" th:if="${searchPhrase != null or sortColumn != null or sortType != null}">
+                <div class="col-md-6">
+                    <span><a href="/products">Clear all</a></span>
                 </div>
             </div>
 
@@ -112,6 +121,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Category</th>
@@ -124,6 +134,7 @@
                             data-href='http://epoznan.pl'
                             style="cursor:pointer;">
                             <th scope="row" th:text="${iterationStatus.count}">1</th>
+                            <td th:text="${product.id}">Product id</td>
                             <td th:text="${product.name}">Product name</td>
                             <td th:text="${product.description}">Product description</td>
                             <td th:text="${product.category.name}">Product category</td>
@@ -140,8 +151,7 @@
                         </tbody>
                     </table>
 
-                    <p th:text="'Current page: ' + ${currentPage}">Current page number</p>
-                    <p th:text="'Total pages: ' + ${totalPages}">Total page number</p>
+                    <p th:text="'Total products: ' + ${totalElements}">Total products number</p>
 
                     <nav aria-label="Page navigation">
                         <ul class="pagination pagination-centered">
