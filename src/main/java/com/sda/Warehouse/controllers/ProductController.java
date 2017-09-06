@@ -1,6 +1,7 @@
 package com.sda.Warehouse.controllers;
 
 import com.sda.Warehouse.models.Product;
+import com.sda.Warehouse.processors.ProductsProcessor;
 import com.sda.Warehouse.repositories.JpaCategoryRepository;
 import com.sda.Warehouse.repositories.JpaProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,23 +44,18 @@ public class ProductController {
 
         System.out.println("JESTEM W OGOLNYM KONTROLERZE");
 
-        Integer productsPerPage = 5;
-        Integer firstPage = 1;
         Integer currentPage = Integer.valueOf(page);
 
-        PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage);
+        ProductsProcessor productsProcessor = new ProductsProcessor(jpaProductRepository, jpaCategoryRepository, currentPage);
 
-        Page<Product> pageOfProducts = jpaProductRepository.findAll(myPageabble);
-
-
-        Long totalElements = pageOfProducts.getTotalElements();
-        Integer totalPages = pageOfProducts.getTotalPages();
-        List<Product> allProducts = pageOfProducts.getContent();
+        List<Product> allProducts = productsProcessor.getProductList();
+        Long totalElements = productsProcessor.getTotalProductsAmount();
+        Integer totalPages = productsProcessor.getTotalPages();
 
         model.addAttribute("allProducts", allProducts);
         model.addAttribute("totalElements", totalElements);
         model.addAttribute("totalPages", totalPages);
-        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("firstPage", ProductsProcessor.FIRST_PAGE);
         model.addAttribute("currentPage", currentPage);
 
         return "products";
@@ -74,23 +70,18 @@ public class ProductController {
 
         System.out.println("JESTEM W KONTROLERZE OD WYSZUKIWANIA");
 
-        Integer productsPerPage = 5;
-        Integer firstPage = 1;
         Integer currentPage = Integer.valueOf(page);
 
-        PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage);
+        ProductsProcessor productsProcessor = new ProductsProcessor(jpaProductRepository, jpaCategoryRepository, currentPage, searchPhrase);
 
-        Page<Product> pageOfProducts = jpaProductRepository.findByNameIgnoreCaseContainingOrDescriptionIgnoreCaseContaining(searchPhrase.toUpperCase(), searchPhrase.toUpperCase(), myPageabble);
-
-
-        Long totalElements = pageOfProducts.getTotalElements();
-        Integer totalPages = pageOfProducts.getTotalPages();
-        List<Product> allProducts = pageOfProducts.getContent();
+        List<Product> allProducts = productsProcessor.getProductList();
+        Long totalElements = productsProcessor.getTotalProductsAmount();
+        Integer totalPages = productsProcessor.getTotalPages();
 
         model.addAttribute("allProducts", allProducts);
         model.addAttribute("totalElements", totalElements);
         model.addAttribute("totalPages", totalPages);
-        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("firstPage", ProductsProcessor.FIRST_PAGE);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("searchPhrase", searchPhrase);
 
@@ -107,36 +98,18 @@ public class ProductController {
 
         System.out.println("JESTEM W KONTROLERZE OD SORTOWANIA");
 
-        Integer productsPerPage = 5;
-        Integer firstPage = 1;
         Integer currentPage = Integer.valueOf(page);
 
-        Sort.Direction sortDirection = Sort.Direction.ASC;
-        if (sortType.equals("desc")) {
-            sortDirection = Sort.Direction.DESC;
-        }
+        ProductsProcessor productsProcessor = new ProductsProcessor(jpaProductRepository, jpaCategoryRepository, currentPage, sortColumn, sortType);
 
-        String sortColumnName = "name";
-        if (sortColumn.equals("category")) {
-            sortColumnName = "category.name";
-        }
-
-        Sort.Order mySortOrder = new Sort.Order(sortDirection, sortColumnName);
-        Sort mySort = new Sort(mySortOrder);
-
-        PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage, mySort);
-
-        Page<Product> pageOfProducts = jpaProductRepository.findAll(myPageabble);
-
-
-        Long totalElements = pageOfProducts.getTotalElements();
-        Integer totalPages = pageOfProducts.getTotalPages();
-        List<Product> allProducts = pageOfProducts.getContent();
+        List<Product> allProducts = productsProcessor.getProductList();
+        Long totalElements = productsProcessor.getTotalProductsAmount();
+        Integer totalPages = productsProcessor.getTotalPages();
 
         model.addAttribute("allProducts", allProducts);
         model.addAttribute("totalElements", totalElements);
         model.addAttribute("totalPages", totalPages);
-        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("firstPage", ProductsProcessor.FIRST_PAGE);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("sortColumn", sortColumn);
         model.addAttribute("sortType", sortType);
@@ -155,36 +128,18 @@ public class ProductController {
 
         System.out.println("JESTEM W KONTROLERZE OD WYSZUKIWANIA I SORTOWANIA");
 
-        Integer productsPerPage = 5;
-        Integer firstPage = 1;
         Integer currentPage = Integer.valueOf(page);
 
-        Sort.Direction sortDirection = Sort.Direction.ASC;
-        if (sortType.equals("desc")) {
-            sortDirection = Sort.Direction.DESC;
-        }
+        ProductsProcessor productsProcessor = new ProductsProcessor(jpaProductRepository, jpaCategoryRepository, currentPage, searchPhrase, sortColumn, sortType);
 
-        String sortColumnName = "name";
-        if (sortColumn.equals("category")) {
-            sortColumnName = "category.name";
-        }
-
-        Sort.Order mySortOrder = new Sort.Order(sortDirection, sortColumnName);
-        Sort mySort = new Sort(mySortOrder);
-
-        PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage, mySort);
-
-        Page<Product> pageOfProducts = jpaProductRepository.findByNameIgnoreCaseContainingOrDescriptionIgnoreCaseContaining(searchPhrase.toUpperCase(), searchPhrase.toUpperCase(), myPageabble);
-
-
-        Long totalElements = pageOfProducts.getTotalElements();
-        Integer totalPages = pageOfProducts.getTotalPages();
-        List<Product> allProducts = pageOfProducts.getContent();
+        List<Product> allProducts = productsProcessor.getProductList();
+        Long totalElements = productsProcessor.getTotalProductsAmount();
+        Integer totalPages = productsProcessor.getTotalPages();
 
         model.addAttribute("allProducts", allProducts);
         model.addAttribute("totalElements", totalElements);
         model.addAttribute("totalPages", totalPages);
-        model.addAttribute("firstPage", firstPage);
+        model.addAttribute("firstPage", ProductsProcessor.FIRST_PAGE);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("searchPhrase", searchPhrase);
         model.addAttribute("sortColumn", sortColumn);
@@ -193,44 +148,4 @@ public class ProductController {
         return "products";
     }
 
-
-    // strona w wszystkimi produktami; sciezka: "/products"
-/*
-    @GetMapping
-    public String allProducts(Model model,
-                              @RequestParam(value = "page", required = false, defaultValue = "1") String page,
-                              @RequestParam(value = "search-phrase", required = false, defaultValue = "") String searchPhrase,
-                              @RequestParam(value = "sort-by", required = false, defaultValue = "") String sortColumn,
-                              @RequestParam(value = "sort-type", required = false, defaultValue = "") String sortType) {
-
-//        Iterable<Product> allProducts = jpaProductRepository.findAll();
-
-        Integer productsPerPage = 5;
-        Integer firstPage = 1;
-        Integer currentPage = Integer.valueOf(page);
-
-        PageRequest myPageabble = new PageRequest(currentPage - 1, productsPerPage);
-
-        Page<Product> pageOfProducts = null;
-
-        if (searchPhrase != "") {
-            pageOfProducts = jpaProductRepository.findByNameIgnoreCaseContainingOrDescriptionIgnoreCaseContaining(searchPhrase.toUpperCase(), searchPhrase.toUpperCase(), myPageabble);
-        } else {
-            pageOfProducts = jpaProductRepository.findAll(myPageabble);
-        }
-
-        Long totalElements = pageOfProducts.getTotalElements();
-        Integer totalPages = pageOfProducts.getTotalPages();
-        List<Product> allProducts = pageOfProducts.getContent();
-
-        model.addAttribute("allProducts", allProducts);
-        model.addAttribute("totalElements", totalElements);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("firstPage", firstPage);
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("searchPhrase", searchPhrase);
-
-        return "products";
-    }
-  */
 }
