@@ -3,6 +3,7 @@ package com.sda.Warehouse.models;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -51,6 +52,7 @@ public class Product {
     @Column
     @Min(value = 0)
     @NotNull
+    @Setter
     private Integer quantity;
 
     @Column

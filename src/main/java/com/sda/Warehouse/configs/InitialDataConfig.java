@@ -90,7 +90,7 @@ public class InitialDataConfig {
                         "Danuta kobieta kochająca luksus, ciężko pracująca i całkowicie uzależniona od ojca tyrana oraz Michał, " +
                         "bezrobotny historyk z żoną i dwójką dzieci.",
                 "Rząd 2; miejsce 1",
-                15,
+                17,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
                 category3,"Wojciech Miłoszewski", "9788328044234", 32.00);
 
