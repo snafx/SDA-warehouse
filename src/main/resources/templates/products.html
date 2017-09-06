@@ -58,34 +58,44 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a th:href="'/products?sort-by=name&sort-type=asc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
-                                    href="#">Name ascending</a></li>
-                            <li><a th:href="'/products?sort-by=name&sort-type=desc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
-                                    href="#">Name descending</a></li>
+                            <li>
+                                <a th:href="'/products?sort-by=name&sort-type=asc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Name ascending</a></li>
+                            <li>
+                                <a th:href="'/products?sort-by=name&sort-type=desc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Name descending</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a th:href="'/products?sort-by=category&sort-type=asc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
-                                    href="#">Category ascending</a></li>
-                            <li><a th:href="'/products?sort-by=category&sort-type=desc' + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
-                                    href="#">Category descending</a></li>
+                            <li>
+                                <a th:href="'/products?sort-by=category&sort-type=asc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Category ascending</a></li>
+                            <li>
+                                <a th:href="'/products?sort-by=category&sort-type=desc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Category descending</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="row" th:if="${!searchPhrase.isEmpty()}">
-                <div class="col-md-6">
+            <div th:if="${searchPhrase}">
+                <div class="row" th:if="${!searchPhrase.isEmpty()}">
+                    <div class="col-md-6">
                     <span th:text="'Currently searched phrase: ' + ${searchPhrase}" class="text-danger text-italic">
                         searched phrase</span>
-                    <span><a href="/products">show all</a></span>
+                        <span><a href="/products">show all</a></span>
+                    </div>
                 </div>
             </div>
 
-            <!--<div class="row" th:if="${!sortColumn.isEmpty()}">-->
-                <!--<div class="col-md-6">-->
-                    <!--<span th:text="'Currently sorted by: ' + ${sortColumn}" class="text-danger text-italic">-->
-                        <!--searched phrase</span>-->
-                <!--</div>-->
-            <!--</div>-->
+            <div th:if="${sortColumn != null and sortType != null}">
+                <div class="row" th:if="${!sortColumn.isEmpty() and !sortType.isEmpty()}">
+                    <div class="col-md-6">
+                    <span th:text="'Currently sorted by: ' + ${sortColumn} + ' ' + ${sortType}" class="text-danger text-italic">
+                        sorted column</span>
+                        <span><a th:href="'/products' + (${searchPhrase != null} ? '?search-phrase=' + ${searchPhrase} : '')"
+                                 href="/products">clear sorting</a></span>
+                    </div>
+                </div>
+            </div>
 
             <hr/>
 
@@ -139,7 +149,7 @@
                             <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
                                 <span th:if="${currentPage == firstPage}" aria-hidden="true">First page</span>
                                 <a th:if="${currentPage != firstPage}"
-                                   th:href="'/products?page=' + ${firstPage} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   th:href="'/products?page=' + ${firstPage} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
                                    href="#" aria-label="Last page">
                                     <span aria-hidden="true">First page</span>
                                 </a>
@@ -148,7 +158,7 @@
                             <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
                                 <span th:if="${currentPage == firstPage}" aria-hidden="true">&laquo;</span>
                                 <a th:if="${currentPage != firstPage}"
-                                   th:href="'/products?page=' + ${currentPage - 1} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   th:href="'/products?page=' + ${currentPage - 1} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
                                    href="#"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
@@ -158,7 +168,7 @@
 
                             <li th:each="i : ${#numbers.sequence(firstPage, totalPages)}"
                                 th:class="${i == currentPage} ? 'active' : '' ">
-                                <a th:href="'/products?page=' + ${i} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                <a th:href="'/products?page=' + ${i} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
                                    th:text="${i}" href="#">0</a>
                             </li>
 
@@ -166,7 +176,7 @@
                             <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
                                 <span th:if="${currentPage == totalPages}" aria-hidden="true">&raquo;</span>
                                 <a th:if="${currentPage != totalPages}"
-                                   th:href="'/products?page=' + ${currentPage + 1} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   th:href="'/products?page=' + ${currentPage + 1} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
                                    href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
@@ -175,7 +185,7 @@
                             <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
                                 <span th:if="${currentPage == totalPages}" aria-hidden="true">Last page</span>
                                 <a th:if="${currentPage != totalPages}"
-                                   th:href="'/products?page=' + ${totalPages} + (${searchPhrase != ''} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   th:href="'/products?page=' + ${totalPages} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
                                    href="#" aria-label="Last page">
                                     <span aria-hidden="true">Last page</span>
                                 </a>
