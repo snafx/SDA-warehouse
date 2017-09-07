@@ -10,30 +10,73 @@
 
 <div class="container">
 
-    <form class="upgrade-product form-horizontal" action=" " method="post"  >
+
+
+    <form class="upgrade-product form-horizontal" action="/product/1/edit"
+          th:action="'/product/' + ${product.id} + '/edit'" method="post">
+
         <fieldset>
 
-            <legend>Edit product parameters</legend>
-
-            <!-- NAME -->
+            <!-- ID uneditable -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Name</label>
+                <label class="col-md-4 control-label">Book index</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <input name="name" field="name" class="form-control" th:value="${product.name}" type="text" >
+                        <input name="id" field="id" class="form-control" th:value="${product.id}" type="text" readonly>
                     </div>
                 </div>
             </div>
 
-            <!-- DESCRIPTION -->
+            <!-- NAME -->
+
             <div class="form-group">
-                <label class="col-md-4 control-label" >Description</label>
+                <label class="col-md-4 control-label">Name</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <textarea class="form-control" name="description" th:text="${product.description}" rows="5"></textarea>
+                        <input name="name" field="name" class="form-control" th:value="${product.name}" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUTHOR -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Author</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="bookAuthor" field="bookAuthor" class="form-control"
+                               th:value="${product.bookAuthor}" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRICE -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Price</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="price" field="price" class="form-control"
+                               th:value="${product.price}" type="text">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <textarea class="form-control" name="description" th:text="${product.description}"
+                                  rows="5"></textarea>
                     </div>
                 </div>
             </div>
@@ -42,7 +85,7 @@
             <!-- LOCATION -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Location</label>
+                <label class="col-md-4 control-label">Location</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
@@ -54,7 +97,7 @@
             <!-- QUANTITY -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Quantity</label>
+                <label class="col-md-4 control-label">Quantity</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
@@ -66,11 +109,12 @@
             <!-- PHOTO -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Photo</label>
+                <label class="col-md-4 control-label">Photo</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <input name="photo" th:value="${product.photo}" class="form-control"  type="text">
+                        <input name="photo" th:value="${product.photo}" class="form-control" type="text">
+                        <img th:src="${product.photo}" height="300">
                     </div>
                 </div>
             </div>
@@ -78,34 +122,35 @@
             <!-- CATEGORY -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Category</label>
+                <label class="col-md-4 control-label">Category</label>
                 <div class="col-md-4 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <select name="category" class="form-control selectpicker" >
-                            <option value=" " >Please select category</option>
-                            <option></option>
-                            <option></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
-
+                        <input class="form-control" th:value="${product.category.name}" type="text" readonly>
+                        <input name="category" field="category" class="form-control" th:value="${product.category.id}" type="hidden" >
                         </select>
                     </div>
                 </div>
             </div>
 
-            <!-- Success message -->
-            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+            <!-- ISBN -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">ISBN</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="ISBN" th:value="${product.ISBN}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
 
             <!-- Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+                    <button type="submit" class="btn btn-warning"> Send</button>
+                    <button type="submit" class="btn btn-warning"> Delete</button>
                 </div>
             </div>
 
@@ -115,9 +160,9 @@
 </div><!-- /.container -->
 
 <div th:replace="fragments/footer :: footer ">
-<footer>
-    <p>Sda warehouse management application powered by Sda-javapoz3</p>
-</footer>
+    <footer>
+        <p>Sda warehouse management application powered by Sda-javapoz3</p>
+    </footer>
 </div>
 
 </body>

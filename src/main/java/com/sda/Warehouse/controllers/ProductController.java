@@ -6,8 +6,8 @@ import com.sda.Warehouse.models.Product;
 import com.sda.Warehouse.repositories.JpaProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,14 +21,14 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = "/product/{productId}")
+    @GetMapping(path = "/product/{productId}")
     public ModelAndView singleProduct(@PathVariable("productId") Long productId) {
         ModelAndView modelAndView = new ModelAndView("product");
         modelAndView.addObject("product", jpaProductRepository.findOne(productId));
         return modelAndView;
     }
 
-    @GetMapping(value = "/product")
+    @GetMapping(path = "/product")
     public ModelAndView singleProduct() {
         ModelAndView modelAndView = new ModelAndView("product");
         modelAndView.addObject("product", jpaProductRepository);
@@ -41,6 +41,15 @@ public class ProductController {
         Product product = jpaProductRepository.findOne(productId);
         modelAndView.addObject("product", product);
         return modelAndView;
+    }
+
+    @PostMapping(path = "/product/{productId}/edit")
+    public String editProduct(@ModelAttribute Product product, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "form";
+        }
+        jpaProductRepository.save(product);
+        return "redirect:/product/{productId}/";
     }
 
     @GetMapping(value = "/edit")
