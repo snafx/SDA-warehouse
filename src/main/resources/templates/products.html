@@ -130,8 +130,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="product,iterationStatus : ${allProducts}" class='clickable-row'
-                            data-href='http://epoznan.pl'
+                        <tr th:each="product,iterationStatus : ${allProducts}"
+                            th:attr="data-href='/product/'+${product.id}"
+                            class='clickable-row'
+                            data-href='/product/1'
                             style="cursor:pointer;">
                             <th scope="row" th:text="${iterationStatus.count}">1</th>
                             <td th:text="${product.id}">Product id</td>
