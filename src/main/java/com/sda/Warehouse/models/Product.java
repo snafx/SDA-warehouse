@@ -14,7 +14,7 @@ import java.math.BigInteger;
 /**
  * Created by mytek on 2017-09-01.
  */
-
+@Setter
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor

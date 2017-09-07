@@ -9,29 +9,32 @@
 
 
 <div class="container">
-
     <form class="upgrade-product form-horizontal" action=" " method="post">
+
+
         <fieldset>
 
             <legend>Stock amount change</legend>
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Name</label>
+                <label class="col-md-4 control-label">Name</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <input name="name" field="name" class="form-control" th:value="${product.name}" type="text" readonly>
+                        <input name="name" field="name" class="form-control" th:value="${product.name}" type="text"
+                               readonly>
                     </div>
                 </div>
             </div>
 
             <!-- DESCRIPTION -->
             <div class="form-group">
-                <label class="col-md-4 control-label" >Description</label>
+                <label class="col-md-4 control-label">Description</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <textarea class="form-control" name="description" th:text="${product.description}" rows="5" readonly></textarea>
+                        <textarea class="form-control" name="description" th:text="${product.description}" rows="5"
+                                  readonly></textarea>
                     </div>
                 </div>
             </div>
@@ -40,7 +43,7 @@
             <!-- LOCATION -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Location</label>
+                <label class="col-md-4 control-label">Location</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
@@ -52,7 +55,7 @@
             <!-- QUANTITY -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Quantity</label>
+                <label class="col-md-4 control-label">Quantity</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
@@ -64,11 +67,11 @@
             <!-- PHOTO -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Photo</label>
+                <label class="col-md-4 control-label">Photo</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <input name="photo" th:value="${product.photo}" class="form-control"  type="text" readonly>
+                        <input name="photo" th:value="${product.photo}" class="form-control" type="text" readonly>
                     </div>
                 </div>
             </div>
@@ -76,20 +79,20 @@
             <!-- CATEGORY -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label" >Category</label>
+                <label class="col-md-4 control-label">Category</label>
                 <div class="col-md-4 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <select name="category" class="form-control selectpicker" >
-                            <option value=" " >Please select category</option>
+                        <select name="category" class="form-control selectpicker">
+                            <option value=" ">Please select category</option>
                             <option></option>
                             <option></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
-                            <option ></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
 
                         </select>
                     </div>
@@ -100,7 +103,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-warning" >Send</button>
+                    <button type="submit" class="btn btn-warning">Send</button>
                 </div>
             </div>
 

@@ -40,7 +40,6 @@ public class ProductController {
         return modelAndView;
     }
 
-
     @PostMapping(value = "/product/{productId}/changeAmount")
     public String changeAmount(@RequestParam(value = "quantity") Integer quantity, @PathVariable("productId") Long productId) {
         Product product = jpaProductRepository.findOne(productId);
@@ -49,4 +48,22 @@ public class ProductController {
         return "redirect:/product/{productId}/";
     }
 
+    @GetMapping(value = "/admin/product/{productId}")
+    public ModelAndView adminProductView(@PathVariable("productId") Long productId) {
+        ModelAndView modelAndView = new ModelAndView("product");
+        modelAndView.addObject("product", jpaProductRepository.findOne(productId));
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/admin/product/{productId}")
+    public String updateQuantity(@RequestParam(value = "quantity") Integer quantity, @PathVariable("productId") Long productId) {
+        Product product = jpaProductRepository.findOne(productId);
+        product.setQuantity(quantity);
+        jpaProductRepository.save(product);
+        return "redirect:/admin/product/{productId}/";
+    }
 }
+
+
+
+
