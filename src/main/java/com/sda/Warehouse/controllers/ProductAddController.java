@@ -34,23 +34,23 @@ public class ProductAddController extends WebMvcConfigurerAdapter{
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/results").setViewName("results");
+        registry.addViewController("/addResult").setViewName("addResult");
     }
 
     @GetMapping("/addProduct")
     public String showForm(Product product, Model model) {
         model.addAttribute("categories");
-        return "addproduct_form";
+        return "addProduct";
     }
 
     @PostMapping("/check")
     public String checkProductInfo(@Valid Product product, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "addproduct_form";
+            return "addProduct";
         }
 
         productRepository.save(product);
-        return "redirect:/results";
+        return "redirect:/addResult";
     }
 }
