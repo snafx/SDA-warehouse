@@ -3,6 +3,7 @@ package com.sda.Warehouse.models;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
@@ -48,6 +49,7 @@ public class Product {
     @Column
     @Min(value = 0)
     @NotNull
+    @Setter
     private Integer quantity;
 
     @Column
@@ -85,5 +87,10 @@ public class Product {
         this.bookAuthor = bookAuthor;
         this.ISBN = ISBN;
         this.price = price;
+    }
+
+    //odatkowy getter - zwraca skrocony opis
+    public String getAbbreviateDescription() {
+        return StringUtils.abbreviate(this.description, 100);
     }
 }

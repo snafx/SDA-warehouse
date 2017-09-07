@@ -190,6 +190,33 @@ td, th {
     padding: 0
 }
 
+/* Quantity buttons and field */
+
+#myform {
+    text-align: center;
+    padding: 5px;
+    border: 1px dotted #ccc;
+    margin: 2%;
+}
+
+.qty {
+    width: 100px;
+    height: 25px;
+    text-align: center;
+}
+
+input.qtyplus {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+input.qtyminus {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
     *, :after, :before {
