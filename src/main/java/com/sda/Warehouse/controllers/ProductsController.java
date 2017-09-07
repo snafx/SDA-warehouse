@@ -25,13 +25,13 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/products")
-public class ProductController {
+public class ProductsController {
 
     private JpaProductRepository jpaProductRepository;
     private JpaCategoryRepository jpaCategoryRepository;
 
     @Autowired
-    public ProductController(JpaProductRepository jpaProductRepository, JpaCategoryRepository jpaCategoryRepository) {
+    public ProductsController(JpaProductRepository jpaProductRepository, JpaCategoryRepository jpaCategoryRepository) {
         this.jpaProductRepository = jpaProductRepository;
         this.jpaCategoryRepository = jpaCategoryRepository;
     }
