@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.math.BigInteger;
 /**
  * Created by mytek on 2017-09-01.
  */
-
+@Setter
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor
