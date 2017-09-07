@@ -40,6 +40,7 @@
 <!--product details section-->
 <div class="container">
     <div class="col-md-12">
+        <a class="back btn btn-default" th:href="@{'/products/'}">Back</a>
         <br><br>
         <h1 th:text="${product.name}">Lorem ipsum dolor sit amet, consectetur adipiscing elit (Book title)</h1>
         <div>
@@ -73,19 +74,19 @@
                                 <button type="submit" class="btn btn-default">Add New Product</button>
                             </div>
                         </form>
-                        <form method="post" action="editProduct">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default">Edit Product</button>
-                                <button type="submit" class="btn btn-danger">Delete Product</button>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <a class="btn btn-default" th:href="@{'/product/'+ ${product.id} + '/changeAmount'}">Edit
+                                Product</a>
+                            <button type="submit" class="btn btn-danger">Delete Product</button>
+                        </div>
                         <hr>
-                        <form id="myform" method="post" >
+                        <form id="myform" method="post">
                             <div class="form-group">
                                 <label>Change quantity in warehouse:</label>
                                 <div id="input_div">
                                     <input type="button" value="-" id="minus" onclick="minuss()" class="qtyminus">
-                                    <input type="number" name="quantity" th:value="${product.quantity}" value="1" id="counter" class="qty">
+                                    <input type="number" name="quantity" th:value="${product.quantity}" value="1"
+                                           id="counter" class="qty">
                                     <input type="button" value="+" id="plus" onclick="pluss()" class="qtyplus">
                                 </div>
                                 <br>

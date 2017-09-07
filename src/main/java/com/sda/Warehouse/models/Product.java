@@ -52,6 +52,7 @@ public class Product {
     @Column
     @Min(value = 0)
     @NotNull
+    @Setter
     private Integer quantity;
 
     @Column
