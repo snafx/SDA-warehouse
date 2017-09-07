@@ -10,11 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.math.BigInteger;
 
-/**
- * Created by mytek on 2017-09-01.
- */
 @Setter
 @Getter
 @EqualsAndHashCode
