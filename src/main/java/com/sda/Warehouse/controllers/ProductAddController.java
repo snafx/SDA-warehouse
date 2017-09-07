@@ -21,9 +21,9 @@ import javax.validation.Valid;
 @Controller
 public class ProductAddController extends WebMvcConfigurerAdapter {
 
-    JpaCategoryRepository categoryRepository;
+    private JpaCategoryRepository categoryRepository;
 
-    JpaProductRepository productRepository;
+    private JpaProductRepository productRepository;
 
     @Autowired
     public ProductAddController(JpaCategoryRepository categoryRepository, JpaProductRepository productRepository) {
