@@ -76,7 +76,7 @@ public class InitialDataConfig {
                 "Rząd 4; miejsce 1",
                 15,
                 "http://webimage.pl/pics/184/6/d9788328046184.jpg",
-                category5,"Janina Porazińska","978-83-280-3885-1", 15.54);
+                category5,"Janina Porazińska","978-83-280-3885-1123", 15.54);
         Product product3 = new Product("Szewczyk dratewka",
                 "Znana baśń o szewczyku, który musi wykonać trzy trudne zadania, aby uwolnić pannę zamkniętą na wieży przez złą czarownicę. " +
                         "Pomagają mu w tym zaprzyjaźnione z nim zwierzęta.",
@@ -103,33 +103,33 @@ public class InitialDataConfig {
 
 
         Product product6 = new Product("Java podstawy",
-                "Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
+                "PIERWSZY PRODUKT Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
                         "doskonalenia swoich umiejętności w zakresie posługiwania się językiem Java.",
                 "Rząd 1; miejsce 1",
                 15,
                 "https://static01.helion.com.pl/global/okladki/326x466/4dbd7b921aa2dafbf867c4ac097d6998,javp10.jpg",
-                category);
+                category, "Cay S. Horstman","978832854324800",69);
 
         Product product7 = new Product("Java w pigułce",
                 "Java to język programowania wybierany wszędzie tam, gdzie są wymagane najwyższe bezpieczeństwo i wydajność.",
                 "Rząd 1; miejsce 2",
                 150,
                 "https://static01.helion.com.pl/global/okladki/326x466/06a3d95a2c11220eb256f2b29d604546,javpi6.jpg",
-                category);
+                category,"David Flanganan", "978-83-234583-0623-3", 47.50);
 
         Product product8 = new Product("Pamiętnik czarnego noska",
                 "Miś zwany Czarnym Noskiem bardzo nudził się na sklepowej witrynie, marzył, żeby jakieś miłe i grzeczne dziecko zabrało go do domu.",
                 "Rząd 4; miejsce 1",
                 15,
                 "http://webimage.pl/pics/184/6/d9788328046184.jpg",
-                category5);
+                category5,"Janina Porazińska","978-83-280-3885-1", 15.54);
         Product product9 = new Product("Szewczyk dratewka",
                 "Znana baśń o szewczyku, który musi wykonać trzy trudne zadania, aby uwolnić pannę zamkniętą na wieży przez złą czarownicę. " +
                         "Pomagają mu w tym zaprzyjaźnione z nim zwierzęta.",
                 "Rząd 4; miejsce 2",
                 15,
                 "http://webimage.pl/pics/864/9/d187777.jpg",
-                category5);
+                category5,"Janina Porazińska", "923478-83-10-12986-4", 9.99);
 
         Product product10 = new Product("Inwazja",
                 "Współczesna Polska, w której żyją: Roman, były żołnierz wojsk specjalnych i uczestnik wielu zagranicznych misji, " +
@@ -138,44 +138,43 @@ public class InitialDataConfig {
                 "Rząd 2; miejsce 1",
                 0,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
+                category3,"Wojciech Miłoszewski", "978835428044234", 32.00);
 
         Product product11 = new Product("Latarnia umarłych",
                 "Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
                 "Rząd 2; miejsce 1",
                 15,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
-
+                category3,"Leszek Herman", "978-8-32765487-0395-7", 20.22);
 
         Product product12 = new Product("Java podstawy",
-                "Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
+                "PIERWSZY PRODUKT Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
                         "doskonalenia swoich umiejętności w zakresie posługiwania się językiem Java.",
                 "Rząd 1; miejsce 1",
                 15,
                 "https://static01.helion.com.pl/global/okladki/326x466/4dbd7b921aa2dafbf867c4ac097d6998,javp10.jpg",
-                category);
+                category, "Cay S. Horstman","9788326548324800",69);
 
         Product product13 = new Product("Java w pigułce",
                 "Java to język programowania wybierany wszędzie tam, gdzie są wymagane najwyższe bezpieczeństwo i wydajność.",
                 "Rząd 1; miejsce 2",
                 150,
                 "https://static01.helion.com.pl/global/okladki/326x466/06a3d95a2c11220eb256f2b29d604546,javpi6.jpg",
-                category);
+                category,"David Flanganan", "978-23483-283-0623-3", 47.50);
 
         Product product14 = new Product("Pamiętnik czarnego noska",
                 "Miś zwany Czarnym Noskiem bardzo nudził się na sklepowej witrynie, marzył, żeby jakieś miłe i grzeczne dziecko zabrało go do domu.",
                 "Rząd 4; miejsce 1",
                 15,
                 "http://webimage.pl/pics/184/6/d9788328046184.jpg",
-                category5);
+                category5,"Janina Porazińska","978-83-223480-3885-1", 15.54);
         Product product15 = new Product("Szewczyk dratewka",
                 "Znana baśń o szewczyku, który musi wykonać trzy trudne zadania, aby uwolnić pannę zamkniętą na wieży przez złą czarownicę. " +
                         "Pomagają mu w tym zaprzyjaźnione z nim zwierzęta.",
                 "Rząd 4; miejsce 2",
                 15,
                 "http://webimage.pl/pics/864/9/d187777.jpg",
-                category5);
+                category5,"Janina Porazińska", "978-83-65410-12986-4", 9.99);
 
         Product product16 = new Product("Inwazja",
                 "Współczesna Polska, w której żyją: Roman, były żołnierz wojsk specjalnych i uczestnik wielu zagranicznych misji, " +
@@ -184,44 +183,43 @@ public class InitialDataConfig {
                 "Rząd 2; miejsce 1",
                 0,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
+                category3,"Wojciech Miłoszewski", "9788326548044234", 32.00);
 
         Product product17 = new Product("Latarnia umarłych",
                 "Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
                 "Rząd 2; miejsce 1",
                 15,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
-
+                category3,"Leszek Herman", "978-8-3287-0234395-7", 20.22);
 
         Product product18 = new Product("Java podstawy",
-                "Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
+                "PIERWSZY PRODUKT Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
                         "doskonalenia swoich umiejętności w zakresie posługiwania się językiem Java.",
                 "Rząd 1; miejsce 1",
                 15,
                 "https://static01.helion.com.pl/global/okladki/326x466/4dbd7b921aa2dafbf867c4ac097d6998,javp10.jpg",
-                category);
+                category, "Cay S. Horstman","9788328324234800",69);
 
         Product product19 = new Product("Java w pigułce",
                 "Java to język programowania wybierany wszędzie tam, gdzie są wymagane najwyższe bezpieczeństwo i wydajność.",
                 "Rząd 1; miejsce 2",
                 150,
                 "https://static01.helion.com.pl/global/okladki/326x466/06a3d95a2c11220eb256f2b29d604546,javpi6.jpg",
-                category);
+                category,"David Flanganan", "978-83-223483-0623-3", 47.50);
 
         Product product20 = new Product("Pamiętnik czarnego noska",
                 "Miś zwany Czarnym Noskiem bardzo nudził się na sklepowej witrynie, marzył, żeby jakieś miłe i grzeczne dziecko zabrało go do domu.",
                 "Rząd 4; miejsce 1",
                 15,
                 "http://webimage.pl/pics/184/6/d9788328046184.jpg",
-                category5);
+                category5,"Janina Porazińska","978-83-280-3888765-1", 15.54);
         Product product21 = new Product("Szewczyk dratewka",
                 "Znana baśń o szewczyku, który musi wykonać trzy trudne zadania, aby uwolnić pannę zamkniętą na wieży przez złą czarownicę. " +
                         "Pomagają mu w tym zaprzyjaźnione z nim zwierzęta.",
                 "Rząd 4; miejsce 2",
                 15,
                 "http://webimage.pl/pics/864/9/d187777.jpg",
-                category5);
+                category5,"Janina Porazińska", "978-83-10-12986-487", 9.99);
 
         Product product22 = new Product("Inwazja",
                 "Współczesna Polska, w której żyją: Roman, były żołnierz wojsk specjalnych i uczestnik wielu zagranicznych misji, " +
@@ -230,44 +228,43 @@ public class InitialDataConfig {
                 "Rząd 2; miejsce 1",
                 0,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
+                category3,"Wojciech Miłoszewski", "978832328044234", 32.00);
 
         Product product23 = new Product("Latarnia umarłych",
                 "Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
                 "Rząd 2; miejsce 1",
                 15,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
-
+                category3,"Leszek Herman", "978-8-3265487-0395-7", 20.22);
 
         Product product24 = new Product("Java podstawy",
-                "Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
+                "PIERWSZY PRODUKT Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
                         "doskonalenia swoich umiejętności w zakresie posługiwania się językiem Java.",
                 "Rząd 1; miejsce 1",
                 15,
                 "https://static01.helion.com.pl/global/okladki/326x466/4dbd7b921aa2dafbf867c4ac097d6998,javp10.jpg",
-                category);
+                category, "Cay S. Horstman","978832836524800",69);
 
         Product product25 = new Product("Java w pigułce",
                 "Java to język programowania wybierany wszędzie tam, gdzie są wymagane najwyższe bezpieczeństwo i wydajność.",
                 "Rząd 1; miejsce 2",
                 150,
                 "https://static01.helion.com.pl/global/okladki/326x466/06a3d95a2c11220eb256f2b29d604546,javpi6.jpg",
-                category);
+                category,"David Flanganan", "978-83-2897683-0623-3", 47.50);
 
         Product product26 = new Product("Pamiętnik czarnego noska",
                 "Miś zwany Czarnym Noskiem bardzo nudził się na sklepowej witrynie, marzył, żeby jakieś miłe i grzeczne dziecko zabrało go do domu.",
                 "Rząd 4; miejsce 1",
                 15,
                 "http://webimage.pl/pics/184/6/d9788328046184.jpg",
-                category5);
+                category5,"Janina Porazińska","978-83-264580-3885-1", 15.54);
         Product product27 = new Product("Szewczyk dratewka",
                 "Znana baśń o szewczyku, który musi wykonać trzy trudne zadania, aby uwolnić pannę zamkniętą na wieży przez złą czarownicę. " +
                         "Pomagają mu w tym zaprzyjaźnione z nim zwierzęta.",
                 "Rząd 4; miejsce 2",
                 15,
                 "http://webimage.pl/pics/864/9/d187777.jpg",
-                category5);
+                category5,"Janina Porazińska", "978-898673-10-12986-4", 9.99);
 
         Product product28 = new Product("Inwazja",
                 "Współczesna Polska, w której żyją: Roman, były żołnierz wojsk specjalnych i uczestnik wielu zagranicznych misji, " +
@@ -276,44 +273,43 @@ public class InitialDataConfig {
                 "Rząd 2; miejsce 1",
                 0,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
+                category3,"Wojciech Miłoszewski", "9788325438044234", 32.00);
 
         Product product29 = new Product("Latarnia umarłych",
                 "Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
                 "Rząd 2; miejsce 1",
                 15,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
-
+                category3,"Leszek Herman", "978-8-3987287-0395-7", 20.22);
 
         Product product30 = new Product("Java podstawy",
-                "Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
+                "PIERWSZY PRODUKT Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
                         "doskonalenia swoich umiejętności w zakresie posługiwania się językiem Java.",
                 "Rząd 1; miejsce 1",
                 15,
                 "https://static01.helion.com.pl/global/okladki/326x466/4dbd7b921aa2dafbf867c4ac097d6998,javp10.jpg",
-                category);
+                category, "Cay S. Horstman","9788323128324800",69);
 
         Product product31 = new Product("Java w pigułce",
                 "Java to język programowania wybierany wszędzie tam, gdzie są wymagane najwyższe bezpieczeństwo i wydajność.",
                 "Rząd 1; miejsce 2",
                 150,
                 "https://static01.helion.com.pl/global/okladki/326x466/06a3d95a2c11220eb256f2b29d604546,javpi6.jpg",
-                category);
+                category,"David Flanganan", "978-83-2097883-0623-3", 47.50);
 
         Product product32 = new Product("Pamiętnik czarnego noska",
                 "Miś zwany Czarnym Noskiem bardzo nudził się na sklepowej witrynie, marzył, żeby jakieś miłe i grzeczne dziecko zabrało go do domu.",
                 "Rząd 4; miejsce 1",
                 15,
                 "http://webimage.pl/pics/184/6/d9788328046184.jpg",
-                category5);
+                category5,"Janina Porazińska","978-8r4233-280-3885-1", 15.54);
         Product product33 = new Product("Szewczyk dratewka",
                 "Znana baśń o szewczyku, który musi wykonać trzy trudne zadania, aby uwolnić pannę zamkniętą na wieży przez złą czarownicę. " +
                         "Pomagają mu w tym zaprzyjaźnione z nim zwierzęta.",
                 "Rząd 4; miejsce 2",
                 15,
                 "http://webimage.pl/pics/864/9/d187777.jpg",
-                category5);
+                category5,"Janina Porazińska", "978-83-1750-12986-4", 9.99);
 
         Product product34 = new Product("Inwazja",
                 "Współczesna Polska, w której żyją: Roman, były żołnierz wojsk specjalnych i uczestnik wielu zagranicznych misji, " +
@@ -322,14 +318,15 @@ public class InitialDataConfig {
                 "Rząd 2; miejsce 1",
                 0,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
+                category3,"Wojciech Miłoszewski", "2349788328044234", 32.00);
 
         Product product35 = new Product("Latarnia umarłych",
-                "OSTATNI PRODUKT Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
+                "Akcja \"Latarni umarłych\" rozgrywa się w rok po wydarzeniach opisanych w \"Sedinum\" - wiadomość z podziemi.",
                 "Rząd 2; miejsce 1",
                 15,
                 "http://webimage.pl/pics/234/4/d857398.jpg",
-                category3);
+                category3,"Leszek Herman", "978-8-67543287-0395-7", 20.22);
+
 
         jpaProductRepository.save(product);
         jpaProductRepository.save(product1);
