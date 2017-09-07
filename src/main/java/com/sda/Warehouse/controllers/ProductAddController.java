@@ -19,13 +19,17 @@ import javax.validation.Valid;
 
 
 @Controller
-public class ProductAddController extends WebMvcConfigurerAdapter{
+public class ProductAddController extends WebMvcConfigurerAdapter {
+
+    private JpaCategoryRepository categoryRepository;
+
+    private JpaProductRepository productRepository;
 
     @Autowired
-    JpaCategoryRepository categoryRepository;
-
-    @Autowired
-    JpaProductRepository productRepository;
+    public ProductAddController(JpaCategoryRepository categoryRepository, JpaProductRepository productRepository) {
+        this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
+    }
 
     @ModelAttribute("categories")
     public Iterable<Category> getAllCategories() {
