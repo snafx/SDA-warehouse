@@ -326,6 +326,13 @@ th.addForm {
     background-color: #f5f5f5;
 }
 
+/* registration */
+
+.main-center{
+    margin: 0 auto;
+    max-width: 330px;
+}
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
     *, :after, :before {
