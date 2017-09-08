@@ -2,7 +2,6 @@ package com.sda.Warehouse.controllers;
 
 import com.sda.Warehouse.models.Category;
 import com.sda.Warehouse.models.Product;
-import com.sda.Warehouse.models.ProductAddForm;
 import com.sda.Warehouse.repositories.JpaCategoryRepository;
 import com.sda.Warehouse.repositories.JpaProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

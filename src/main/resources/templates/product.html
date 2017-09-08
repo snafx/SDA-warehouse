@@ -71,13 +71,16 @@
                     <div class="panel-body">
                         <form method="post" action="newProduct">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default">Add New Product</button>
+                                <a class="btn btn-default" th:href="@{'/addProduct'}">Add New Product - Admin</a>
                             </div>
                         </form>
                         <div class="form-group">
-                            <a class="btn btn-default" th:href="@{'/product/'+ ${product.id} + '/changeAmount'}">Edit
-                                Product</a>
-                            <button type="submit" class="btn btn-danger">Delete Product</button>
+                            <a class="btn btn-default"
+                               th:href="@{'/products/product/'+ ${product.id} + '/changeAmount'}">Edit
+                                Product - Warehouseman</a>
+                            <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id} + '/edit'}">Edit
+                                Product - Admin</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                         <hr>
                         <form id="myform" method="post">
@@ -91,7 +94,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-default">Update Quantity</button>
+                                    <button type="submit" class="btn btn-default">Update Quantity - Admin</button>
                                 </div>
                             </div>
                         </form>
