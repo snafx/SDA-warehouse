@@ -13,7 +13,7 @@
 
 
     <form class="upgrade-product form-horizontal" action="/product/1/edit"
-          th:action="'/product/' + ${product.id} + '/edit'" method="post">
+          th:action="'/products/product/' + ${product.id} + '/edit'" method="post">
 
         <fieldset>
 
@@ -151,6 +151,7 @@
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-warning"> Send</button>
                     <button type="submit" class="btn btn-warning"> Delete</button>
+                    <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id}}">Back</a>
                 </div>
             </div>
 

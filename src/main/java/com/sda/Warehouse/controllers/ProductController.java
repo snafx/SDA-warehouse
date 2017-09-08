@@ -1,17 +1,16 @@
 package com.sda.Warehouse.controllers;
 
 
-
 import com.sda.Warehouse.models.Product;
 
 import com.sda.Warehouse.repositories.JpaProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(path = "/products")
 public class ProductController {
 
     private JpaProductRepository jpaProductRepository;
@@ -55,9 +54,9 @@ public class ProductController {
 
 
     @PostMapping(path = "/product/{productId}/edit")
-    public String editProduct(@ModelAttribute Product product){
+    public String editProduct(@ModelAttribute Product product) {
         jpaProductRepository.save(product);
-        return "redirect:/product/{productId}/";
+        return "redirect:/products/product/{productId}/";
     }
 
     @PostMapping(value = "/product/{productId}/changeAmount")
@@ -65,7 +64,7 @@ public class ProductController {
         Product product = jpaProductRepository.findOne(productId);
         product.setQuantity(quantity);
         jpaProductRepository.save(product);
-        return "redirect:/product/{productId}/";
+        return "redirect:/products/product/{productId}/";
     }
 
     @GetMapping(value = "/admin/product/{productId}")
@@ -80,8 +79,9 @@ public class ProductController {
         Product product = jpaProductRepository.findOne(productId);
         product.setQuantity(quantity);
         jpaProductRepository.save(product);
-        return "redirect:/admin/product/{productId}/";
+        return "redirect:/products/admin/product/{productId}/";
     }
+
 }
 
 

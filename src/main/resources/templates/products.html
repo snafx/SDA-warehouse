@@ -131,7 +131,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="product,iterationStatus : ${allProducts}"
-                            th:attr="data-href='/product/'+${product.id}"
+                            th:attr="data-href='/products/product/'+${product.id}"
                             class='clickable-row'
                             data-href='/product/1'
                             style="cursor:pointer;">
