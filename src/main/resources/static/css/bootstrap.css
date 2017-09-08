@@ -307,6 +307,13 @@ section.flat button.active {
     }
 }
 
+/* addForm */
+
+th.addForm {
+    text-align: center;
+    font-size: 18px;
+}
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
     *, :after, :before {
@@ -4733,6 +4740,10 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
     padding: 15px 15px;
     font-size: 18px;
     line-height: 20px
+}
+img.logoImg {
+    width:125px;
+    height: auto;
 }
 
 .navbar-brand:focus, .navbar-brand:hover {
