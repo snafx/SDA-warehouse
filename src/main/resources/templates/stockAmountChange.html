@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stock amount change</title>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header "></div>
+
+
+<div class="container">
+    <form class="upgrade-product form-horizontal" action=" " method="post">
+
+
+        <fieldset>
+
+            <legend>Stock amount change</legend>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Name</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="name" field="name" class="form-control" th:value="${product.name}" type="text"
+                               readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <textarea class="form-control" name="description" th:text="${product.description}" rows="5"
+                                  readonly></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- LOCATION -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Location</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="location" th:value="${product.location}" class="form-control" type="text" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUANTITY -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Quantity</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="quantity" th:value="${product.quantity}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHOTO -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Photo</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="photo" th:value="${product.photo}" class="form-control" type="text" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Category</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <select name="category" class="form-control selectpicker">
+                            <option value=" ">Please select category</option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-warning">Send</button>
+                    <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id}}">Back</a>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+</div><!-- /.container -->
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda warehouse management application powered by Sda-javapoz3</p>
+    </footer>
+</div>
+
+</body>
+</html>

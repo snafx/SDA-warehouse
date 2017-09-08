@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -58,4 +59,77 @@
 </div>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SDA Warehouse</title>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header ">
+    <header>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div id="main">
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Welcome to SDA Warehouse!</h2>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/home/'}">
+                        <button class="tile">Search Product</button>
+                    </a>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/products/'}">
+                        <button class="tile">Show All</button>
+                    </a>
+                </section>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-12">
+            <br>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/addProduct/'}">
+                        <button class="tile">Add New Product</button>
+                    </a>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/addUser/'}">
+                        <button class="tile">Add New User</button>
+                    </a>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda </p>
+    </footer>
+</div>
+
+</body>
+>>>>>>> origin/master
 </html>

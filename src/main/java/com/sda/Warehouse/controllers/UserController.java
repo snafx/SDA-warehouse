@@ -1,4 +1,5 @@
 package com.sda.Warehouse.controllers;
+
 import com.sda.Warehouse.models.CreationStatus;
 import com.sda.Warehouse.models.CreationStatusFactory;
 import com.sda.Warehouse.models.User;
@@ -65,13 +66,11 @@ public class UserController {
     }
 
 
-
     @PostMapping(path = "/{id}/delete")
     public String removeUser(@PathVariable("id") Long userid) {
-       userRepository.delete(userid);
+        userRepository.delete(userid);
         return "redirect:/users/";
     }
-
 
 
 }

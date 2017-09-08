@@ -1,3 +1,4 @@
+
 package com.sda.Warehouse.controllers;
 
 
@@ -11,4 +12,12 @@ public class DevFrontController {
     public String test() {
         return "index";
     }
+
+    @GetMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
+
 }
+

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit product</title>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header "></div>
+
+
+<div class="container">
+
+
+
+    <form class="upgrade-product form-horizontal" action="/product/1/edit"
+          th:action="'/products/product/' + ${product.id} + '/edit'" method="post">
+
+        <fieldset>
+
+            <!-- ID uneditable -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Book index</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="id" field="id" class="form-control" th:value="${product.id}" type="text" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAME -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Name</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="name" field="name" class="form-control" th:value="${product.name}" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUTHOR -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Author</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="bookAuthor" field="bookAuthor" class="form-control"
+                               th:value="${product.bookAuthor}" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRICE -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Price</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="price" field="price" class="form-control"
+                               th:value="${product.price}" type="text">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <textarea class="form-control" name="description" th:text="${product.description}"
+                                  rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- LOCATION -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Location</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="location" th:value="${product.location}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUANTITY -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Quantity</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="quantity" th:value="${product.quantity}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHOTO -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Photo</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="photo" th:value="${product.photo}" class="form-control" type="text">
+                        <img th:src="${product.photo}" height="300">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Category</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input class="form-control" th:value="${product.category.name}" type="text" readonly>
+                        <input name="category" field="category" class="form-control" th:value="${product.category.id}" type="hidden" >
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISBN -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">ISBN</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input name="ISBN" th:value="${product.ISBN}" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-warning"> Send</button>
+                    <button type="submit" class="btn btn-warning"> Delete</button>
+                    <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id}}">Back</a>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+</div><!-- /.container -->
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda warehouse management application powered by Sda-javapoz3</p>
+    </footer>
+</div>
+
+</body>
+</html>

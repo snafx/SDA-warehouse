@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>All products' page</title>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header ">
+    <header>
+        <h1>Sda warehouse</h1>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Sales order</a></li>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Stock</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Raport</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+
+<div class="container">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">All product's page</div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-inline" method="get" action="/products">
+                        <div class="form-group">
+                            <label for="search-phrase">Search:</label>
+                            <input type="text" class="form-control" id="search-phrase" name="search-phrase">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="dropdown pull-right">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="true">
+                            Sort by...
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <a th:href="'/products?sort-by=name&sort-type=asc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Name ascending</a></li>
+                            <li>
+                                <a th:href="'/products?sort-by=name&sort-type=desc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Name descending</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a th:href="'/products?sort-by=category&sort-type=asc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Category ascending</a></li>
+                            <li>
+                                <a th:href="'/products?sort-by=category&sort-type=desc' + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#">Category descending</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${searchPhrase}">
+                <div class="row" th:if="${!searchPhrase.isEmpty()}">
+                    <div class="col-md-6">
+                    <span th:text="'Currently searched phrase: ' + ${searchPhrase}" class="text-danger text-italic">\srgrawgawregteargf
+                        searched phrase</span>
+                        <span><a th:href="'/products' + (${sortColumn != null} ? '?sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
+                                href="/products">show all</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${sortColumn != null and sortType != null}">
+                <div class="row" th:if="${!sortColumn.isEmpty() and !sortType.isEmpty()}">
+                    <div class="col-md-6">
+                    <span th:text="'Currently sorted by: ' + ${sortColumn} + ' ' + ${sortType}"
+                          class="text-danger text-italic">
+                        sorted column</span>
+                        <span><a
+                                th:href="'/products' + (${searchPhrase != null} ? '?search-phrase=' + ${searchPhrase} : '')"
+                                href="/products">clear sorting</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" th:if="${searchPhrase != null or sortColumn != null or sortType != null}">
+                <div class="col-md-6">
+                    <span><a href="/products">Clear all</a></span>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div th:if="${allProducts}">
+
+                <div th:if="${allProducts.isEmpty()}">
+                    <div class="alert alert-warning">
+                        Searching resulted 0 rows...
+                    </div>
+                </div>
+
+                <div th:if="${!allProducts.isEmpty()}">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')">Id</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th sec:authorize="!hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')">Ammount</th>
+                            <th sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')">Quantity</th>
+                            <th sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')">Location</th>
+                            <th sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')">Price</th>
+                            <th>Photo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product,iterationStatus : ${allProducts}"
+                            th:attr="data-href='/products/product/'+${product.id}"
+                            class='clickable-row'
+                            data-href='/product/1'
+                            style="cursor:pointer;">
+                            <th scope="row" th:text="${iterationStatus.count}">1</th>
+                            <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')" th:text="${product.id}">Product id</td>
+                            <td th:text="${product.name}">Product name</td>
+                            <td th:text="${product.bookAuthor}">Product author</td>
+                            <td th:text="${product.AbbreviateDescription}">Product description</td>
+                            <td th:text="${product.category.name}">Product category</td>
+                            <td>
+                                <span th:if="${product.quantity &gt 100}">dużo</span>
+                                <span th:if="${product.quantity &gt 0 and product.quantity &lt 100}">mało</span>
+                                <span th:if="${product.quantity == 0}">brak</span>
+                            </td>
+                            <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
+                                th:text="${product.quantity}">Product quantity</td>
+                            <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
+                                th:text="${product.price} + ' PLN'">Product price</td>
+                            <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
+                                th:text="${product.location}">Product location</td>
+                            <td><img style="max-width: 100px;"
+                                     th:src="${product.photo}"
+                                     src="http://www.klslinternational.com/storage/merchant_store_product/331/2235/5_1428585373_sample-img.png"
+                                     alt="Product photo"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <p th:text="'Total products: ' + ${totalElements}">Total products number</p>
+
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-centered">
+
+                            <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == firstPage}" aria-hidden="true">First page</span>
+                                <a th:if="${currentPage != firstPage}"
+                                   th:href="'/products?page=' + ${firstPage} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '')"
+                                   href="#" aria-label="Last page">
+                                    <span aria-hidden="true">First page</span>
+                                </a>
+                            </li>
+
+                            <li th:class="${currentPage != firstPage} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == firstPage}" aria-hidden="true">&laquo;</span>
+                                <a th:if="${currentPage != firstPage}"
+                                   th:href="'/products?page=' + ${currentPage - 1} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
+                                   href="#"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+
+
+                            <li th:each="i : ${#numbers.sequence(firstPage, totalPages)}"
+                                th:class="${i == currentPage} ? 'active' : '' ">
+                                <a th:href="'/products?page=' + ${i} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
+                                   th:text="${i}" href="#">0</a>
+                            </li>
+
+
+                            <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == totalPages}" aria-hidden="true">&raquo;</span>
+                                <a th:if="${currentPage != totalPages}"
+                                   th:href="'/products?page=' + ${currentPage + 1} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
+                                   href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+
+                            <li th:class="${currentPage != totalPages} ? '' : 'disabled' ">
+                                <span th:if="${currentPage == totalPages}" aria-hidden="true">Last page</span>
+                                <a th:if="${currentPage != totalPages}"
+                                   th:href="'/products?page=' + ${totalPages} + (${searchPhrase != null} ? '&search-phrase=' + ${searchPhrase} : '') + (${sortColumn != null} ? '&sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
+                                   href="#" aria-label="Last page">
+                                    <span aria-hidden="true">Last page</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+            <div th:unless="${allProducts}">
+                <div class="alert alert-warning">
+                    No data found...
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda </p>
+    </footer>
+</div>
+
+</body>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+
+</html>

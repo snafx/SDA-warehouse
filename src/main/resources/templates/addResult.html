@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>Result</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header "></div>
+
+
+<div style="text-align:center;">Successfully added product.</div>
+<a class="btn btn-default" th:href="@{'/products'}">To products view</a>
+
+
+<div th:replace="fragments/footer :: footer "></div>
+</body>
+</html>
