@@ -33,13 +33,30 @@
     <div class="container">
         <div class="col-md-12">
             <h2>Welcome to SDA Warehouse!</h2>
-            <div class="col-md-6">
+            <div class="col-md-6" id="search_title">
                 <section class="flat">
-                    <a href="#" th:href="@{'/home/'}">
-                        <button class="tile">Search Product</button>
-                    </a>
+                    <!--<a href="#" th:href="@{'/home/'}">-->
+                    <button onClick="show()" class="tile">Search Product</button>
+                    <!--</a>-->
                 </section>
             </div>
+
+            <div class="col-md-6" id="search_box" style="display: none;">
+                <div class="col-md-10 col-md-offset-2">
+                    <br>
+                    <br>
+                    <div th:replace="fragments/search_box :: search_box">
+                        <form class="form-inline" method="get" action="#">
+                            <div class="form-group">
+                                <label for="search-phrase">Search:</label>
+                                <input type="text" class="form-control" id="search-phrase" name="search-phrase">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-6">
                 <section class="flat">
                     <a href="#" th:href="@{'/products/'}">
@@ -75,6 +92,14 @@
         <p>Sda </p>
     </footer>
 </div>
+
+<script>
+    function show() {
+//        alert("cheked the button - worked");
+        document.getElementById("search_box").style.display = '';
+        document.getElementById("search_title").style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
