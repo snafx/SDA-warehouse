@@ -12,12 +12,9 @@ import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
 
-/**
- * Created by mytek on 2017-09-02.
- */
 
 @Configuration
-@Profile("dev")
+//@Profile("dev")
 public class InitialDataConfig {
 
     private JpaCategoryRepository jpaCategoryRepository;

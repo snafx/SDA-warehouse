@@ -2,29 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Header</title>
-    <object th:include="/fragments/head :: head" th:remove="tag" />
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
 </head>
 <body>
 
 <div th:fragment="header">
     <header>
         <div class="container-fluid">
-        <nav class="navbar navbar-inverse sticky-top" >
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+            <nav class="navbar navbar-inverse sticky-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">WebSiteLogo</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#" th:href="@{'/home'}">Home</a></li>
+                        <li><a href="#">Search</a></li>
+                        <li><a href="#">Sales order</a></li>
+                        <li><a href="#">Delivery</a></li>
+                        <li><a href="#">Stock</a></li>
+                        <li><a href="#">Users</a></li>
+                        <li><a href="#">Raport</a></li>
+                    </ul>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Sales order</a></li>
-                    <li><a href="#">Delivery</a></li>
-                    <li><a href="#">Stock</a></li>
-                    <li><a href="#">Users</a></li>
-                    <li><a href="#">Raport</a></li>
-                </ul>
-            </div>
-        </nav>
+            </nav>
         </div>
     </header>
 </div>
