@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Users</title>
+</head>
+<body>
+<ul>
+
+    <li th:each="user : ${users}">
+        <h1 th:text="${user.firstName} + ' ' + ${user.lastName}"></h1>
+        <p th:text="'role: ' + ${user.role} "></p>
+        <p th:text="'Email: ' + ${user.email}"> </p>
+        <p th:text="'Password: ' + ${user.password}"></p>
+        <td>
+            <form method="post" action="/users/0/delete" th:action="'/users/' + ${user.id} +'/delete'">
+                <button style="background-color: red" type="submit">X</button>
+            </form>
+
+        </td>
+
+    </li>
+</ul>
+<div th:replace="fragments/alert :: creationStatus-alert (status=${creationStatus})">
+    <h1>Status message</h1>
+</div>
+<form method="post" action="/users">
+    <input type="text" name="firstName" placeholder="First Name">
+    <input type="text" name="lastName" placeholder="Last Name">
+    <input type="text" name="role" placeholder=Role>
+    <input type="text" name="email" placeholder=Email>
+    <input type="text" name="password" placeholder=Password>
+
+
+    <button type="submit">Submit</button>
+
+</form>
+</body>
