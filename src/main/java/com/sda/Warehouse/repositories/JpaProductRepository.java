@@ -5,9 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-/**
- * Created by RENT on 2017-09-02.
- */
 
 public interface JpaProductRepository extends PagingAndSortingRepository<Product, Long> {
 

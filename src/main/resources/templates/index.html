@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Index</title>
+    <title>SDA Warehouse</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header ">
     <header>
-        <h1>Sda warehouse</h1>
         <nav class="navbar navbar-inverse sticky-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -22,33 +21,46 @@
     </header>
 </div>
 
-
-<div class="container-fluid">
-
-    <h1>Welcome!</h1>
-
-    <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lacinia ipsum at turpis vehicula euismod.
-            Nam ut rutrum leo. Praesent purus felis, vestibulum nec quam in, aliquam interdum augue.
-            Donec tincidunt tellus arcu, non sagittis arcu porttitor sed. Donec tristique magna a ante faucibus feugiat.
-            Cras nec libero gravida, accumsan ligula quis, maximus elit. Vestibulum in congue nisl, sed convallis nunc.
-            Fusce neque neque, fermentum in molestie vitae, tincidunt nec nulla. Donec eleifend risus vel urna
-            facilisis,
-            sit amet euismod ipsum rutrum.</p>
-        <p>
-            Morbi dolor risus, molestie vitae imperdiet quis, tempor vel mi. Aliquam mauris libero, tempus nec sapien
-            vel,
-            porta auctor mauris. Nam ac sem rhoncus, molestie risus nec, ullamcorper sem. Sed ac blandit purus. Nunc id
-            urna ante.
-            Phasellus augue nisl, ultricies id velit pretium, euismod blandit diam. Curabitur at nulla ac nibh blandit
-            volutpat.
-            Proin vestibulum varius lorem, at mattis turpis tincidunt ac. Curabitur ullamcorper mauris in ipsum posuere,
-            vel hendrerit arcu fringilla. Cras est eros, lobortis ac dictum eu, mattis vitae odio. Sed facilisis mattis
-            mauris,
-            non efficitur elit. Etiam non dictum nunc, non varius augue. Cras non tempus nulla.
-        </p>
+<div id="main">
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Welcome to SDA Warehouse!</h2>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/home/'}">
+                        <button class="tile">Search Product</button>
+                    </a>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/products/'}">
+                        <button class="tile">Show All</button>
+                    </a>
+                </section>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-12">
+            <br>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/addProduct/'}">
+                        <button class="tile">Add New Product</button>
+                    </a>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="flat">
+                    <a href="#" th:href="@{'/addUser/'}">
+                        <button class="tile">Add New User</button>
+                    </a>
+                </section>
+            </div>
+        </div>
     </div>
 </div>
+
 
 <div th:replace="fragments/footer :: footer ">
     <footer>
