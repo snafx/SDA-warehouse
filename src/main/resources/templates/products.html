@@ -36,13 +36,15 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <form class="form-inline" method="get" action="/products">
-                        <div class="form-group">
-                            <label for="search-phrase">Search:</label>
-                            <input type="text" class="form-control" id="search-phrase" name="search-phrase">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
+                    <div th:replace="fragments/search_box :: search_box">
+                        <form class="form-inline" method="get" action="#">
+                            <div class="form-group">
+                                <label for="search-phrase">Search:</label>
+                                <input type="text" class="form-control" id="search-phrase" name="search-phrase">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="col-md-6">
@@ -77,7 +79,8 @@
                     <div class="col-md-6">
                     <span th:text="'Currently searched phrase: ' + ${searchPhrase}" class="text-danger text-italic">\srgrawgawregteargf
                         searched phrase</span>
-                        <span><a th:href="'/products' + (${sortColumn != null} ? '?sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
+                        <span><a
+                                th:href="'/products' + (${sortColumn != null} ? '?sort-by=' + ${sortColumn} : '') + (${sortType != null} ? '&sort-type=' + ${sortType} : '')"
                                 href="/products">show all</a></span>
                     </div>
                 </div>
@@ -136,7 +139,9 @@
                             data-href='/product/1'
                             style="cursor:pointer;">
                             <th scope="row" th:text="${iterationStatus.count}">1</th>
-                            <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')" th:text="${product.id}">Product id</td>
+                            <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')" th:text="${product.id}">
+                                Product id
+                            </td>
                             <td th:text="${product.name}">Product name</td>
                             <td th:text="${product.bookAuthor}">Product author</td>
                             <td th:text="${product.AbbreviateDescription}">Product description</td>
@@ -147,11 +152,14 @@
                                 <span th:if="${product.quantity == 0}">brak</span>
                             </td>
                             <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
-                                th:text="${product.quantity}">Product quantity</td>
+                                th:text="${product.quantity}">Product quantity
+                            </td>
                             <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
-                                th:text="${product.price} + ' PLN'">Product price</td>
+                                th:text="${product.price} + ' PLN'">Product price
+                            </td>
                             <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
-                                th:text="${product.location}">Product location</td>
+                                th:text="${product.location}">Product location
+                            </td>
                             <td><img style="max-width: 100px;"
                                      th:src="${product.photo}"
                                      src="http://www.klslinternational.com/storage/merchant_store_product/331/2235/5_1428585373_sample-img.png"
