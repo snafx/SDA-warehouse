@@ -314,6 +314,18 @@ th.addForm {
     font-size: 18px;
 }
 
+/* addUser */
+
+.panel-heading-registr {
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: #f5f5f5;
+}
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
     *, :after, :before {
@@ -6237,7 +6249,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 }
 
 .panel-info {
-    border-color: #bce8f1
+    border-color: lightgrey;
 }
 
 .panel-info > .panel-heading {
