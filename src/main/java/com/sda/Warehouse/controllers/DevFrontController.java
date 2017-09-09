@@ -1,4 +1,3 @@
-
 package com.sda.Warehouse.controllers;
 
 
@@ -17,7 +16,5 @@ public class DevFrontController {
     public String login() {
         return "login";
     }
-
-
 }
 

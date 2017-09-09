@@ -2,9 +2,7 @@ package com.sda.Warehouse.models;
 
 public class CreationStatus {
     private boolean status;
-
     private String message;
-
 
     CreationStatus() {
     }

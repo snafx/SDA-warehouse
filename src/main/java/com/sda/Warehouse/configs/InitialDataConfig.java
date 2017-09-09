@@ -1,4 +1,3 @@
-
 package com.sda.Warehouse.configs;
 
 import com.sda.Warehouse.models.Category;

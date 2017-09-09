@@ -3,10 +3,9 @@ package com.sda.Warehouse.controllers;
 import com.sda.Warehouse.models.CreationStatus;
 import com.sda.Warehouse.models.CreationStatusFactory;
 import com.sda.Warehouse.models.User;
+import com.sda.Warehouse.processors.ProductsProcessor;
 import com.sda.Warehouse.repositories.JpaUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,10 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/users")
 public class UserController {
+
+    public UserController(JpaUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Autowired
     private JpaUserRepository userRepository;
@@ -71,6 +74,5 @@ public class UserController {
         userRepository.delete(userid);
         return "redirect:/users/";
     }
-
 
 }
