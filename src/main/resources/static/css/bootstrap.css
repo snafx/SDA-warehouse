@@ -7519,6 +7519,32 @@ section.flat button.active {
     }
 }
 
+/* addForm */
+
+th.addForm {
+    text-align: center;
+    font-size: 18px;
+}
+
+/* addUser */
+
+.panel-heading-registr {
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: #f5f5f5;
+}
+
+/* registration */
+
+.main-center{
+    margin: 0 auto;
+    max-width: 330px;
+}
+
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
     *, :after, :before {
@@ -11946,6 +11972,10 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
     font-size: 18px;
     line-height: 20px
 }
+img.logoImg {
+    width:125px;
+    height: auto;
+}
 
 .navbar-brand:focus, .navbar-brand:hover {
     text-decoration: none
@@ -13438,7 +13468,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 }
 
 .panel-info {
-    border-color: #bce8f1
+    border-color: lightgrey;
 }
 
 .panel-info > .panel-heading {
