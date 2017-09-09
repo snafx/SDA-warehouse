@@ -1,18 +1,14 @@
 package com.sda.Warehouse.controllers;
 
 import com.sda.Warehouse.models.Product;
+import com.sda.Warehouse.models.User;
 import com.sda.Warehouse.models.UserOrder;
 import com.sda.Warehouse.processors.ProductsProcessor;
-import com.sda.Warehouse.repositories.JpaCategoryRepository;
-import com.sda.Warehouse.repositories.JpaOrderDetailsRepository;
-import com.sda.Warehouse.repositories.JpaProductRepository;
-import com.sda.Warehouse.repositories.JpaUserOrderRepository;
+import com.sda.Warehouse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,16 +24,19 @@ public class OrdersController {
     private JpaCategoryRepository jpaCategoryRepository;
     private JpaUserOrderRepository jpaUserOrderRepository;
     private JpaOrderDetailsRepository jpaOrderDetailsRepository;
+    private JpaUserRepository jpaUserRepository;
 
     @Autowired
     public OrdersController(JpaProductRepository jpaProductRepository,
                             JpaCategoryRepository jpaCategoryRepository,
                             JpaUserOrderRepository jpaUserOrderRepository,
-                            JpaOrderDetailsRepository jpaOrderDetailsRepository) {
+                            JpaOrderDetailsRepository jpaOrderDetailsRepository,
+                            JpaUserRepository jpaUserRepository) {
         this.jpaProductRepository = jpaProductRepository;
         this.jpaCategoryRepository = jpaCategoryRepository;
         this.jpaUserOrderRepository = jpaUserOrderRepository;
         this.jpaOrderDetailsRepository = jpaOrderDetailsRepository;
+        this.jpaUserRepository = jpaUserRepository;
     }
 
     @GetMapping(value = "/mylist")
@@ -47,5 +46,25 @@ public class OrdersController {
         model.addAttribute("allOrders", allOrders);
 
         return "userOrders";
+    }
+
+    @GetMapping(value = "/new")
+    public String newUserOrders(Model model) {
+
+        return "addUserOrder";
+    }
+
+    @PostMapping(value = "/new")
+    public String addNewUserOrders(@RequestParam(value = "userId") Long userId,
+                                   @RequestParam(value = "orderNumber") String number,
+                                   Model model) {
+
+        User user = jpaUserRepository.findOne(userId);
+
+        UserOrder newUserOrder = new UserOrder(user, number);
+
+        jpaUserOrderRepository.save(newUserOrder);
+
+        return "redirect:/orders/mylist";
     }
 }

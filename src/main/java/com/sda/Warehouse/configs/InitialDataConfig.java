@@ -379,15 +379,15 @@ public class InitialDataConfig {
         jpaProductRepository.save(product34);
         jpaProductRepository.save(product35);
 
-        jpaUserOrderRepository.save(new UserOrder(user));
-        jpaUserOrderRepository.save(new UserOrder(user));
-        jpaUserOrderRepository.save(new UserOrder(user));
-        jpaUserOrderRepository.save(new UserOrder(user2));
-        jpaUserOrderRepository.save(new UserOrder(user2));
-        jpaUserOrderRepository.save(new UserOrder(user3));
-        jpaUserOrderRepository.save(new UserOrder(user3));
-        jpaUserOrderRepository.save(new UserOrder(user3));
-        jpaUserOrderRepository.save(new UserOrder(user3));
+        jpaUserOrderRepository.save(new UserOrder(user, "01/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user, "02/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user, "03/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user2, "04/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user2, "05/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user3, "06/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user3, "07/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user3, "08/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user3, "09/2017"));
 
     }
 }
