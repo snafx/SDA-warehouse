@@ -79,8 +79,14 @@
                         </tr>
                         <tr>
                             <td>Book Author:</td>
-                            <td><input type="text" th:field="*{bookAuthor}"/></td>
-                            <td th:if="${#fields.hasErrors('bookAuthor')}" th:errors="*{bookAuthor}">Author Error</td>
+                            <td>
+                                <select th:field="*{bookAuthor}" style="width: 175px;">
+                                    <option th:value="NULL">Select</option>
+                                    <option th:each="bookAuthor : ${bookAuthor}" th:value="${{bookAuthor}}"
+                                            th:text="${bookAuthor.name}">Wireframe
+                                    </option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>ISBN:</td>

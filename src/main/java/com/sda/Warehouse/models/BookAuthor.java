@@ -12,8 +12,8 @@ import java.util.List;
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity(name = "categories")
-public class Category {
+@Entity(name = "bookAuthor")
+public class BookAuthor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,10 @@ public class Category {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bookAuthor", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Product> products = new ArrayList<>();
 
-    public Category(String name) {
+    public BookAuthor(String name) {
         this.name = name;
     }
 }
