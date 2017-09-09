@@ -67,4 +67,10 @@ public class OrdersController {
 
         return "redirect:/orders/mylist";
     }
+
+    @GetMapping(value = "/order/{orderId}")
+    public String newUserOrders(@PathVariable("orderId") Long orderId, Model model) {
+
+        return "orderDetails";
+    }
 }
