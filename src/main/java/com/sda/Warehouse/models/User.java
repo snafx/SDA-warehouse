@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "users")
 @Getter
@@ -42,6 +44,9 @@ public class User {
     @Setter
     @NotNull
     private boolean isActive;
+
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<UserOrder> userOrders = new ArrayList<>();
 
     public User(String firstName, String lastName, String email, String password, String role, boolean isActive) {
         this.firstName = firstName;
