@@ -3,9 +3,8 @@ package com.sda.Warehouse.configs;
 import com.sda.Warehouse.models.Category;
 import com.sda.Warehouse.models.Product;
 import com.sda.Warehouse.models.User;
-import com.sda.Warehouse.repositories.JpaCategoryRepository;
-import com.sda.Warehouse.repositories.JpaProductRepository;
-import com.sda.Warehouse.repositories.JpaUserRepository;
+import com.sda.Warehouse.models.UserOrder;
+import com.sda.Warehouse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -23,19 +22,34 @@ public class InitialDataConfig {
 
     private JpaUserRepository userRepository;
 
+    private JpaUserOrderRepository jpaUserOrderRepository;
+
+    private JpaOrderDetailsRepository jpaOrderDetailsRepository;
+
     @Autowired
-    public InitialDataConfig(JpaCategoryRepository jpaCategoryRepository, JpaProductRepository jpaProductRepository, JpaUserRepository userRepository) {
+    public InitialDataConfig(JpaCategoryRepository jpaCategoryRepository,
+                             JpaProductRepository jpaProductRepository,
+                             JpaUserRepository userRepository,
+                             JpaUserOrderRepository jpaUserOrderRepository,
+                             JpaOrderDetailsRepository jpaOrderDetailsRepository) {
         this.jpaCategoryRepository = jpaCategoryRepository;
         this.jpaProductRepository = jpaProductRepository;
         this.userRepository = userRepository;
+        this.jpaUserOrderRepository = jpaUserOrderRepository;
+        this.jpaOrderDetailsRepository = jpaOrderDetailsRepository;
     }
 
     @PostConstruct
     public void init() {
 
-        userRepository.save(new User("Jan", "Kowalski", "kowalski@wp.pl", "qwerty123", "warehouseman", false));
-        userRepository.save(new User("Jan", "Kowalski", "a@a.com", "a", "warehouseman", false));
-        userRepository.save(new User("Marcin", "Kowalski", "abc@xyz.com", "abc", "warehouseman", false));
+        User user = new User("Jan", "Kowalski", "kowalski@wp.pl", "qwerty123", "warehouseman", false);
+        User user2 = new User("Michał", "Iksiński", "a@a.com", "a", "warehouseman", false);
+        User user3 = new User("Marian", "Kowalski", "abc@xyz.com", "abc", "warehouseman", false);
+
+
+        userRepository.save(user);
+        userRepository.save(user2);
+        userRepository.save(user3);
 
         Category category = new Category("it");
         Category category2 = new Category("cook");
@@ -364,6 +378,16 @@ public class InitialDataConfig {
         jpaProductRepository.save(product33);
         jpaProductRepository.save(product34);
         jpaProductRepository.save(product35);
+
+        jpaUserOrderRepository.save(new UserOrder(user));
+        jpaUserOrderRepository.save(new UserOrder(user));
+        jpaUserOrderRepository.save(new UserOrder(user));
+        jpaUserOrderRepository.save(new UserOrder(user2));
+        jpaUserOrderRepository.save(new UserOrder(user2));
+        jpaUserOrderRepository.save(new UserOrder(user3));
+        jpaUserOrderRepository.save(new UserOrder(user3));
+        jpaUserOrderRepository.save(new UserOrder(user3));
+        jpaUserOrderRepository.save(new UserOrder(user3));
 
     }
 }

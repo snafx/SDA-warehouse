@@ -43,4 +43,12 @@ public class UserOrder {
 
     @Column
     private Boolean isApproved;
+
+    public UserOrder(User user) {
+        this.owner = user;
+        this.orderNumber =  "13/2017";
+        this.date = LocalDate.now();
+        this.orderSum = 0.0;
+        this.isApproved = false;
+    }
 }
