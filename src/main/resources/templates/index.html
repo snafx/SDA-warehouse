@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>SDA Warehouse</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse</title>
 </head>
 <body>
 
@@ -103,7 +103,7 @@
     </div>
 </div>
 
-
+<br>
 <div th:replace="fragments/footer :: footer ">
     <footer>
         <p>Sda </p>
@@ -112,7 +112,6 @@
 
 <script>
     function show() {
-//        alert("cheked the button - worked");
         document.getElementById("search_box").style.display = '';
         document.getElementById("search_title").style.display = 'none';
     }

@@ -1,20 +1,12 @@
 package com.sda.Warehouse.controllers;
 
-import com.sda.Warehouse.models.Product;
 import com.sda.Warehouse.models.User;
 import com.sda.Warehouse.models.UserOrder;
-import com.sda.Warehouse.processors.ProductsProcessor;
 import com.sda.Warehouse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-/**
- * Created by mytek on 2017-09-09.
- */
 
 @Controller
 @RequestMapping(path = "/orders")

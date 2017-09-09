@@ -10,10 +10,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by RENT on 2017-09-09.
- */
-
 @Setter
 @Getter
 @EqualsAndHashCode

@@ -1,6 +1,5 @@
 package com.sda.Warehouse.controllers;
 
-
 import com.sda.Warehouse.models.Product;
 
 import com.sda.Warehouse.repositories.JpaProductRepository;
@@ -20,7 +19,6 @@ public class ProductController {
         this.jpaProductRepository = jpaProductRepository;
     }
 
-
     @GetMapping(path = "/product/{productId}")
     public ModelAndView singleProduct(@PathVariable("productId") Long productId) {
         ModelAndView modelAndView = new ModelAndView("product");
@@ -35,10 +33,9 @@ public class ProductController {
         return modelAndView;
     }
 
-
     @GetMapping(path = "/product/{productId}/edit")
     public ModelAndView loadProductParameters(@PathVariable("productId") Long productId) {
-        ModelAndView modelAndView = new ModelAndView("editproduct");
+        ModelAndView modelAndView = new ModelAndView("editProduct");
         Product product = jpaProductRepository.findOne(productId);
         modelAndView.addObject("product", product);
         return modelAndView;
@@ -51,7 +48,6 @@ public class ProductController {
         modelAndView.addObject("product", product);
         return modelAndView;
     }
-
 
     @PostMapping(path = "/product/{productId}/edit")
     public String editProduct(@ModelAttribute Product product) {
@@ -81,7 +77,6 @@ public class ProductController {
         jpaProductRepository.save(product);
         return "redirect:/products/admin/product/{productId}/";
     }
-
 }
 
 

@@ -50,7 +50,6 @@ public class InitialDataConfig {
         User user2 = new User("Michał", "Iksiński", "a@a.com", "a", "warehouseman", false);
         User user3 = new User("Marian", "Kowalski", "abc@xyz.com", "abc", "warehouseman", false);
 
-
         userRepository.save(user);
         userRepository.save(user2);
         userRepository.save(user3);
@@ -362,7 +361,6 @@ public class InitialDataConfig {
                 "http://webimage.pl/pics/234/4/d857398.jpg",
                 category3, bookAuthor5, "978-8-67543287-0395-7", 20.22);
 
-
         jpaProductRepository.save(product);
         jpaProductRepository.save(product1);
         jpaProductRepository.save(product2);
@@ -410,6 +408,5 @@ public class InitialDataConfig {
         jpaUserOrderRepository.save(new UserOrder(user3, "07/2017"));
         jpaUserOrderRepository.save(new UserOrder(user3, "08/2017"));
         jpaUserOrderRepository.save(new UserOrder(user3, "09/2017"));
-
     }
 }
