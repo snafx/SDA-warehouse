@@ -11,11 +11,14 @@
 <div class="container">
 
 
-
     <form class="upgrade-product form-horizontal" action="/product/1/edit"
           th:action="'/products/product/' + ${product.id} + '/edit'" method="post">
 
         <fieldset>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Edit product</label>
+            </div>
 
             <!-- ID uneditable -->
 
@@ -44,12 +47,14 @@
             <!-- AUTHOR -->
 
             <div class="form-group">
-                <label class="col-md-4 control-label">Author</label>
-                <div class="col-md-4 inputGroupContainer">
+                <label class="col-md-4 control-label">Book Author</label>
+                <div class="col-md-4 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <input name="bookAuthor" field="bookAuthor" class="form-control"
-                               th:value="${product.bookAuthor}" type="text">
+                        <input class="form-control" th:value="${product.bookAuthor.name}" type="text" readonly>
+                        <input name="category" field="category" class="form-control" th:value="${product.bookAuthor.id}"
+                               type="hidden">
+                        </select>
                     </div>
                 </div>
             </div>
@@ -127,7 +132,8 @@
                     <div class="input-group">
                         <span class="input-group-addon"></span>
                         <input class="form-control" th:value="${product.category.name}" type="text" readonly>
-                        <input name="category" field="category" class="form-control" th:value="${product.category.id}" type="hidden" >
+                        <input name="category" field="category" class="form-control" th:value="${product.category.id}"
+                               type="hidden">
                         </select>
                     </div>
                 </div>
