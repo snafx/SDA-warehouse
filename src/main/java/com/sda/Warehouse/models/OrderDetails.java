@@ -34,4 +34,12 @@ public class OrderDetails {
 
     @Column
     private Double amount;
+
+    public OrderDetails(UserOrder parentOrder, Product product, Integer quantity, Double price) {
+        this.parentOrder = parentOrder;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.amount = this.price * this.quantity;
+    }
 }
