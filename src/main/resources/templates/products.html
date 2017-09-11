@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>All products' page</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - All Products</title>
 </head>
 <body>
 
@@ -138,14 +138,14 @@
                         <tr th:each="product,iterationStatus : ${allProducts}"
                             th:attr="data-href='/products/product/'+${product.id}"
                             class='clickable-row'
-                            data-href='/product/1'
+                            data-href='/products/product/1'
                             style="cursor:pointer;">
                             <th scope="row" th:text="${iterationStatus.count}">1</th>
                             <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')" th:text="${product.id}">
                                 Product id
                             </td>
                             <td th:text="${product.name}">Product name</td>
-                            <td th:text="${product.bookAuthor}">Product author</td>
+                            <td th:text="${product.bookAuthor.name}"><a th:href="@{'/authorBook/' + ${product.bookAuthor.id}}">Product author</a></td>
                             <td th:text="${product.AbbreviateDescription}">Product description</td>
                             <td th:text="${product.category.name}">Product category</td>
                             <td>
@@ -157,10 +157,10 @@
                                 th:text="${product.quantity}">Product quantity
                             </td>
                             <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
-                                th:text="${product.price} + ' PLN'">Product price
+                                th:text="${product.location}">Product location
                             </td>
                             <td sec:authorize="hasAnyRole('ROLE_WAREHOUSE', 'ROLE_ADMIN')"
-                                th:text="${product.location}">Product location
+                                th:text="${product.price} + ' PLN'">Product price
                             </td>
                             <td><img style="max-width: 100px;"
                                      th:src="${product.photo}"

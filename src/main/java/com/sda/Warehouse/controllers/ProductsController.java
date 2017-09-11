@@ -5,23 +5,13 @@ import com.sda.Warehouse.processors.ProductsProcessor;
 import com.sda.Warehouse.repositories.JpaCategoryRepository;
 import com.sda.Warehouse.repositories.JpaProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
-/**
- * Created by mytek on 2017-09-02.
- */
 
 @Controller
 @RequestMapping(path = "/products")
@@ -36,13 +26,10 @@ public class ProductsController {
         this.jpaCategoryRepository = jpaCategoryRepository;
     }
 
-    // strona w wszystkimi produktami; sciezka: "/products" lub "/products?page=3"
-
+    // page with list of all products; path: "/products" or "/products?page=3"
     @GetMapping
     public String allProducts(Model model,
                               @RequestParam(value = "page", required = false, defaultValue = "1") String page) {
-
-        System.out.println("JESTEM W OGOLNYM KONTROLERZE");
 
         Integer currentPage = Integer.valueOf(page);
 
@@ -61,14 +48,11 @@ public class ProductsController {
         return "products";
     }
 
-    // strona w wyszukanymi produktami; sciezka: "/products?search-phrase=abc" lub "/products?search-phrase=abc&page=3"
-
+    // page with searched products; path: "/products?search-phrase=abc" or "/products?search-phrase=abc&page=3"
     @GetMapping(params = {"search-phrase"})
     public String searchedProducts(Model model,
                                    @RequestParam(value = "search-phrase") String searchPhrase,
                                    @RequestParam(value = "page", required = false, defaultValue = "1") String page) {
-
-        System.out.println("JESTEM W KONTROLERZE OD WYSZUKIWANIA");
 
         Integer currentPage = Integer.valueOf(page);
 
@@ -88,15 +72,12 @@ public class ProductsController {
         return "products";
     }
 
-    // strona posortowanymi produktami; sciezka: "/products?sort-by=kolumna&sort-type=asc/desc" lub "/products?sort-by=kolumna&sort-type=asc/desc&page=3"
-
+    // page with sorted products; path: "/products?sort-by=kolumna&sort-type=asc/desc" or "/products?sort-by=kolumna&sort-type=asc/desc&page=3"
     @GetMapping(params = {"sort-by", "sort-type"})
     public String sortedProducts(Model model,
                                  @RequestParam(value = "sort-by", required = false, defaultValue = "") String sortColumn,
                                  @RequestParam(value = "sort-type", required = false, defaultValue = "") String sortType,
                                  @RequestParam(value = "page", required = false, defaultValue = "1") String page) {
-
-        System.out.println("JESTEM W KONTROLERZE OD SORTOWANIA");
 
         Integer currentPage = Integer.valueOf(page);
 
@@ -117,16 +98,13 @@ public class ProductsController {
         return "products";
     }
 
-    // strona wyszukanymi i posortowanymi produktami; sciezka: "/products?search-phrase=abc&sort-by=kolumna&sort-type=asc/desc" lub "/products?search-phrase=abc&sort-by=kolumna&sort-type=asc/desc&page=3"
-
+    // page with searched and sorted products; path: "/products?search-phrase=abc&sort-by=kolumna&sort-type=asc/desc" or "/products?search-phrase=abc&sort-by=kolumna&sort-type=asc/desc&page=3"
     @GetMapping(params = {"search-phrase", "sort-by", "sort-type"})
     public String searchedAndSortedProducts(Model model,
                                             @RequestParam(value = "search-phrase", required = false, defaultValue = "") String searchPhrase,
                                             @RequestParam(value = "sort-by", required = false, defaultValue = "") String sortColumn,
                                             @RequestParam(value = "sort-type", required = false, defaultValue = "") String sortType,
                                             @RequestParam(value = "page", required = false, defaultValue = "1") String page) {
-
-        System.out.println("JESTEM W KONTROLERZE OD WYSZUKIWANIA I SORTOWANIA");
 
         Integer currentPage = Integer.valueOf(page);
 
@@ -147,5 +125,4 @@ public class ProductsController {
 
         return "products";
     }
-
 }

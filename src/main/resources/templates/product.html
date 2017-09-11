@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Product Page</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - Product Page</title>
     <script>
         function pluss() {
             var countEl = document.getElementById("counter");
@@ -61,7 +61,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">PRODUCT INFO:</div>
                     <div class="panel-body">
-                        <h3 th:text="'Author: ' + ${product.bookAuthor}">Author: <b>John Doe</b></h3>
+                        <a th:href="@{'/bookAuthor/' + ${product.bookAuthor.id}}"><h3 th:text="'Author: ' + ${product.bookAuthor.name}">Author: John Doe</h3></a>
                         <h3 th:text="'ISBN: ' + ${product.ISBN}">ISBN: 666-777-888</h3>
                         <h3 th:text="'Product id: ' + ${product.id}">Product id number: Lorem-ipsum-666</h3>
                         <h3 th:text="'Quantity: ' + ${product.quantity}">Quantity: Lorem ipsum medium stock</h3>

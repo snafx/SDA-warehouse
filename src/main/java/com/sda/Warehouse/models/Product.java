@@ -65,8 +65,10 @@ public class Product {
     @NotNull
     private Category category;
 
-    @Column
-    private String bookAuthor;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "book_author")
+    @NotNull
+    private BookAuthor bookAuthor;
 
     @Column(unique = true)
     @NotNull
@@ -78,7 +80,7 @@ public class Product {
     private double price;
 
 
-    public Product(String name, String description, String location, Integer quantity, String photo, Category category, String bookAuthor, String ISBN, double price) {
+    public Product(String name, String description, String location, Integer quantity, String photo, Category category, BookAuthor bookAuthor, String ISBN, double price) {
         this.name = name;
         this.description = description;
         this.location = location;
