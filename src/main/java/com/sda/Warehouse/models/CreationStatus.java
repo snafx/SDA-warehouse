@@ -1,5 +1,10 @@
 package com.sda.Warehouse.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CreationStatus {
     private boolean status;
     private String message;
@@ -7,19 +12,5 @@ public class CreationStatus {
     CreationStatus() {
     }
 
-    public boolean isStatus() {
-        return status;
-    }
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
