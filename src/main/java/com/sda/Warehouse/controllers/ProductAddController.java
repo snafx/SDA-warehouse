@@ -41,7 +41,9 @@ public class ProductAddController extends WebMvcConfigurerAdapter {
     }
 
     @ModelAttribute("bookAuthor")
-    public Iterable<BookAuthor> getAllCategoris() {return bookAuthor.findAll();}
+    public Iterable<BookAuthor> getAllCategoris() {
+        return bookAuthor.findAll();
+    }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

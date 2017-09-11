@@ -42,7 +42,7 @@ public class UserOrder {
 
     public UserOrder(User user, String number) {
         this.owner = user;
-        this.orderNumber =  number;
+        this.orderNumber = number;
         this.date = LocalDate.now();
         this.orderSum = 0.0;
         this.isApproved = false;

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 //mozliwe dodatkowe adnotacje
-public class WebConfig extends WebMvcConfigurerAdapter{
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Autowired //Without autowire, this solution may not work
     private CategoryFormatter categoryFormatter;

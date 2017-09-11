@@ -15,9 +15,5 @@ public class DevFrontController {
     public String login() {
         return "login";
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 }
 

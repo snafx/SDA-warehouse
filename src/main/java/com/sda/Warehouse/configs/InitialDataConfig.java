@@ -15,14 +15,13 @@ import javax.annotation.PostConstruct;
 @Configuration
 //@Profile("dev")
 public class InitialDataConfig {
+
     private JpaCategoryRepository jpaCategoryRepository;
+
     private JpaProductRepository jpaProductRepository;
-<<<<<<< HEAD
-=======
 
     private JpaBookAuthorRepository jpaBookAuthorRepository;
 
->>>>>>> master
     private JpaUserRepository userRepository;
 
     private JpaUserOrderRepository jpaUserOrderRepository;
