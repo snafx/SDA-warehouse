@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/orders")
 public class OrdersController {
@@ -65,10 +67,16 @@ public class OrdersController {
     @GetMapping(value = "/order/{orderId}")
     public String newUserOrders(@PathVariable("orderId") Long orderId, Model model) {
 
+        UserOrder one = jpaUserOrderRepository.findOne(orderId);
+
+        List<OrderDetails> orderDetailsList = jpaOrderDetailsRepository.findByParentOrder(one);
+
+        model.addAttribute("allOrders", orderDetailsList);
+
         return "orderDetails";
     }
 
-    @GetMapping(value = "/new-detail")
+    @PostMapping(value = "/new-detail")
     public String addNewUserOrders(@RequestParam(value = "productId") Long productId,
                                    @RequestParam(value = "quantity") Integer quantity,
                                    @RequestParam(value = "price") Double price,

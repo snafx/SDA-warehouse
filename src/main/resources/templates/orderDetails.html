@@ -50,29 +50,26 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Author</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Value</th>
+                            <th>Order id</th>
+                            <th>Product name</th>
+                            <th>Product price</th>
+                            <th>Product quantity</th>
+                            <th>Order value</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="product,iterationStatus : ${allOrders}"
-                            th:attr="data-href='/products/product/'+${product.id}"
+                        <tr th:each="orderDetail,iterationStatus : ${allOrders}"
+                            th:attr="data-href='/products/product/'+${orderDetail.id}"
                             class='clickable-row'
                             data-href='/product/1'
                             style="cursor:pointer;">
                             <th scope="row" th:text="${iterationStatus.count}">1</th>
-                            <td th:text="${product.id}">Product id</td>
-                            <td th:text="${product.name}">Product name</td>
-                            <td th:text="${product.bookAuthor}">Product author</td>
-                            <td th:text="${product.price} + ' PLN'">Product price</td>
-                            <td th:text="${product.quantity}">Product quantity</td>
-                            <td th:text="${product.value} + ' PLN'">Product value</td>
-                            <td th:text="${product.location}">Product remove</td>
+                            <td th:text="${orderDetail.id}">Order id</td>
+                            <td th:text="${orderDetail.product.name}">Product name</td>
+                            <td th:text="${orderDetail.price} + ' PLN'">Product price</td>
+                            <td th:text="${orderDetail.quantity}">Product quantity</td>
+                            <td th:text="${orderDetail.amount} + ' PLN'">Order value</td>
                         </tr>
                         </tbody>
                     </table>
@@ -91,6 +88,13 @@
                 <div class="alert alert-warning">
                     No data found...
                 </div>
+            </div>
+            <div>
+                <section class="flat">
+                    <a href="#" th:href="@{'/products/'}">
+                        <button class="tile">Add Products To Order</button>
+                    </a>
+                </section>
             </div>
         </div>
     </div>
