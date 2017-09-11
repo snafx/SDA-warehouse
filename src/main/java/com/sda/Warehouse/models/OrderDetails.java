@@ -7,10 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/**
- * Created by RENT on 2017-09-09.
- */
-
 @Setter
 @Getter
 @EqualsAndHashCode

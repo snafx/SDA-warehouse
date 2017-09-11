@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
-    <title>SDA Warehouse - User Orders</title>
+    <title>SDA Warehouse - Order Details</title>
 </head>
 <body>
 
@@ -29,12 +29,13 @@
     </header>
 </div>
 
-
 <div class="container">
 
     <div class="panel panel-info">
-        <div class="panel-heading-registr"><b>ALL USERS'S ORDERS PAGE</b></div>
+        <div class="panel-heading-registr"><b>ORDER DETAILS:</b></div>
         <div class="panel-body">
+
+            <hr/>
 
             <div th:if="${allOrders}">
 
@@ -50,26 +51,39 @@
                         <tr>
                             <th>#</th>
                             <th>Id</th>
-                            <th>Order number</th>
-                            <th>Date</th>
-                            <th>Amount</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Value</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="order,iterationStatus : ${allOrders}"
-                            th:attr="data-href='/orders/order/'+${order.id}"
+                        <tr th:each="product,iterationStatus : ${allOrders}"
+                            th:attr="data-href='/products/product/'+${product.id}"
                             class='clickable-row'
-                            data-href='/order/1'
+                            data-href='/product/1'
                             style="cursor:pointer;">
                             <th scope="row" th:text="${iterationStatus.count}">1</th>
-                            <td th:text="${order.id}">Order id</td>
-                            <td th:text="${order.orderNumber}">Order number</td>
-                            <td th:text="${order.date}">Order date</td>
-                            <td th:text="${order.orderSum}">Order sum</td>
+                            <td th:text="${product.id}">Product id</td>
+                            <td th:text="${product.name}">Product name</td>
+                            <td th:text="${product.bookAuthor}">Product author</td>
+                            <td th:text="${product.price} + ' PLN'">Product price</td>
+                            <td th:text="${product.quantity}">Product quantity</td>
+                            <td th:text="${product.value} + ' PLN'">Product value</td>
+                            <td th:text="${product.location}">Product remove</td>
                         </tr>
                         </tbody>
                     </table>
-
+                    <div class="col-md-12">
+                        <div class="col-md-6">\
+                            <p th:text="'Total orders: ' + ${totalElements}">Total orders number</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Total amount: 666 $</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -78,10 +92,8 @@
                     No data found...
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
 
 
@@ -92,7 +104,6 @@
 </div>
 
 </body>
-
 <script>
     jQuery(document).ready(function ($) {
         $(".clickable-row").click(function () {
@@ -100,5 +111,4 @@
         });
     });
 </script>
-
 </html>

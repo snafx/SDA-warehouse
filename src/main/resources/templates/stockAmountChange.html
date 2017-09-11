@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Stock amount change</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - Stock Amount Change</title>
 </head>
 <body>
 
@@ -29,14 +29,24 @@
     </header>
 </div>
 
+<!--header stock amount change section-->
+<div class="container">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading-registr"><b>STOCK AMOUNT CHANGE</b></div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
 
+<!--change stock amount section-->
 <div class="container">
     <form class="upgrade-product form-horizontal" action=" " method="post">
 
-
         <fieldset>
 
-            <legend>Stock amount change</legend>
+            <!-- NAME -->
 
             <div class="form-group">
                 <label class="col-md-4 control-label">Name</label>
@@ -50,6 +60,7 @@
             </div>
 
             <!-- DESCRIPTION -->
+
             <div class="form-group">
                 <label class="col-md-4 control-label">Description</label>
                 <div class="col-md-4 inputGroupContainer">
@@ -60,7 +71,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- LOCATION -->
 
@@ -129,11 +139,9 @@
                     <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id}}">Back</a>
                 </div>
             </div>
-
         </fieldset>
     </form>
 </div>
-</div><!-- /.container -->
 
 <div th:replace="fragments/footer :: footer ">
     <footer>
