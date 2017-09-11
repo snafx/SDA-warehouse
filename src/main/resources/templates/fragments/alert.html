@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alert fragments</title>
+</head>
+<body>
+
+<div th:fragment="alert (message, type)">
+    <div class="alert" th:classappend="'alert-' + ${type}">
+        <h1 th:text="${message}">Alert message</h1>
+    </div>
+</div>
+
+<div th:fragment="creationStatus-alert (status)">
+    <div th:if="${status}">
+        <div class="alert" th:classappend="${status.status} ? 'alert-basic' : 'alert-error'">
+            <h1 th:text="${status.message}">Alert Message</h1>
+        </div>
+    </div>
+</div>
+</body>
+</html>

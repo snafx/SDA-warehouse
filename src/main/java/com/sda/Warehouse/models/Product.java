@@ -1,3 +1,4 @@
+
 package com.sda.Warehouse.models;
 
 import lombok.EqualsAndHashCode;
@@ -96,3 +97,4 @@ public class Product {
         return StringUtils.abbreviate(this.description, 100);
     }
 }
+

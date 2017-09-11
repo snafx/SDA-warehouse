@@ -1,3 +1,4 @@
+
 package com.sda.Warehouse.repositories;
 
 import com.sda.Warehouse.models.BookAuthor;
@@ -14,3 +15,4 @@ public interface JpaProductRepository extends PagingAndSortingRepository<Product
 
     List<Product> findByBookAuthor(BookAuthor bookAuthor);
 }
+

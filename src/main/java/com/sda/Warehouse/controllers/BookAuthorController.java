@@ -19,20 +19,20 @@ public class BookAuthorController {
     private JpaProductRepository jpaProductRepository;
 
     @Autowired
-    public BookAuthorController(JpaBookAuthorRepository jpaBookAuthorRepository, JpaProductRepository jpaProductRepository){
+    public BookAuthorController(JpaBookAuthorRepository jpaBookAuthorRepository, JpaProductRepository jpaProductRepository) {
         this.jpabookAuthorRepository = jpaBookAuthorRepository;
         this.jpaProductRepository = jpaProductRepository;
     }
 
     @GetMapping(path = "bookAuthors")
-    public ModelAndView bookAuthors(){
+    public ModelAndView bookAuthors() {
         ModelAndView modelAndView = new ModelAndView("bookAuthor");
         modelAndView.addObject("allBooksAuthor", jpabookAuthorRepository.findAll());
         return modelAndView;
     }
 
     @GetMapping(path = "bookAuthor/{id}")
-    public ModelAndView oneBookAuthor(@PathVariable("id") Long id){
+    public ModelAndView oneBookAuthor(@PathVariable("id") Long id) {
         BookAuthor bookAuthor = jpabookAuthorRepository.findOne(id);
         ModelAndView modelAndView = new ModelAndView("bookAuthor");
         modelAndView.addObject("bookAuthor", bookAuthor);
