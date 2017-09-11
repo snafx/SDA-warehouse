@@ -34,12 +34,24 @@
         <div class="col-sm-3"></div>
         <div class="main-login main-center; col-sm-6">
             <div class="panel panel-default">
-                <div class="panel-heading-registr"><b>ADD NEW USER:</b></div>
+                <div class="panel-heading-registr"><b>ADD NEW PRODUCT:</b></div>
             </div>
             <form action="#" th:action="@{/check}" th:object="${product}" method="post">
                 <div class="panel panel-default">
                     <table class="table table-striped table-bordered">
                         <tbody>
+                        <tr>
+                            <td>Book Author:</td>
+                            <td>
+                                <select th:field="*{bookAuthor}" style="width: 175px;">
+                                    <option th:value="NULL">Select</option>
+                                    <option th:each="bookAuthor : ${bookAuthor}" th:value="${{bookAuthor}}"
+                                            th:text="${bookAuthor.name}">Wireframe
+                                    </option>
+                                </select>
+                                <a class="button" th:href="@{'/addAuthor/'}">Add new author</a>
+                            </td>
+                        </tr>
                         <tr>
                             <td>Name:</td>
                             <td><input type="text" th:field="*{name}"/></td>
@@ -78,15 +90,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Book Author:</td>
-                            <td>
-                                <select th:field="*{bookAuthor}" style="width: 175px;">
-                                    <option th:value="NULL">Select</option>
-                                    <option th:each="bookAuthor : ${bookAuthor}" th:value="${{bookAuthor}}"
-                                            th:text="${bookAuthor.name}">Wireframe
-                                    </option>
-                                </select>
-                            </td>
+                            <td>Name:</td>
+                            <td><input type="text" th:field="*{name}"/></td>
+                            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
                         </tr>
                         <tr>
                             <td>ISBN:</td>
