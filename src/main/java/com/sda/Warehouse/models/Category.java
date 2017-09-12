@@ -9,10 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mytek on 2017-09-01.
- */
-
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor

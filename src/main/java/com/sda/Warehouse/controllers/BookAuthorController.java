@@ -30,13 +30,14 @@ public class BookAuthorController {
         modelAndView.addObject("allBooksAuthor", jpabookAuthorRepository.findAll());
         return modelAndView;
     }
-//
-//    @GetMapping(path = "bookAuthor/{id}")
-//    public ModelAndView oneBookAuthor(@PathVariable("id") Long id){
-//        BookAuthor bookAuthor = jpabookAuthorRepository.findOne(id);
-//        ModelAndView modelAndView = new ModelAndView("bookAuthor");
-//        modelAndView.addObject("bookAuthor", bookAuthor);
-//        modelAndView.addObject("allBooksOneAuthor", jpaProductRepository.findByBookAuthor(bookAuthor));
-//        return modelAndView;
-//    }
+
+
+    @GetMapping(path = "bookAuthor/{id}")
+    public ModelAndView oneBookAuthor(@PathVariable("id") Long id){
+        BookAuthor bookAuthor = jpabookAuthorRepository.findOne(id);
+        ModelAndView modelAndView = new ModelAndView("bookAuthor");
+        modelAndView.addObject("bookAuthor", bookAuthor);
+        modelAndView.addObject("allBooksOneAuthor", jpaProductRepository.findByBookAuthor(bookAuthor));
+        return modelAndView;
+    }
 }

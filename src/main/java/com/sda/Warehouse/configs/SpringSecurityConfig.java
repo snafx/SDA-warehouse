@@ -26,9 +26,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
             http.csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/home/").permitAll()
+                    .antMatchers("/", "/home").permitAll()
                     .antMatchers("/products/").hasAnyAuthority("Admin", "Warehouseman", "Office")
-                    .antMatchers("/addUser/").hasAnyAuthority("Admin")
+                    .antMatchers("/addUser/", "/h2-console/**").hasAnyAuthority("Admin")
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
