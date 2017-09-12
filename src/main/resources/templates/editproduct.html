@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit product</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - Edit Product</title>
 </head>
 <body>
 
 <!--header section-->
 <div th:replace="fragments/header :: header "></div>
 
-
+<!--header edit form section-->
 <div class="container">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading-registr"><b>EDIT PRODUCT</b></div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
 
-
+<!--edit product form section-->
+<div class="container">
     <form class="edit-product form-horizontal" action="/product/1/edit"
           th:action="'/products/product/' + ${product.id} + '/edit'" method="post">
 
         <fieldset>
 
+
             <div class="form-group">
                 <h1 class="col-md-12 text-center">Edit product</h1>
             </div>
+
 
             <!-- ID uneditable -->
 
@@ -29,7 +40,8 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <input name="id" field="id" class="form-control" th:value="${product.id}" type="text" readonly>
+                        <input name="id" field="id" class="form-control" th:value="${product.id}" type="text"
+                               readonly>
                     </div>
                 </div>
             </div>
@@ -74,7 +86,6 @@
                 </div>
             </div>
 
-
             <!-- DESCRIPTION -->
 
             <div class="form-group">
@@ -87,7 +98,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- LOCATION -->
 
@@ -134,7 +144,8 @@
                     <div class="input-group">
                         <span class="input-group-addon"></span>
                         <input class="form-control" th:value="${product.category.name}" type="text" readonly>
-                        <input name="category" field="category" class="form-control" th:value="${product.category.id}"
+                        <input name="category" field="category" class="form-control"
+                               th:value="${product.category.id}"
                                type="hidden">
                         </select>
                     </div>
@@ -161,11 +172,9 @@
                     <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id}}">Back</a>
                 </div>
             </div>
-
         </fieldset>
     </form>
 </div>
-</div><!-- /.container -->
 
 <div th:replace="fragments/footer :: footer ">
     <footer>

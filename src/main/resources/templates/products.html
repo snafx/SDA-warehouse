@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>All products' page</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - All Products</title>
 </head>
 <body>
 
@@ -145,7 +145,8 @@
                                 Product id
                             </td>
                             <td th:text="${product.name}">Product name</td>
-                            <td th:text="${product.bookAuthor.name}"><a th:href="@{'/authorBook/' + ${product.bookAuthor.id}}">Product author</a></td>
+                            <td th:text="${product.bookAuthor.name}"><a
+                                    th:href="@{'/authorBook/' + ${product.bookAuthor.id}}">Product author</a></td>
                             <td th:text="${product.AbbreviateDescription}">Product description</td>
                             <td th:text="${product.category.name}">Product category</td>
                             <td>
@@ -167,8 +168,15 @@
                                      src="http://www.klslinternational.com/storage/merchant_store_product/331/2235/5_1428585373_sample-img.png"
                                      alt="Product photo"/></td>
                             <td>
-                                <form method="post" action="/products/product/1/delete" th:action="'/products/product/' + ${product.id} + '/delete'">
-                                    <button style="background-color: red" type="submit">X</button>
+                                <form>
+                                    <button type="submit"
+                                            th:formaction="@{'/products/product/'+ ${product.id} + '/edit'}"
+                                            class="btn btn-success">Edit
+                                    </button>
+                                    <button type="submit"
+                                            th:formaction="@{'/products/product/'+ ${product.id} + '/delete'}"
+                                            class="btn btn-danger">Delete
+                                    </button>
                                 </form>
                             </td>
                         </tr>

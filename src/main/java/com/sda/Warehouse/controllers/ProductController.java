@@ -1,6 +1,5 @@
 package com.sda.Warehouse.controllers;
 
-
 import com.sda.Warehouse.models.Product;
 
 import com.sda.Warehouse.repositories.JpaProductRepository;
@@ -20,7 +19,6 @@ public class ProductController {
         this.jpaProductRepository = jpaProductRepository;
     }
 
-
     @GetMapping(path = "/product/{productId}")
     public ModelAndView singleProduct(@PathVariable("productId") Long productId) {
         ModelAndView modelAndView = new ModelAndView("product");
@@ -34,7 +32,6 @@ public class ProductController {
         modelAndView.addObject("product", jpaProductRepository);
         return modelAndView;
     }
-
 
     @GetMapping(path = "/product/{productId}/edit")
     public ModelAndView loadProductParametersToEdit(@PathVariable("productId") Long productId) {
@@ -51,7 +48,6 @@ public class ProductController {
         modelAndView.addObject("product", product);
         return modelAndView;
     }
-
 
     @PostMapping(path = "/product/{productId}/edit")
     public String editProduct(@ModelAttribute Product product) {
@@ -82,6 +78,7 @@ public class ProductController {
         return "redirect:/products/admin/product/{productId}/";
     }
 
+
     @GetMapping(path = "/product/{productId}/delete")
     public ModelAndView loadProductParametersToDelete(@PathVariable("productId") Long productId) {
         ModelAndView modelAndView = new ModelAndView("deleteProduct");
@@ -90,11 +87,11 @@ public class ProductController {
         return modelAndView;
     }
 
-    @PostMapping(path = "/product/{productId}/delete")
-    public String deleteProduct(@ModelAttribute Product product) {
-        jpaProductRepository.delete(product);
-        return "redirect:/products/";
-    }
+//    @PostMapping(path = "/product/{productId}/delete")
+//    public String deleteProduct(@ModelAttribute Product product) {
+//        jpaProductRepository.delete(product);
+//        return "redirect:/products/";
+//    }
 
     @PostMapping(path = "/product/{productId}/delete")
     public String deleteProduct(@PathVariable("productId") Long productId) {

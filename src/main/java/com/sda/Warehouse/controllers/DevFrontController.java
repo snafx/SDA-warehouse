@@ -17,5 +17,4 @@ public class DevFrontController {
         return "login";
     }
 
-
 }

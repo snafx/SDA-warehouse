@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - Order Details</title>
+</head>
+<body>
+
+<!--header section-->
+<div th:replace="fragments/header :: header ">
+    <header>
+        <h1>Sda warehouse</h1>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Sales order</a></li>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Stock</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Raport</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div class="container">
+
+    <div class="panel panel-info">
+        <div class="panel-heading-registr"><b>ORDER DETAILS:</b></div>
+        <div class="panel-body">
+
+            <hr/>
+
+            <div th:if="${allOrders}">
+
+                <div th:if="${allOrders.isEmpty()}">
+                    <div class="alert alert-warning">
+                        Searching resulted 0 rows...
+                    </div>
+                </div>
+
+                <div th:if="${!allOrders.isEmpty()}">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Order id</th>
+                            <th>Product name</th>
+                            <th>Product price</th>
+                            <th>Product quantity</th>
+                            <th>Order value</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="orderDetail,iterationStatus : ${allOrders}"
+                            th:attr="data-href='/products/product/'+${orderDetail.id}"
+                            class='clickable-row'
+                            data-href='/product/1'
+                            style="cursor:pointer;">
+                            <th scope="row" th:text="${iterationStatus.count}">1</th>
+                            <td th:text="${orderDetail.id}">Order id</td>
+                            <td th:text="${orderDetail.product.name}">Product name</td>
+                            <td th:text="${orderDetail.price} + ' PLN'">Product price</td>
+                            <td th:text="${orderDetail.quantity}">Product quantity</td>
+                            <td th:text="${orderDetail.amount} + ' PLN'">Order value</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-md-12">
+                        <h2>
+                        <span class="label label-info pull-right"
+                              th:text="'TOTAL: ' + ${orderSum} + ' PLN'">
+                            Total orders number</span>
+                        </h2>
+                        <br/>
+                        <h2>
+                            <span class="label label-warning pull-right"
+                                  th:text="'Total orders details: ' + ${totalElements}">
+                            Total amount: 666 PLN</span>
+                        </h2>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+
+            <div th:unless="${allOrders}">
+                <div class="alert alert-warning">
+                    No data found...
+                </div>
+            </div>
+
+            <div th:if="${order.isApproved == false}">
+                <br/> <br/>
+                <div class="col-md-12"><a href="#" th:href="@{'/products/'}" class="btn btn-primary pull-right"
+                                          role="button">Add Products To Order</a></div>
+                <br/> <br/>
+                <div class="col-md-12">
+                    <form method="post" action="/orders/approve/0" th:action="'/orders/approve/' + ${order.id}">
+                        <input type="submit" class="btn btn-warning" value="Approve this order">
+                    </form>
+                </div>
+            </div>
+
+            <div th:unless="${order.isApproved == false}">
+                <br/> <br/>
+                <div class="col-md-12 alert alert-warning">
+                    This order is aproved and can not be modified...
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda </p>
+    </footer>
+</div>
+
+</body>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+</html>

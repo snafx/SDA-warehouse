@@ -1,21 +1,15 @@
 package com.sda.Warehouse.models;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by RENT on 2017-09-09.
- */
-
 @Setter
 @Getter
+@ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity(name = "user_order")
@@ -49,6 +43,6 @@ public class UserOrder {
         this.orderNumber =  number;
         this.date = LocalDate.now();
         this.orderSum = 0.0;
-        this.isApproved = false;
+        this.isApproved = true;
     }
 }

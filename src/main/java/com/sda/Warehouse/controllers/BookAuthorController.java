@@ -39,7 +39,4 @@ public class BookAuthorController {
         modelAndView.addObject("allBooksOneAuthor", jpaProductRepository.findByBookAuthor(bookAuthor));
         return modelAndView;
     }
-
-
-
 }
