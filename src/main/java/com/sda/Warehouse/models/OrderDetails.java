@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Setter
 @Getter
@@ -30,16 +31,16 @@ public class OrderDetails {
     private Integer quantity;
 
     @Column
-    private Double price;
+    private BigDecimal price;
 
     @Column
-    private Double amount;
+    private BigDecimal amount;
 
-    public OrderDetails(UserOrder parentOrder, Product product, Integer quantity, Double price) {
+    public OrderDetails(UserOrder parentOrder, Product product, Integer quantity, BigDecimal price) {
         this.parentOrder = parentOrder;
         this.product = product;
         this.quantity = quantity;
         this.price = price;
-        this.amount = this.price * this.quantity;
+        this.amount = this.price.multiply(BigDecimal.valueOf(this.quantity));
     }
 }
