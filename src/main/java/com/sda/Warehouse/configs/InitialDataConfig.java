@@ -55,13 +55,16 @@ public class InitialDataConfig {
     @PostConstruct
     public void init() {
 
+
         User user = new User("Jan", "Kowalski", "kowalski123", "kowalski@wp.pl", "a", true);
         User user1 = new User("Jan", "Kowalski", "admin", "a@a.com", "admin", true);
         User user2 = new User("Marcin", "Kowalski", "ronaldo99", "abc@xyz.com", "aaaa", true);
+        User user3 = new User("Michał", "Anioł", "malutki", "kkoko@xyz.com", "aniol", true);
 
             userRepository.save(user);
             userRepository.save(user1);
             userRepository.save(user2);
+            userRepository.save(user3);
 
         Role warehouseman = new Role("Warehouseman");
         Role admin = new Role("Admin");
@@ -73,10 +76,12 @@ public class InitialDataConfig {
         userService.addRoleToUser(user, warehouseman);
         userService.addRoleToUser(user1, admin);
         userService.addRoleToUser(user2, office);
+        userService.addRoleToUser(user3, warehouseman);
 
         userRepository.save(user);
         userRepository.save(user1);
         userRepository.save(user2);
+        userRepository.save(user3);
 
 
         Category category = new Category("it");
@@ -433,5 +438,11 @@ public class InitialDataConfig {
         sampleOrder.setIsApproved(false);
         jpaUserOrderRepository.save(sampleOrder);
         jpaUserOrderRepository.save(new UserOrder(user2, "05/2017"));
+
+        jpaUserOrderRepository.save(new UserOrder(user3, "06/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user3, "07/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user3, "08/2017"));
+        jpaUserOrderRepository.save(new UserOrder(user3, "09/2017"));
+
     }
 }

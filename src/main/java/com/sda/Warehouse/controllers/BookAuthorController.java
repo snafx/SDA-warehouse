@@ -31,7 +31,6 @@ public class BookAuthorController {
         return modelAndView;
     }
 
-
     @GetMapping(path = "bookAuthor/{id}")
     public ModelAndView oneBookAuthor(@PathVariable("id") Long id){
         BookAuthor bookAuthor = jpabookAuthorRepository.findOne(id);

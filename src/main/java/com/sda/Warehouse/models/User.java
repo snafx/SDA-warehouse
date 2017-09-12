@@ -50,23 +50,19 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<UserOrder> userOrders = new ArrayList<>();
 
-    public User(String firstName, String lastName, String username, String email, String password,  boolean isActive, List<Role> roles) {
+
+
+    public User(String firstName, String lastName, String username, String email, String password,  boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.isActive = isActive;
-        this.roles = roles;
         this.username = username;
     }
 
-    public User(String firstName, String lastName, String username, String email,  String password, boolean isActive) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.isActive = isActive;
-    }
+
 }
