@@ -45,7 +45,7 @@ public class OrdersController {
         //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //Long userId = user.getId();
 
-        User user = jpaUserRepository.findOne(Long.valueOf(2));
+        User user = jpaUserRepository.findOne(Long.valueOf(1));
 
         Iterable<UserOrder> allOrders = jpaUserOrderRepository.findByOwner(user);
         model.addAttribute("allOrders", allOrders);
@@ -66,7 +66,7 @@ public class OrdersController {
         //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //Long userId = user.getId();
 
-        User user = jpaUserRepository.findOne(Long.valueOf(2));
+        User user = jpaUserRepository.findOne(Long.valueOf(1));
 
         UserOrder userOrder = jpaUserOrderRepository.findOneByOwnerAndIsApprovedIsFalse(user);
 
@@ -132,7 +132,7 @@ public class OrdersController {
         //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //Long userId = user.getId();
 
-        User user = jpaUserRepository.findOne(Long.valueOf(2));
+        User user = jpaUserRepository.findOne(Long.valueOf(1));
 
         UserOrder userOrder = jpaUserOrderRepository.findOneByOwnerAndIsApprovedIsFalse(user);
 

@@ -28,7 +28,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
                     .authorizeRequests()
                     .antMatchers("/", "/home").permitAll()
                     .antMatchers("/products/").hasAnyAuthority("Admin", "Warehouseman", "Office")
-                    .antMatchers("/addUser/", "/h2-console/**").hasAnyAuthority("Admin")
+                    .antMatchers("/addUser/").hasAnyAuthority("Admin")
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()

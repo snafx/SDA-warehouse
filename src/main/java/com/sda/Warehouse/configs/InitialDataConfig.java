@@ -434,7 +434,7 @@ public class InitialDataConfig {
         jpaUserOrderRepository.save(new UserOrder(user, "01/2017"));
         jpaUserOrderRepository.save(new UserOrder(user, "02/2017"));
         jpaUserOrderRepository.save(new UserOrder(user, "03/2017"));
-        UserOrder sampleOrder = new UserOrder(user2, "04/2017");
+        UserOrder sampleOrder = new UserOrder(user1, "04/2017");
         sampleOrder.setIsApproved(false);
         jpaUserOrderRepository.save(sampleOrder);
         jpaUserOrderRepository.save(new UserOrder(user2, "05/2017"));

@@ -47,7 +47,7 @@ public class UserOrder {
         this.orderNumber =  number;
         this.date = LocalDate.now();
         this.orderSum = 0.0;
-        this.isApproved = false;
+//        this.isApproved = false;
         this.isApproved = true;
     }
 }
