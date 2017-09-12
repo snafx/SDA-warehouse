@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import static org.aspectj.runtime.internal.Conversions.doubleValue;
 
 @Controller
 @RequestMapping(path = "/orders")
@@ -98,9 +101,13 @@ public class OrdersController {
 
         List<OrderDetails> orderDetailsList = jpaOrderDetailsRepository.findByParentOrder(one);
 
-        double sum = orderDetailsList.stream()
-                .mapToDouble(e -> e.getAmount())
-                .sum();
+//        double sum = orderDetailsList.stream()
+//                .mapToDouble(e -> doubleValue(e.getAmount()))
+//                .sum();
+
+        BigDecimal sum = orderDetailsList.stream()
+                .map(e -> e.getAmount())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         model.addAttribute("allOrders", orderDetailsList);
         model.addAttribute("order", one);
@@ -113,7 +120,7 @@ public class OrdersController {
     @PostMapping(value = "/new-detail")
     public String addNewUserOrders(@RequestParam(value = "productId") Long productId,
                                    @RequestParam(value = "quantity") Integer quantity,
-                                   @RequestParam(value = "price") Double price,
+                                   @RequestParam(value = "price") BigDecimal price,
                                    Model model,
                                    RedirectAttributes redir) {
 
