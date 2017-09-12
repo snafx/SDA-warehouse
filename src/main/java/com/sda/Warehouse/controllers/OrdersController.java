@@ -148,4 +148,16 @@ public class OrdersController {
 
         return "redirect:/products";
     }
+
+    @PostMapping(value = "/approve/{orderId}")
+    public String setUserOrderApproved(@PathVariable("orderId") Long orderId, Model model) {
+
+        UserOrder one = jpaUserOrderRepository.findOne(orderId);
+
+        one.setIsApproved(true);
+        jpaUserOrderRepository.save(one);
+
+        return "redirect:/orders/mylist";
+    }
+
 }

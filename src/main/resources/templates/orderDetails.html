@@ -97,11 +97,24 @@
             </div>
 
             <div th:if="${order.isApproved == false}">
-                <br /> <br />
-                <div class="col-md-12"><a href="#" th:href="@{'/products/'}" class="btn btn-primary pull-right" role="button">Add Products To Order</a></div>
-                <br /> <br />
-                <div class="col-md-12"><a href="#" th:href="@{'/products/'}" class="btn btn-warning pull-right" role="button">Approve this order</a></p>
+                <br/> <br/>
+                <div class="col-md-12"><a href="#" th:href="@{'/products/'}" class="btn btn-primary pull-right"
+                                          role="button">Add Products To Order</a></div>
+                <br/> <br/>
+                <div class="col-md-12">
+                    <form method="post" action="/orders/approve/0" th:action="'/orders/approve/' + ${order.id}">
+                        <input type="submit" class="btn btn-warning" value="Approve this order">
+                    </form>
+                </div>
             </div>
+
+            <div th:unless="${order.isApproved == false}">
+                <br/> <br/>
+                <div class="col-md-12 alert alert-warning">
+                    This order is aproved and can not be modified...
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
