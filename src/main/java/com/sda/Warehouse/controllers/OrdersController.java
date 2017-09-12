@@ -38,8 +38,20 @@ public class OrdersController {
     @GetMapping(value = "/mylist")
     public String allUserOrders(Model model) {
 
-        Iterable<UserOrder> allOrders = jpaUserOrderRepository.findAll();
+        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //Long userId = user.getId();
+
+        User user = jpaUserRepository.findOne(Long.valueOf(2));
+
+        Iterable<UserOrder> allOrders = jpaUserOrderRepository.findByOwner(user);
         model.addAttribute("allOrders", allOrders);
+
+
+        UserOrder userOrder = jpaUserOrderRepository.findOneByOwnerAndIsApprovedIsFalse(user);
+        if (userOrder != null) {
+            String message = "You already have an open cart. Products will be added to that cart.";
+            model.addAttribute("message", message);
+        }
 
         return "userOrders";
     }
@@ -47,7 +59,22 @@ public class OrdersController {
     @GetMapping(value = "/new")
     public String newUserOrders(Model model) {
 
-        return "addUserOrder";
+        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //Long userId = user.getId();
+
+        User user = jpaUserRepository.findOne(Long.valueOf(2));
+
+        UserOrder userOrder = jpaUserOrderRepository.findOneByOwnerAndIsApprovedIsFalse(user);
+
+        if (userOrder == null) {
+            return "addUserOrder";
+        } else {
+            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+            String message = "You already have an open cart. Products will be added to that cart.";
+            model.addAttribute("message", message);
+            return "redirect:/orders/mylist";
+        }
+
     }
 
     @PostMapping(value = "/new")
@@ -72,6 +99,7 @@ public class OrdersController {
         List<OrderDetails> orderDetailsList = jpaOrderDetailsRepository.findByParentOrder(one);
 
         model.addAttribute("allOrders", orderDetailsList);
+        model.addAttribute("order", one);
 
         return "orderDetails";
     }

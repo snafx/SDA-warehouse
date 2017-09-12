@@ -89,7 +89,7 @@
                     No data found...
                 </div>
             </div>
-            <div>
+            <div th:if="${order.isApproved == false}">
                 <section class="flat">
                     <a href="#" th:href="@{'/products/'}">
                         <button class="tile">Add Products To Order</button>
