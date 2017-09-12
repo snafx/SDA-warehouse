@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "/")
 public class MainController {
 
-    @GetMapping
+    @GetMapping(value = "/login")
     public String logOn() {
         return "login";
     }
@@ -18,8 +18,29 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(value = "/")
+    public String home1() {
+        return "index";
+    }
+
     @GetMapping(value = "/addUser")
     public String addUser() {
         return "registration";
+    }
+
+
+    @GetMapping("/403")
+    public String error403() {
+        return "/error/403";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "/admin";
+    }
+
+    @GetMapping("/user")
+    public String user() {
+        return "/user";
     }
 }
