@@ -33,27 +33,36 @@ public class User {
     @Size(min = 7, max = 20)
     private String email;
 
-    @Size(min = 1, max = 15)
     @NotNull
-    private String password;
+    @Size(min = 1, max = 20)
+    @Column(unique = true)
+    private String username;
 
     @Size(min = 1, max = 15)
     @NotNull
-    private String role;
+    private String password;
 
     @Setter
     @NotNull
     private boolean isActive;
 
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
+
     @OneToMany(mappedBy = "owner", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<UserOrder> userOrders = new ArrayList<>();
 
-    public User(String firstName, String lastName, String email, String password, String role, boolean isActive) {
+
+
+    public User(String firstName, String lastName, String username, String email, String password,  boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = role;
         this.isActive = isActive;
+        this.username = username;
     }
+
+
 }

@@ -3,7 +3,13 @@ package com.sda.Warehouse.configs;
 import com.sda.Warehouse.models.BookAuthor;
 import com.sda.Warehouse.models.Category;
 import com.sda.Warehouse.models.Product;
+import com.sda.Warehouse.models.Role;
 import com.sda.Warehouse.models.User;
+import com.sda.Warehouse.repositories.JpaCategoryRepository;
+import com.sda.Warehouse.repositories.JpaProductRepository;
+import com.sda.Warehouse.repositories.JpaRoleRepository;
+import com.sda.Warehouse.repositories.JpaUserRepository;
+import com.sda.Warehouse.services.UserService;
 import com.sda.Warehouse.models.UserOrder;
 import com.sda.Warehouse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,35 +30,59 @@ public class InitialDataConfig {
 
     private JpaUserRepository userRepository;
 
+    private JpaRoleRepository jpaRoleRepository;
+
+    private UserService userService;
+
     private JpaUserOrderRepository jpaUserOrderRepository;
 
     private JpaOrderDetailsRepository jpaOrderDetailsRepository;
 
     @Autowired
-    public InitialDataConfig(JpaCategoryRepository jpaCategoryRepository,
-                             JpaProductRepository jpaProductRepository,
-                             JpaUserRepository userRepository,
-                             JpaUserOrderRepository jpaUserOrderRepository,
+    public InitialDataConfig(JpaCategoryRepository jpaCategoryRepository, JpaRoleRepository jpaRoleRepository, JpaProductRepository jpaProductRepository, JpaUserRepository userRepository, UserService userService, JpaUserOrderRepository jpaUserOrderRepository,
                              JpaOrderDetailsRepository jpaOrderDetailsRepository,
                              JpaBookAuthorRepository jpaBookAuthorRepository) {
-        this.jpaCategoryRepository = jpaCategoryRepository;
-        this.jpaProductRepository = jpaProductRepository;
-        this.userRepository = userRepository;
-        this.jpaUserOrderRepository = jpaUserOrderRepository;
-        this.jpaOrderDetailsRepository = jpaOrderDetailsRepository;
-        this.jpaBookAuthorRepository = jpaBookAuthorRepository;
+            this.jpaCategoryRepository = jpaCategoryRepository;
+            this.jpaProductRepository = jpaProductRepository;
+            this.userRepository = userRepository;
+            this.jpaRoleRepository = jpaRoleRepository;
+            this.userService = userService;
+            this.jpaUserOrderRepository = jpaUserOrderRepository;
+            this.jpaOrderDetailsRepository = jpaOrderDetailsRepository;
+            this.jpaBookAuthorRepository = jpaBookAuthorRepository;
     }
 
     @PostConstruct
     public void init() {
 
-        User user = new User("Jan", "Kowalski", "kowalski@wp.pl", "qwerty123", "warehouseman", false);
-        User user2 = new User("Michał", "Iksiński", "a@a.com", "a", "warehouseman", false);
-        User user3 = new User("Marian", "Kowalski", "abc@xyz.com", "abc", "warehouseman", false);
+
+        User user = new User("Jan", "Kowalski", "kowalski123", "kowalski@wp.pl", "a", true);
+        User user1 = new User("Jan", "Kowalski", "admin", "a@a.com", "admin", true);
+        User user2 = new User("Marcin", "Kowalski", "ronaldo99", "abc@xyz.com", "aaaa", true);
+        User user3 = new User("Michał", "Anioł", "malutki", "kkoko@xyz.com", "aniol", true);
+
+            userRepository.save(user);
+            userRepository.save(user1);
+            userRepository.save(user2);
+            userRepository.save(user3);
+
+        Role warehouseman = new Role("Warehouseman");
+        Role admin = new Role("Admin");
+        Role office = new Role("Office");
+
+        jpaRoleRepository.save(warehouseman);
+        jpaRoleRepository.save(admin);
+        jpaRoleRepository.save(office);
+        userService.addRoleToUser(user, warehouseman);
+        userService.addRoleToUser(user1, admin);
+        userService.addRoleToUser(user2, office);
+        userService.addRoleToUser(user3, warehouseman);
 
         userRepository.save(user);
+        userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
+
 
         Category category = new Category("it");
         Category category2 = new Category("cook");
@@ -71,6 +101,7 @@ public class InitialDataConfig {
         jpaCategoryRepository.save(category6);
         jpaCategoryRepository.save(category7);
         jpaCategoryRepository.save(category8);
+
 
         BookAuthor bookAuthor = new BookAuthor("Cay S. Horstman");
         BookAuthor bookAuthor2 = new BookAuthor("David Flanganan");
@@ -399,16 +430,19 @@ public class InitialDataConfig {
         jpaProductRepository.save(product34);
         jpaProductRepository.save(product35);
 
+
         jpaUserOrderRepository.save(new UserOrder(user, "01/2017"));
         jpaUserOrderRepository.save(new UserOrder(user, "02/2017"));
         jpaUserOrderRepository.save(new UserOrder(user, "03/2017"));
-        UserOrder sampleOrder = new UserOrder(user2, "04/2017");
+        UserOrder sampleOrder = new UserOrder(user1, "04/2017");
         sampleOrder.setIsApproved(false);
         jpaUserOrderRepository.save(sampleOrder);
         jpaUserOrderRepository.save(new UserOrder(user2, "05/2017"));
+
         jpaUserOrderRepository.save(new UserOrder(user3, "06/2017"));
         jpaUserOrderRepository.save(new UserOrder(user3, "07/2017"));
         jpaUserOrderRepository.save(new UserOrder(user3, "08/2017"));
         jpaUserOrderRepository.save(new UserOrder(user3, "09/2017"));
+
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
+
 public interface JpaUserOrderRepository extends CrudRepository<UserOrder, Long> {
 
     UserOrder findOneByOwnerAndIsApprovedIsFalse(User user);
