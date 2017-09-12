@@ -23,7 +23,7 @@ public class BookAuthor {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "bookAuthor", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bookAuthor", cascade = {CascadeType.ALL})
     private List<Product> products = new ArrayList<>();
 
     public BookAuthor(String name) {

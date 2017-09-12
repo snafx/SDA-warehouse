@@ -23,7 +23,7 @@ public class Category {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", cascade = {CascadeType.ALL})
     private List<Product> products = new ArrayList<>();
 
     public Category(String name) {

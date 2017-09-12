@@ -166,6 +166,11 @@
                                      th:src="${product.photo}"
                                      src="http://www.klslinternational.com/storage/merchant_store_product/331/2235/5_1428585373_sample-img.png"
                                      alt="Product photo"/></td>
+                            <td>
+                                <form method="post" action="/products/product/1/delete" th:action="'/products/product/' + ${product.id} + '/delete'">
+                                    <button style="background-color: red" type="submit">X</button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

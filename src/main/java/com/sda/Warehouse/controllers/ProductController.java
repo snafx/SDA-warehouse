@@ -37,8 +37,8 @@ public class ProductController {
 
 
     @GetMapping(path = "/product/{productId}/edit")
-    public ModelAndView loadProductParameters(@PathVariable("productId") Long productId) {
-        ModelAndView modelAndView = new ModelAndView("editproduct");
+    public ModelAndView loadProductParametersToEdit(@PathVariable("productId") Long productId) {
+        ModelAndView modelAndView = new ModelAndView("editProduct");
         Product product = jpaProductRepository.findOne(productId);
         modelAndView.addObject("product", product);
         return modelAndView;
@@ -80,6 +80,26 @@ public class ProductController {
         product.setQuantity(quantity);
         jpaProductRepository.save(product);
         return "redirect:/products/admin/product/{productId}/";
+    }
+
+    @GetMapping(path = "/product/{productId}/delete")
+    public ModelAndView loadProductParametersToDelete(@PathVariable("productId") Long productId) {
+        ModelAndView modelAndView = new ModelAndView("deleteProduct");
+        Product product = jpaProductRepository.findOne(productId);
+        modelAndView.addObject("product", product);
+        return modelAndView;
+    }
+
+    @PostMapping(path = "/product/{productId}/delete")
+    public String deleteProduct(@ModelAttribute Product product) {
+        jpaProductRepository.delete(product);
+        return "redirect:/products/";
+    }
+
+    @PostMapping(path = "/product/{productId}/delete")
+    public String deleteProduct(@PathVariable("productId") Long productId) {
+        jpaProductRepository.delete(productId);
+        return "redirect:/products/";
     }
 
 }
