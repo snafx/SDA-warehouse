@@ -6,6 +6,8 @@ import com.sda.Warehouse.models.User;
 import com.sda.Warehouse.models.UserOrder;
 import com.sda.Warehouse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,10 +44,17 @@ public class OrdersController {
     @GetMapping(value = "/mylist")
     public String allUserOrders(Model model) {
 
-        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //Long userId = user.getId();
+        User user = jpaUserRepository.findOneByUsername(principal.getUsername());
+        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //String name = auth.getName();
 
-        User user = jpaUserRepository.findOne(Long.valueOf(1));
+        //System.out.println(name);
+
+        //User user = null;
+
+        //User user = jpaUserRepository.findOne(Long.valueOf(1));
 
         Iterable<UserOrder> allOrders = jpaUserOrderRepository.findByOwner(user);
         model.addAttribute("allOrders", allOrders);
