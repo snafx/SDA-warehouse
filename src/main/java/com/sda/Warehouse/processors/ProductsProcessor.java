@@ -7,12 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mytek on 2017-09-06.
- */
 public class ProductsProcessor {
 
     public static final Integer PRODUCTS_PER_PAGE = 5;

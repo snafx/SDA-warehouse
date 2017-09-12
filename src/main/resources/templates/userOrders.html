@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>All products' page</title>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - User Orders</title>
 </head>
 <body>
 
@@ -36,6 +36,10 @@
         <div class="panel-heading-registr"><b>ALL USERS'S ORDERS PAGE</b></div>
         <div class="panel-body">
 
+            <div th:if="${message}" th:text="${message}" class="alert alert-danger" role="alert">
+                message text
+            </div>
+
             <div th:if="${allOrders}">
 
                 <div th:if="${allOrders.isEmpty()}">
@@ -53,6 +57,7 @@
                             <th>Order number</th>
                             <th>Date</th>
                             <th>Amount</th>
+                            <th>Is approved?</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -66,6 +71,7 @@
                             <td th:text="${order.orderNumber}">Order number</td>
                             <td th:text="${order.date}">Order date</td>
                             <td th:text="${order.orderSum}">Order sum</td>
+                            <td th:text="${order.isApproved}">Is approved?</td>
                         </tr>
                         </tbody>
                     </table>

@@ -7,10 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/**
- * Created by RENT on 2017-09-09.
- */
-
 @Setter
 @Getter
 @EqualsAndHashCode
@@ -38,4 +34,12 @@ public class OrderDetails {
 
     @Column
     private Double amount;
+
+    public OrderDetails(UserOrder parentOrder, Product product, Integer quantity, Double price) {
+        this.parentOrder = parentOrder;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.amount = this.price * this.quantity;
+    }
 }
