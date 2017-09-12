@@ -1,11 +1,14 @@
 package com.sda.Warehouse.configs;
 
+import com.sda.Warehouse.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
     @Configuration
@@ -14,12 +17,18 @@ import org.springframework.security.web.access.AccessDeniedHandler;
         @Autowired
         private AccessDeniedHandler accessDeniedHandler;
 
+        @Autowired
+        @Qualifier("customUserDetailsService")
+        UserDetailsService userDetailsService;
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
 
             http.csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/home/**").hasAnyRole("ADMIN", "USER")
+                    .antMatchers("/home/").permitAll()
+                    .antMatchers("/products/").hasAnyAuthority("Admin", "Warehouseman", "Office")
+                    .antMatchers("/addUser/").hasAnyAuthority("Admin")
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
@@ -43,10 +52,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
         @Autowired
         public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-            auth.inMemoryAuthentication()
-                    .withUser("user").password("user").roles("USER")
-                    .and()
-                    .withUser("admin").password("admin").roles("ADMIN");
+            auth.userDetailsService(userDetailsService);
+
         }
     }
 

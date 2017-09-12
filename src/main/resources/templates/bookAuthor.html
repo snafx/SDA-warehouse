@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - Book Author</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header "></div>
+
+<div class="container">
+
+    <div class="panel panel-info">
+        <div class="panel-heading">All Book's Author</div>
+        <div class="panel-body">
+            <div>
+                <h1 th:text="${bookAuthor.name}"></h1>
+            </div>
+
+            <div th:if="${allBooksOneAuthor}">
+
+                <div th:if="${allBooksOneAuthor.isEmpty()}">
+                    <div class="alert alert-warning">
+                        This author has no book...
+                    </div>
+                </div>
+
+                <div th:if="${!allBooksOneAuthor.isEmpty()}">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Ammount</th>
+                            <th>Quantity</th>
+                            <th>Location</th>
+                            <th>Price</th>
+                            <th>Photo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="book : ${allBooksOneAuthor}"
+                            th:attr="data-href='/products/product/'+${book.id}"
+                            class='clickable-row'
+                            data-href='/products/product/1'
+                            style="cursor:pointer;">
+
+                            <td th:text="${book.id}">Product id</td>
+                            <td th:text="${book.name}">Product name</td>
+                            <td th:text="${book.AbbreviateDescription}">Product description</td>
+                            <td th:text="${book.category.name}">Product category</td>
+                            <td>
+                                <span th:if="${book.quantity &gt 100}">dużo</span>
+                                <span th:if="${book.quantity &gt 0 and book.quantity &lt 100}">mało</span>
+                                <span th:if="${book.quantity == 0}">brak</span>
+                            </td>
+                            <td th:text="${book.price} + ' PLN'">Product price
+                            </td>
+                            <td th:text="${book.quantity}">Product quantity
+                            </td>
+                            <td th:text="${book.location}">Product location
+                            </td>
+                            <td><img style="max-width: 100px;"
+                                     th:src="${book.photo}"
+                                     src="http://www.klslinternational.com/storage/merchant_store_product/331/2235/5_1428585373_sample-img.png"
+                                     alt="Product photo"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+            <div th:unless="${allBooksOneAuthor}">
+                <div class="alert alert-warning">
+                    No data found...
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda warehouse management application powered by Sda-javapoz3</p>
+    </footer>
+</div>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+
+</body>
+
+</html>

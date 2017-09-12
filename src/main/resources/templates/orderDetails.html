@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>SDA Warehouse - Order Details</title>
+</head>
+<body>
+
+<!--header section-->
+<div th:replace="fragments/header :: header ">
+    <header>
+        <h1>Sda warehouse</h1>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Sales order</a></li>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Stock</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Raport</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div class="container">
+
+    <div class="panel panel-info">
+        <div class="panel-heading-registr"><b>ORDER DETAILS:</b></div>
+        <div class="panel-body">
+
+            <hr/>
+
+            <div th:if="${allOrders}">
+
+                <div th:if="${allOrders.isEmpty()}">
+                    <div class="alert alert-warning">
+                        Searching resulted 0 rows...
+                    </div>
+                </div>
+
+                <div th:if="${!allOrders.isEmpty()}">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Value</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product,iterationStatus : ${allOrders}"
+                            th:attr="data-href='/products/product/'+${product.id}"
+                            class='clickable-row'
+                            data-href='/product/1'
+                            style="cursor:pointer;">
+                            <th scope="row" th:text="${iterationStatus.count}">1</th>
+                            <td th:text="${product.id}">Product id</td>
+                            <td th:text="${product.name}">Product name</td>
+                            <td th:text="${product.bookAuthor}">Product author</td>
+                            <td th:text="${product.price} + ' PLN'">Product price</td>
+                            <td th:text="${product.quantity}">Product quantity</td>
+                            <td th:text="${product.value} + ' PLN'">Product value</td>
+                            <td th:text="${product.location}">Product remove</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-md-12">
+                        <div class="col-md-6">\
+                            <p th:text="'Total orders: ' + ${totalElements}">Total orders number</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Total amount: 666 $</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:unless="${allOrders}">
+                <div class="alert alert-warning">
+                    No data found...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer ">
+    <footer>
+        <p>Sda </p>
+    </footer>
+</div>
+
+</body>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+</html>
