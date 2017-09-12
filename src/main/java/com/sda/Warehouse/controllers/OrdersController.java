@@ -98,8 +98,14 @@ public class OrdersController {
 
         List<OrderDetails> orderDetailsList = jpaOrderDetailsRepository.findByParentOrder(one);
 
+        double sum = orderDetailsList.stream()
+                .mapToDouble(e -> e.getAmount())
+                .sum();
+
         model.addAttribute("allOrders", orderDetailsList);
         model.addAttribute("order", one);
+        model.addAttribute("orderSum", sum);
+        model.addAttribute("totalElements", orderDetailsList.size());
 
         return "orderDetails";
     }

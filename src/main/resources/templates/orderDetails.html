@@ -74,12 +74,18 @@
                         </tbody>
                     </table>
                     <div class="col-md-12">
-                        <div class="col-md-6">\
-                            <p th:text="'Total orders: ' + ${totalElements}">Total orders number</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>Total amount: 666 $</p>
-                        </div>
+                        <h2>
+                        <span class="label label-info pull-right"
+                              th:text="'TOTAL: ' + ${orderSum} + ' PLN'">
+                            Total orders number</span>
+                        </h2>
+                        <br/>
+                        <h2>
+                            <span class="label label-warning pull-right"
+                                  th:text="'Total orders details: ' + ${totalElements}">
+                            Total amount: 666 PLN</span>
+                        </h2>
+                        <br/>
                     </div>
                 </div>
             </div>
@@ -89,12 +95,12 @@
                     No data found...
                 </div>
             </div>
+
             <div th:if="${order.isApproved == false}">
-                <section class="flat">
-                    <a href="#" th:href="@{'/products/'}">
-                        <button class="tile">Add Products To Order</button>
-                    </a>
-                </section>
+                <br /> <br />
+                <div class="col-md-12"><a href="#" th:href="@{'/products/'}" class="btn btn-primary pull-right" role="button">Add Products To Order</a></div>
+                <br /> <br />
+                <div class="col-md-12"><a href="#" th:href="@{'/products/'}" class="btn btn-warning pull-right" role="button">Approve this order</a></p>
             </div>
         </div>
     </div>
