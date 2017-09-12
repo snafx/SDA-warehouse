@@ -106,6 +106,11 @@
                             </div>
                         </form>
                     </div>
+
+                    <div th:if="${message}" th:text="${message}" class="alert alert-danger" role="alert">
+                        message text
+                    </div>
+
                 </div>
             </div>
         </div>

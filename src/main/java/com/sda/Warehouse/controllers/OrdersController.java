@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -69,7 +70,6 @@ public class OrdersController {
         if (userOrder == null) {
             return "addUserOrder";
         } else {
-            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
             String message = "You already have an open cart. Products will be added to that cart.";
             model.addAttribute("message", message);
             return "redirect:/orders/mylist";
@@ -108,7 +108,8 @@ public class OrdersController {
     public String addNewUserOrders(@RequestParam(value = "productId") Long productId,
                                    @RequestParam(value = "quantity") Integer quantity,
                                    @RequestParam(value = "price") Double price,
-                                   Model model) {
+                                   Model model,
+                                   RedirectAttributes redir) {
 
         //userId z sesji
         //na podstawie usera pobierz obiekt order
@@ -124,9 +125,19 @@ public class OrdersController {
 
         Product product = jpaProductRepository.findOne(productId);
 
-        OrderDetails newOrderDetail = new OrderDetails(userOrder, product, quantity, price);
+        if (quantity <= product.getQuantity()) {
 
-        jpaOrderDetailsRepository.save(newOrderDetail);
+            OrderDetails newOrderDetail = new OrderDetails(userOrder, product, quantity, price);
+            jpaOrderDetailsRepository.save(newOrderDetail);
+
+            product.setQuantity(product.getQuantity() - quantity);
+            jpaProductRepository.save(product);
+        } else {
+            String message = "Chosen quantity is too big!";
+            redir.addFlashAttribute("message",message);
+
+            return "redirect:/products/product/" + productId;
+        }
 
 
         return "redirect:/products";
