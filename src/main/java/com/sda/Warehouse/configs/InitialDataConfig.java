@@ -431,18 +431,42 @@ public class InitialDataConfig {
         jpaProductRepository.save(product35);
 
 
-        jpaUserOrderRepository.save(new UserOrder(user, "01/2017"));
-        jpaUserOrderRepository.save(new UserOrder(user, "02/2017"));
-        jpaUserOrderRepository.save(new UserOrder(user, "03/2017"));
         UserOrder sampleOrder = new UserOrder(user1, "04/2017");
-        sampleOrder.setIsApproved(false);
+        sampleOrder.setIsApproved(true);
         jpaUserOrderRepository.save(sampleOrder);
-        jpaUserOrderRepository.save(new UserOrder(user2, "05/2017"));
 
-        jpaUserOrderRepository.save(new UserOrder(user3, "06/2017"));
-        jpaUserOrderRepository.save(new UserOrder(user3, "07/2017"));
-        jpaUserOrderRepository.save(new UserOrder(user3, "08/2017"));
-        jpaUserOrderRepository.save(new UserOrder(user3, "09/2017"));
+        UserOrder sampleOrder2 = new UserOrder(user1, "04/2017");
+        sampleOrder2.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder2);
+
+        UserOrder sampleOrder3 = new UserOrder(user1, "04/2017");
+        sampleOrder3.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder3);
+
+        UserOrder sampleOrder4 = new UserOrder(user1, "04/2017");
+        sampleOrder4.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder4);
+
+        UserOrder sampleOrder5 = new UserOrder(user1, "04/2017");
+        sampleOrder5.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder5);
+
+        UserOrder sampleOrder6 = new UserOrder(user1, "04/2017");
+        sampleOrder6.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder6);
+
+        UserOrder sampleOrder7 = new UserOrder(user1, "04/2017");
+        sampleOrder7.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder7);
+
+        UserOrder sampleOrder8 = new UserOrder(user1, "04/2017");
+        sampleOrder8.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder8);
+
+        UserOrder sampleOrder9 = new UserOrder(user1, "04/2017");
+        sampleOrder9.setIsApproved(true);
+        jpaUserOrderRepository.save(sampleOrder9);
+
 
     }
 }
