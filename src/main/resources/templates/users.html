@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/registration.css">
+    <object th:include="/fragments/head :: head" th:remove="tag"/>
+    <title>Users</title>
+</head>
+<body>
+<!--header section-->
+<div th:replace="fragments/header :: header ">
+    <header>
+        <h1>Sda warehouse</h1>
+        <nav class="navbar navbar-inverse sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteLogo</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Sales order</a></li>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Stock</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Raport</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<ul>
+    <div class="col-md-12">
+        <div class="user_search">
+            <div class="col-md-8"></div>
+            <div th:fragment="search_box">
+                <form class="form-inline" method="get" action="/users">
+                    <div class="form-group">
+                        <label for="search-phrase">Search:</label>
+                        <input type="text" class="form-control" id="search-phrase" name="search-phrase">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <li th:each="user : ${users}">
+        <h1 th:text="${user.firstName} + ' ' + ${user.lastName}"></h1>
+        <div class="col-md-6"></div>
+        <form method="post" action="/users/0/delete" th:action="'/users/' + ${user.id} +'/delete'">
+            <button style="background-color: red" type="submit">X</button>
+        </form>
+        <p th:text="'role: ' + ${user.role} "></p>
+        <p th:text="'Email: ' + ${user.email}"></p>
+        <p th:text="'Password: ' + ${user.password}"></p>
+        <p th:text="'isActive: ' + ${user.isActive}"></p>
+        <td>
+
+
+        </td>
+
+    </li>
+</ul>
+<div th:replace="fragments/alert :: creationStatus-alert (status=${creationStatus})">
+    <h1>Status message</h1>
+</div>
+<form method="post" action="/users">
+    <input type="text" name="firstName" placeholder="First Name">
+    <input type="text" name="lastName" placeholder="Last Name">
+    <input type="text" name="role" placeholder=Role>
+    <input type="email" name="email" placeholder=Email>
+    <input type="password" name="password" placeholder=Password>
+    <input type="text" name="isActive" placeholder="isActive?">
+    <button type="submit">Submit</button>
+    <div th:replace="fragments/footer :: footer "></div>
+</form>
