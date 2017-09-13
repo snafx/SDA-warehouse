@@ -28,7 +28,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login", "/home").permitAll()
                 .antMatchers("/products/**", "/bookAuthor/**").hasAnyAuthority("ROLE_ANONYMOUS", "Admin", "Warehouseman", "Office")
-                .antMatchers("/addUser/").hasAnyAuthority("Admin")
+                .antMatchers("/addUser/", "/h2-console/**").hasAnyAuthority("Admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -39,6 +39,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+        
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
     }
 
