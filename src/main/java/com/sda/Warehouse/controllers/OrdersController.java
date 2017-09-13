@@ -6,6 +6,8 @@ import com.sda.Warehouse.models.User;
 import com.sda.Warehouse.models.UserOrder;
 import com.sda.Warehouse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,10 +44,12 @@ public class OrdersController {
     @GetMapping(value = "/mylist")
     public String allUserOrders(Model model) {
 
-        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //Long userId = user.getId();
+        //z sesji pobieramy "springowego usera"
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        User user = jpaUserRepository.findOne(Long.valueOf(1));
+        //wyszukuje "mojego" usera na podstawie usename springowego usera - bo username musi byc unikalne
+        User user = jpaUserRepository.findOneByUsername(principal.getUsername());
+
 
         Iterable<UserOrder> allOrders = jpaUserOrderRepository.findByOwner(user);
         model.addAttribute("allOrders", allOrders);
@@ -63,10 +67,11 @@ public class OrdersController {
     @GetMapping(value = "/new")
     public String newUserOrders(Model model) {
 
-        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //Long userId = user.getId();
+        //z sesji pobieramy "springowego usera"
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        User user = jpaUserRepository.findOne(Long.valueOf(1));
+        //wyszukuje "mojego" usera na podstawie usename springowego usera - bo username musi byc unikalne
+        User user = jpaUserRepository.findOneByUsername(principal.getUsername());
 
         UserOrder userOrder = jpaUserOrderRepository.findOneByOwnerAndIsApprovedIsFalse(user);
 
@@ -85,7 +90,11 @@ public class OrdersController {
                                    @RequestParam(value = "orderNumber") String number,
                                    Model model) {
 
-        User user = jpaUserRepository.findOne(userId);
+        //z sesji pobieramy "springowego usera"
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        //wyszukuje "mojego" usera na podstawie usename springowego usera - bo username musi byc unikalne
+        User user = jpaUserRepository.findOneByUsername(principal.getUsername());
 
         UserOrder newUserOrder = new UserOrder(user, number);
 
@@ -124,15 +133,11 @@ public class OrdersController {
                                    Model model,
                                    RedirectAttributes redir) {
 
-        //userId z sesji
-        //na podstawie usera pobierz obiekt order
-        //stworz obiekt details i zapisz do bazy
-        //redirect na liste produktow
+        //z sesji pobieramy "springowego usera"
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //Long userId = user.getId();
-
-        User user = jpaUserRepository.findOne(Long.valueOf(1));
+        //wyszukuje "mojego" usera na podstawie usename springowego usera - bo username musi byc unikalne
+        User user = jpaUserRepository.findOneByUsername(principal.getUsername());
 
         UserOrder userOrder = jpaUserOrderRepository.findOneByOwnerAndIsApprovedIsFalse(user);
 
