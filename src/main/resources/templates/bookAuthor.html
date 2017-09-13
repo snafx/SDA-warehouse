@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
     <title>SDA Warehouse - Book Author</title>
@@ -28,15 +28,15 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>Id</th>
+                            <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Id</th>
                             <th>Name</th>
 
                             <th>Description</th>
                             <th>Category</th>
-                            <th>Ammount</th>
-                            <th>Quantity</th>
-                            <th>Location</th>
-                            <th>Price</th>
+                            <th sec:authorize="hasAnyAuthority('ROLE_ANONYMOUS')">Ammount</th>
+                            <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Quantity</th>
+                            <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Location</th>
+                            <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Price</th>
                             <th>Photo</th>
                         </tr>
                         </thead>
@@ -47,20 +47,25 @@
                             data-href='/products/product/1'
                             style="cursor:pointer;">
 
-                            <td th:text="${book.id}">Product id</td>
+                            <td th:text="${book.id}" sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">
+                                Product id
+                            </td>
                             <td th:text="${book.name}">Product name</td>
                             <td th:text="${book.AbbreviateDescription}">Product description</td>
                             <td th:text="${book.category.name}">Product category</td>
-                            <td>
+                            <td sec:authorize="hasAnyAuthority('ROLE_ANONYMOUS')">
                                 <span th:if="${book.quantity &gt 100}">dużo</span>
                                 <span th:if="${book.quantity &gt 0 and book.quantity &lt 100}">mało</span>
                                 <span th:if="${book.quantity == 0}">brak</span>
                             </td>
-                            <td th:text="${book.price} + ' PLN'">Product price
+                            <td th:text="${book.price} + ' PLN'"
+                                sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Product price
                             </td>
-                            <td th:text="${book.quantity}">Product quantity
+                            <td th:text="${book.quantity}"
+                                sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Product quantity
                             </td>
-                            <td th:text="${book.location}">Product location
+                            <td th:text="${book.location}"
+                                sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Product location
                             </td>
                             <td><img style="max-width: 100px;"
                                      th:src="${book.photo}"
