@@ -63,11 +63,18 @@
                     <div class="panel-body">
                         <a th:href="@{'/bookAuthor/' + ${product.bookAuthor.id}}"><h3
                                 th:text="'Author: ' + ${product.bookAuthor.name}">Author: John Doe</h3></a>
-                        <h3 th:text="'ISBN: ' + ${product.ISBN}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">ISBN: 666-777-888</h3>
-                        <h3 th:text="'Product id: ' + ${product.id}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Product id number: Lorem-ipsum-666</h3>
-                        <h3 th:text="'Quantity: ' + ${product.quantity}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Quantity: Lorem ipsum medium stock</h3>
+                        <h3 th:text="'ISBN: ' + ${product.ISBN}"
+                            sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">ISBN: 666-777-888</h3>
+                        <h3 th:text="'Product id: ' + ${product.id}"
+                            sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Product id number:
+                            Lorem-ipsum-666</h3>
+                        <h3 th:text="'Quantity: ' + ${product.quantity}"
+                            sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Quantity: Lorem ipsum
+                            medium stock</h3>
+
                         <h3 th:text="'Category: ' + ${product.category.name}">Book category: Lorem ipsum</h3>
-                        <h3 th:text="'Price: ' + ${product.price}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Price: $66</h3>
+                        <h3 th:text="'Price: ' + ${product.price}"
+                            sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Price: $66</h3>
                     </div>
                 </div>
             </div>
@@ -107,7 +114,10 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Add To Order</button>
+                                    <button type="submit" class="btn btn-primary"
+                                            sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Add To
+                                        Order
+                                    </button>
                                 </div>
                             </div>
                         </form>

@@ -1,6 +1,5 @@
 package com.sda.Warehouse.configs;
 
-import com.sda.Warehouse.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +38,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-        
+
         http.csrf().disable();
         http.headers().frameOptions().disable();
 

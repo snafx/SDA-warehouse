@@ -145,7 +145,8 @@
                                 Product id
                             </td>
                             <td th:text="${product.name}">Product name</td>
-                            <td th:text="${product.bookAuthor.name}"><a th:href="@{'/authorBook/' + ${product.bookAuthor.id}}">Product author</a></td>
+                            <td th:text="${product.bookAuthor.name}"><a
+                                    th:href="@{'/authorBook/' + ${product.bookAuthor.id}}">Product author</a></td>
                             <td th:text="${product.AbbreviateDescription}">Product description</td>
                             <td th:text="${product.category.name}">Product category</td>
                             <td sec:authorize="hasAnyAuthority('ROLE_ANONYMOUS')">
@@ -166,6 +167,20 @@
                                      th:src="${product.photo}"
                                      src="http://www.klslinternational.com/storage/merchant_store_product/331/2235/5_1428585373_sample-img.png"
                                      alt="Product photo"/></td>
+                            <td>
+                                <form>
+                                    <button type="submit"
+                                            th:formaction="@{'/products/product/'+ ${product.id} + '/edit'}"
+                                            sec:authorize="hasAnyAuthority('Admin', 'Office')"
+                                            class="btn btn-success">Edit
+                                    </button>
+                                    <button type="submit"
+                                            th:formaction="@{'/products/product/'+ ${product.id} + '/delete'}"
+                                            sec:authorize="hasAnyAuthority('Admin', 'Office')"
+                                            class="btn btn-danger">Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
