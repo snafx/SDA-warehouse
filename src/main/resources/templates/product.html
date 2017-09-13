@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
     <title>SDA Warehouse - Product Page</title>
@@ -61,12 +61,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">PRODUCT INFO:</div>
                     <div class="panel-body">
-                        <a th:href="@{'/bookAuthor/' + ${product.bookAuthor.id}}"><h3 th:text="'Author: ' + ${product.bookAuthor.name}">Author: John Doe</h3></a>
-                        <h3 th:text="'ISBN: ' + ${product.ISBN}">ISBN: 666-777-888</h3>
-                        <h3 th:text="'Product id: ' + ${product.id}">Product id number: Lorem-ipsum-666</h3>
-                        <h3 th:text="'Quantity: ' + ${product.quantity}">Quantity: Lorem ipsum medium stock</h3>
+                        <a th:href="@{'/bookAuthor/' + ${product.bookAuthor.id}}"><h3
+                                th:text="'Author: ' + ${product.bookAuthor.name}">Author: John Doe</h3></a>
+                        <h3 th:text="'ISBN: ' + ${product.ISBN}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">ISBN: 666-777-888</h3>
+                        <h3 th:text="'Product id: ' + ${product.id}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Product id number: Lorem-ipsum-666</h3>
+                        <h3 th:text="'Quantity: ' + ${product.quantity}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Quantity: Lorem ipsum medium stock</h3>
                         <h3 th:text="'Category: ' + ${product.category.name}">Book category: Lorem ipsum</h3>
-                        <h3 th:text="'Price: ' + ${product.price}">Price: $66</h3>
+                        <h3 th:text="'Price: ' + ${product.price}" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Price: $66</h3>
                     </div>
                 </div>
             </div>
@@ -76,20 +77,25 @@
                     <div class="panel-body">
                         <form method="post" action="newProduct">
                             <div class="form-group">
-                                <a class="btn btn-default" th:href="@{'/addProduct'}">Add New Product - Admin</a>
+                                <a class="btn btn-default" th:href="@{'/addProduct'}"
+                                   sec:authorize="hasAnyAuthority('Admin')">Add New Product</a>
                             </div>
                         </form>
                         <div class="form-group">
                             <a class="btn btn-default"
-                               th:href="@{'/products/product/'+ ${product.id} + '/changeAmount'}">Edit
-                                Product - Warehouseman</a>
-                            <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id} + '/edit'}">Edit
-                                Product - Admin</a>
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                               th:href="@{'/products/product/'+ ${product.id} + '/changeAmount'}"
+                               sec:authorize="hasAnyAuthority('Warehouseman')">Edit
+                                Product</a>
+                            <a class="btn btn-default" th:href="@{'/products/product/'+ ${product.id} + '/edit'}"
+                               sec:authorize="hasAnyAuthority('Admin', 'Office')">Edit
+                                Product</a>
+                            <button type="submit" class="btn btn-danger"
+                                    sec:authorize="hasAnyAuthority('Admin', 'Office')">Delete
+                            </button>
                         </div>
                         <hr>
                         <form id="myform" method="post" action="/orders/new-detail">
-                            <div class="form-group">
+                            <div class="form-group" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">
                                 <label>Set Books Quantity:</label>
                                 <div id="input_div">
                                     <input type="button" value="-" id="minus" onclick="minuss()" class="qtyminus">
@@ -101,7 +107,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Add To Order</button>
+                                    <button type="submit" class="btn btn-primary" sec:authorize="hasAnyAuthority('Admin', 'Office','Warehouseman')">Add To Order</button>
                                 </div>
                             </div>
                         </form>

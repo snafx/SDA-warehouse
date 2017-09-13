@@ -11,49 +11,49 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-    @Configuration
-    public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+@Configuration
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-        @Autowired
-        private AccessDeniedHandler accessDeniedHandler;
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
 
-        @Autowired
-        @Qualifier("customUserDetailsService")
-        UserDetailsService userDetailsService;
+    @Autowired
+    @Qualifier("customUserDetailsService")
+    UserDetailsService userDetailsService;
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-            http.csrf().disable()
-                    .authorizeRequests()
-                    .antMatchers("/", "/home").permitAll()
-                    .antMatchers("/products/").hasAnyAuthority("Admin", "Warehouseman", "Office")
-                    .antMatchers("/addUser/").hasAnyAuthority("Admin")
-                    .anyRequest().authenticated()
-                    .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
-                    .logout()
-                    .permitAll()
-                    .and()
-                    .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/login", "/home").permitAll()
+                .antMatchers("/products/**", "/bookAuthor/**").hasAnyAuthority("ROLE_ANONYMOUS", "Admin", "Warehouseman", "Office")
+                .antMatchers("/addUser/").hasAnyAuthority("Admin")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
-        }
-
-        @Override
-        public void configure(WebSecurity web) throws Exception {
-            web
-                    .ignoring()
-                    .antMatchers("/resources/**", "/static/**", "/css/**", "/script/**", "/img/**");
-        }
-
-        @Autowired
-        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-            auth.userDetailsService(userDetailsService);
-
-        }
     }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/script/**", "/img/**");
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.userDetailsService(userDetailsService);
+
+    }
+}
 
