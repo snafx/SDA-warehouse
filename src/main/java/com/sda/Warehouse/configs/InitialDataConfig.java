@@ -56,7 +56,7 @@ public class InitialDataConfig {
     public void init() {
 
 
-        User user = new User("Jan", "Kowalski", "kowalski123", "kowalski@wp.pl", "a", true);
+        User user = new User("Jan", "Kowalski", "test123", "kowalski@wp.pl", "test123", true);
         User user1 = new User("Jan", "Kowalski", "admin", "a@a.com", "admin", true);
         User user2 = new User("Marcin", "Kowalski", "ronaldo99", "abc@xyz.com", "aaaa", true);
         User user3 = new User("Michał", "Anioł", "malutki", "kkoko@xyz.com", "aniol", true);
@@ -122,7 +122,7 @@ public class InitialDataConfig {
         jpaBookAuthorRepository.save(bookAuthor8);
 
         Product product = new Product("Java podstawy",
-                "PIERWSZY PRODUKT Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
+                "Najważniejszy praktyczny poradnik i podręcznik dla doświadczonych programistów dążących do " +
                         "doskonalenia swoich umiejętności w zakresie posługiwania się językiem Java.",
                 "Rząd 1; miejsce 1",
                 15,

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <object th:include="/fragments/head :: head" th:remove="tag"/>
-    <title>Login</title>
+    <title>SDA Warehouse - Add Book Author</title>
 </head>
 <body>
 
@@ -44,12 +44,12 @@
                         <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
                     </tr>
                 </table>
-                <button type="submit" class="btn btn-primary btn-lg btn-block login-button ">Submit and back to adding product
+                <button type="submit" class="btn btn-primary btn-lg btn-block login-button ">Submit and go back to
+                    adding product
                 </button>
             </form>
         </div>
     </div>
-</div>
 </div>
 
 <div th:replace="fragments/footer :: footer "></div>

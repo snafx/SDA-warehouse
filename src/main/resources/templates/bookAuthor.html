@@ -5,35 +5,31 @@
     <title>SDA Warehouse - Book Author</title>
 </head>
 <body>
+
 <div th:replace="fragments/header :: header "></div>
 
 <div class="container">
-
     <div class="panel panel-info">
-        <div class="panel-heading">All Book's Author</div>
+        <div class="panel-heading-registr">ALL AUTHOR's BOOKS</div>
         <div class="panel-body">
             <div>
                 <h1 th:text="${bookAuthor.name}"></h1>
             </div>
-
             <div th:if="${allBooksOneAuthor}">
-
                 <div th:if="${allBooksOneAuthor.isEmpty()}">
                     <div class="alert alert-warning">
                         This author has no book...
                     </div>
                 </div>
-
                 <div th:if="${!allBooksOneAuthor.isEmpty()}">
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Id</th>
                             <th>Name</th>
-
                             <th>Description</th>
                             <th>Category</th>
-                            <th sec:authorize="hasAnyAuthority('ROLE_ANONYMOUS')">Ammount</th>
+                            <th sec:authorize="hasAnyAuthority('ROLE_ANONYMOUS')">Amount</th>
                             <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Quantity</th>
                             <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Location</th>
                             <th sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Price</th>
@@ -54,9 +50,9 @@
                             <td th:text="${book.AbbreviateDescription}">Product description</td>
                             <td th:text="${book.category.name}">Product category</td>
                             <td sec:authorize="hasAnyAuthority('ROLE_ANONYMOUS')">
-                                <span th:if="${book.quantity &gt 100}">dużo</span>
-                                <span th:if="${book.quantity &gt 0 and book.quantity &lt 100}">mało</span>
-                                <span th:if="${book.quantity == 0}">brak</span>
+                                <span th:if="${book.quantity &gt 100}">many</span>
+                                <span th:if="${book.quantity &gt 0 and book.quantity &lt 100}">few</span>
+                                <span th:if="${book.quantity == 0}">out of stock</span>
                             </td>
                             <td th:text="${book.price} + ' PLN'"
                                 sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')">Product price
@@ -74,22 +70,16 @@
                         </tr>
                         </tbody>
                     </table>
-
                     </ul>
-                    </nav>
-
                 </div>
             </div>
-
             <div th:unless="${allBooksOneAuthor}">
                 <div class="alert alert-warning">
                     No data found...
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
 
 <div th:replace="fragments/footer :: footer ">

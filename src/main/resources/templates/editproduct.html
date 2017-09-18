@@ -24,14 +24,10 @@
 <div class="container">
     <form class="edit-product form-horizontal" action="/product/1/edit"
           th:action="'/products/product/' + ${product.id} + '/edit'" method="post">
-
         <fieldset>
-
-
             <div class="form-group">
                 <h1 class="col-md-12 text-center">Edit product</h1>
             </div>
-
 
             <!-- ID uneditable -->
 
@@ -66,7 +62,8 @@
                     <div class="input-group">
                         <span class="input-group-addon"></span>
                         <input class="form-control" th:value="${product.bookAuthor.name}" type="text" readonly>
-                        <input name="bookAuthor" field="bookAuthor" class="form-control" th:value="${product.bookAuthor.id}"
+                        <input name="bookAuthor" field="bookAuthor" class="form-control"
+                               th:value="${product.bookAuthor.id}"
                                type="hidden">
                         </select>
                     </div>

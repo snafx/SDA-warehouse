@@ -34,11 +34,8 @@
     <div class="panel panel-info">
         <div class="panel-heading-registr"><b>ORDER DETAILS:</b></div>
         <div class="panel-body">
-
             <hr/>
-
             <div th:if="${allOrders}">
-
                 <div th:if="${allOrders.isEmpty()}">
                     <div class="alert alert-warning">
                         Searching resulted 0 rows...
@@ -114,11 +111,9 @@
                     This order is aproved and can not be modified...
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-
 
 <div th:replace="fragments/footer :: footer ">
     <footer>
