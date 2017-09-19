@@ -141,7 +141,8 @@
                             data-href='/products/product/1'
                             style="cursor:pointer;">
                             <th scope="row" th:text="${iterationStatus.count}">1</th>
-                            <td sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')" th:text="${product.id}">
+                            <td sec:authorize="hasAnyAuthority('Warehouseman', 'Admin', 'Office')"
+                                th:text="${product.id}">
                                 Product id
                             </td>
                             <td th:text="${product.name}">Product name</td>
@@ -234,10 +235,8 @@
                                     <span aria-hidden="true">Last page</span>
                                 </a>
                             </li>
-
                         </ul>
                     </nav>
-
                 </div>
             </div>
 
@@ -246,10 +245,8 @@
                     No data found...
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
 
 

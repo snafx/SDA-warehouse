@@ -7,9 +7,7 @@
 <div th:fragment="footer">
 
     <div class="container">
-
         <footer>
-
             <span sec:authorize="isAuthenticated()">
                 | Logged user: <span sec:authentication="name"></span> |
                 Roles: <span sec:authentication="principal.authorities"></span> |
@@ -20,13 +18,10 @@
                 <p>​Inventory management for growing businesses.</p>
                 <p><b>SDA Warehouse</b> - day-to-day warehouse operations powered by SDA-javapoz3</p>
             </div>
-
             <script type="text/javascript"
                     src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
         </footer>
-
-
+    </div>
 </div>
 </body>
 </html>
